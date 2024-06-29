@@ -12,6 +12,10 @@ use App\Http\Controllers\CqController;
 use App\Http\Controllers\TipoChecklistController;
 use App\Http\Controllers\ColaboradorController;
 
+Route::get('/', function () {
+    return view('welcome');
+});
+
 
 Route::resource('diretores', DiretorController::class);
 Route::resource('setores', SetorController::class);

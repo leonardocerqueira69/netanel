@@ -14,10 +14,9 @@ return new class extends Migration
         Schema::create('cq', function (Blueprint $table) {
             $table->id('id_cq');
             $table->foreignId('checklist')->constrained('checklist', 'id_checklist');
-            $table->integer('conf_um');
-            $table->integer('conf_dois');
+            $table->foreignId('conf_um')->constrained('colaborador', 'id_colaborador');
+            $table->foreignId('conf_dois')->constrained('colaborador', 'id_colaborador');
             $table->date('data_fm');
-            $table->foreignId('colaborador')->constrained('colaborador', 'id_colaborador');
             $table->timestamps();
         });
     }

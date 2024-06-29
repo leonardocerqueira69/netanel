@@ -17,9 +17,14 @@ class CqModel extends Model
         return $this->belongsTo(CheckListModel::class, 'checklist', 'id_checklist');
     }
 
-    public function colaborador()
+    public function colaboradorUm()
     {
-        return $this->belongsTo(ColaboradorModel::class, 'colaborador', 'id_colaborador');
+        return $this->belongsTo(ColaboradorModel::class, 'conf_um', 'id_colaborador');
+    }
+
+    public function colaboradorDois()
+    {
+        return $this->belongsTo(ColaboradorModel::class, 'conf_dois', 'id_colaborador');
     }
 }
 

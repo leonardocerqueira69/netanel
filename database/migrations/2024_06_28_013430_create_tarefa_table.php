@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pcp', function (Blueprint $table) {
-            $table->id('id_pcp');
-            $table->foreignId('tarefa')->constrained('tarefa', 'id_tarefa');
+        Schema::create('tarefa', function (Blueprint $table) {
+            $table->id('id_tarefa');
+            $table->foreignId('setor')->constrained('setor', 'id_setor');
+            $table->text('texto');
             $table->date('data_atual');
+            $table->tinyInteger('finalizado');
+            $table->tinyInteger('andamento');
             $table->timestamps();
         });
     }
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pcp');
+        Schema::dropIfExists('tarefa');
     }
 };
