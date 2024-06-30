@@ -12,8 +12,8 @@ class PcpModel extends Model
     protected $table = 'pcp';
     protected $primaryKey = 'id_pcp';
 
-    public function tarefa()
+    public function tarefas()
     {
-        return $this->belongsTo(SetorModel::class, 'tarefa', 'id_tarefa');
+        return $this->hasMany(TarefaModel::class, 'tarefa', 'id_tarefa');
     }
 }

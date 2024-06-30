@@ -2,6 +2,9 @@
 
 @section('content')
 
-<p>oi 2</p>
+@foreach($diretores as $diretor)
+    <p>{{ $diretor->nome }}</p>
+    
+@endforeach
 
 @endsection('content')

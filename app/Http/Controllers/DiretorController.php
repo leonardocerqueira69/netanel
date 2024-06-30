@@ -4,11 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\DiretorModel;
+
 class DiretorController extends Controller
 {
     public function index()
     {
         // Código para listar todos os diretores
+        $diretores = DiretorModel::all();
+
+        return view ('welcome', compact('diretores'));
     }
 
     public function show($id)
