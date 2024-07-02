@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('pcp', function (Blueprint $table) {
             $table->id('id_pcp');
-            $table->foreignId('tarefa')->constrained('tarefa', 'id_tarefa');
             $table->date('data_atual');
             $table->timestamps();
         });

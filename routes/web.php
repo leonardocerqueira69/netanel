@@ -13,9 +13,9 @@ use App\Http\Controllers\TipoChecklistController;
 use App\Http\Controllers\ColaboradorController;
 
 
+Route::get('/pcp/{id}', [PcpController::class, 'show']);
 
-
-
+/* 
 Route::get('/', [DiretorController::class, 'index']);
 Route::get('/diretores/{id}', [DiretorController::class, 'show']);
 Route::get('/diretores/create', [DiretorController::class, 'create']);
@@ -23,7 +23,7 @@ Route::post('/diretores', [DiretorController::class, 'store']);
 Route::get('/diretores/{id}/edit', [DiretorController::class, 'edit']);
 Route::put('/diretores/{id}', [DiretorController::class, 'update']);
 Route::delete('/diretores/{id}', [DiretorController::class, 'destroy']);
-/* 
+
 
 // Rotas para SetorController
 Route::get('/', [SetorController::class, 'index']);

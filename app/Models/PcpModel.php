@@ -12,6 +12,7 @@ class PcpModel extends Model
     protected $table = 'pcp';
     protected $primaryKey = 'id_pcp';
 
+    // Define a relação com o modelo Tarefa
     public function tarefas()
     {
         return $this->hasMany(TarefaModel::class, 'tarefa', 'id_tarefa');

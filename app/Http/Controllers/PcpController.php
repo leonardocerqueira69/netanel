@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\PcpModel;
+use App\Models\SetorModel;
+use App\Models\TarefaModel;
+
 class PcpController extends Controller
 {
     public function index()
@@ -13,7 +17,20 @@ class PcpController extends Controller
 
     public function show($id)
     {
-        // Código para mostrar um PCP específico
+        // Encontra o modelo PCP pelo ID
+        $pcp = PcpModel::findOrFail($id);
+
+        // Carrega todas as tarefas relacionadas a este PCP, agrupadas por setor
+        $tarefasAgrupadas = TarefaModel::where('pcp', $pcp->id_pcp)
+            ->with('setor') // Carrega o setor associado a cada tarefa
+            ->get()
+            ->groupBy('setor'); // Agrupa as tarefas pelo setor_id
+
+        // Carrega os setores separadamente (opcional)
+        $setores = SetorModel::all(); // Carrega todos os setores se necessário
+
+        // Retorna a view 'pcp' passando as variáveis $pcp, $tarefasAgrupadas e $setores
+        return view('pcp', compact('pcp', 'tarefasAgrupadas', 'setores'));
     }
 
     public function create()

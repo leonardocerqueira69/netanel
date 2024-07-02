@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('id_tarefa');
             $table->foreignId('setor')->constrained('setor', 'id_setor');
             $table->text('texto');
-            $table->date('data_atual');
+            $table->foreignId('pcp')->constrained('pcp', 'id_pcp');
             $table->tinyInteger('finalizado');
             $table->tinyInteger('andamento');
             $table->timestamps();

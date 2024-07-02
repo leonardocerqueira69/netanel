@@ -14,7 +14,7 @@ class SetorModel extends Model
 
     public function tarefas()
     {
-        return $this->hasMany(TarefaModel::class, 'tarefa', 'id_tarefa');
+        return $this->hasMany(TarefaModel::class, 'setor', 'id_setor');
     }
 }
 

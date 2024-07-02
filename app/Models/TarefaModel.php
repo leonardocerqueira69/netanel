@@ -9,6 +9,8 @@ class TarefaModel extends Model
 {
     use HasFactory;
 
+    protected $table = 'tarefa';
+
     public function setor()
     {
         return $this->belongsTo(SetorModel::class, 'setor', 'id_setor');
