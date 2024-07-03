@@ -17,11 +17,15 @@ Route::get('/teste', function () {
 });
 
 
-Route::get('/pcp/{id}', [PcpController::class, 'show']);
+
 
 Route::get('/setor/indexSetor', [SetorController::class, 'indexSetor']);
 
-Route::get('tarefa/showTarefa/{id}', [TarefaController::class, 'getTarefasPorSetor']);
+Route::get('pcp/showPcp/{id}', [PcpController::class, 'getPcpPorSetor'])->name('pcp.showPcp');
+Route::get('/pcp/create', [PcpController::class, 'create'])->name('pcp.create');;
+Route::post('/pcp', [PcpController::class, 'store'])->name('pcp.store');
+
+
 
 /* 
 Route::get('/', [DiretorController::class, 'index']);

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Tarefas por Setor</title>
+    <title>Pcp por Setor</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -25,19 +25,19 @@
     </style>
 </head>
 <body>
-    <h1>Tarefas por Setor</h1>
-    @if($tarefas->isEmpty())
-        <p>Não há tarefas disponíveis para este setor.</p>
+    <h1>Pcp por Setor</h1>
+    @if($pcps->isEmpty())
+        <p>Não há pcps disponíveis para este setor.</p>
     @else
         <ul>
-            @foreach($tarefas as $tarefa)
+            @foreach($pcps as $pcp)
                 <li>
-                    <p class="setor-id">ID da Tarefa: {{ $tarefa->id_tarefa }}</p>
-                    <p>Texto: {{ $tarefa->texto }}</p>
-                    <p>Finalizado: {{ $tarefa->finalizado ? 'Sim' : 'Não' }}</p>
-                    <p>Andamento: {{ $tarefa->andamento ? 'Sim' : 'Não' }}</p>
-                    @if(isset($tarefa->data_atual))
-                        <p>Data: {{ $tarefa->data_atual }}</p>
+                    <p class="setor-id">ID do Pcp: {{ $pcp->id_pcp }}</p>
+                    <p>Texto: {{ $pcp->texto }}</p>
+                    <p>Finalizado: {{ $pcp->finalizado ? 'Sim' : 'Não' }}</p>
+                    <p>Andamento: {{ $pcp->andamento ? 'Sim' : 'Não' }}</p>
+                    @if(isset($pcp->data_atual))
+                        <p>Data: {{ $pcp->data_atual }}</p>
                     @endif
                 </li>
             @endforeach

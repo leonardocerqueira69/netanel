@@ -12,9 +12,9 @@ class SetorModel extends Model
     protected $table = 'setor';
     protected $primaryKey = 'id_setor';
 
-    public function tarefas()
+    public function pcps()
     {
-        return $this->hasMany(TarefaModel::class, 'setor', 'id_setor');
+        return $this->hasMany(PcpModel::class, 'setor', 'id_setor');
     }
 }
 

@@ -15,27 +15,7 @@ class PcpController extends Controller
         $pcp = PcpModel::all();
 
         return view ('welcome', compact('pcp'));
-    }
-
-    public function show($id)
-    {
-        // Encontra o modelo PCP pelo ID
-        $pcp = PcpModel::findOrFail($id);
-
-        // Carrega todas as tarefas relacionadas a este PCP, agrupadas por setor
-        $tarefasAgrupadas = TarefaModel::where('pcp', $pcp->id_pcp)
-            ->with('setor') // Carrega o setor associado a cada tarefa
-            ->get()
-            ->groupBy('setor'); // Agrupa as tarefas pelo setor_id
-
-        // Carrega os setores separadamente (opcional)
-        $setores = SetorModel::all(); // Carrega todos os setores se necessário
-
-        // Retorna a view 'pcp' passando as variáveis $pcp, $tarefasAgrupadas e $setores
-        return view('pcp', compact('pcp', 'tarefasAgrupadas', 'setores'));
-    }
-
-    
+    }    
 
     public function showPcp($id)
     {
@@ -44,14 +24,38 @@ class PcpController extends Controller
         return view('pcp/show', compact('pcp'));
     }
 
+    public function getPcpPorSetor($id)
+    {
+        $pcps = PcpModel::where('setor', $id)
+            ->orderBy('data_atual', 'desc')
+            ->get();
+
+        return view('pcp.showPcp', compact('pcps'));
+    }
+
     public function create()
     {
-        // Código para mostrar o formulário de criação de PCP
+        
+        $setores = SetorModel::all();
+
+        
+        return view('pcp.create', compact('setores'));
     }
 
     public function store(Request $request)
     {
-        // Código para salvar um novo PCP
+        
+        $validatedData = $request->validate([
+            'setor' => 'required|exists:setor,id_setor',
+            'texto' => 'required',
+            'data_atual' => 'required|date',
+            'finalizado' => 'required|boolean',
+            'andamento' => 'required|boolean',
+        ]);
+
+        PcpModel::create($validatedData);
+
+        return redirect()->route('pcp.showPcp', ['id' => $validatedData['setor']]);
     }
 
     public function edit($id)

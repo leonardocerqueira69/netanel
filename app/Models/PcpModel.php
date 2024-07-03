@@ -12,9 +12,12 @@ class PcpModel extends Model
     protected $table = 'pcp';
     protected $primaryKey = 'id_pcp';
 
-    // Define a relação com o modelo Tarefa
-    public function tarefas()
+    protected $fillable = [
+        'setor', 'texto', 'data_atual', 'data_atualizada', 'finalizado', 'andamento'
+    ];
+    
+    public function setor()
     {
-        return $this->hasMany(TarefaModel::class, 'tarefa', 'id_tarefa');
+        return $this->belongsTo(SetorModel::class, 'setor', 'id_setor');
     }
 }
