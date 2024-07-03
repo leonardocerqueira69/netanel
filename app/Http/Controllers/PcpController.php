@@ -12,7 +12,9 @@ class PcpController extends Controller
 {
     public function index()
     {
-        // Código para listar todos os PCPs
+        $pcp = PcpModel::all();
+
+        return view ('welcome', compact('pcp'));
     }
 
     public function show($id)
@@ -31,6 +33,15 @@ class PcpController extends Controller
 
         // Retorna a view 'pcp' passando as variáveis $pcp, $tarefasAgrupadas e $setores
         return view('pcp', compact('pcp', 'tarefasAgrupadas', 'setores'));
+    }
+
+    
+
+    public function showPcp($id)
+    {
+        $pcp = PcpModel::findOrFail($id);
+
+        return view('pcp/show', compact('pcp'));
     }
 
     public function create()

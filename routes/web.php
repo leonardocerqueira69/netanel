@@ -12,8 +12,16 @@ use App\Http\Controllers\CqController;
 use App\Http\Controllers\TipoChecklistController;
 use App\Http\Controllers\ColaboradorController;
 
+Route::get('/teste', function () {
+    return 'Teste de rota simples';
+});
+
 
 Route::get('/pcp/{id}', [PcpController::class, 'show']);
+
+Route::get('/setor/indexSetor', [SetorController::class, 'indexSetor']);
+
+Route::get('tarefa/showTarefa/{id}', [TarefaController::class, 'getTarefasPorSetor']);
 
 /* 
 Route::get('/', [DiretorController::class, 'index']);
