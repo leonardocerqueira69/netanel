@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\PcpModel;
 use App\Models\SetorModel;
-use App\Models\TarefaModel;
+
 
 class PcpController extends Controller
 {

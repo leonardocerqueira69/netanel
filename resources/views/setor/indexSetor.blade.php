@@ -9,8 +9,9 @@
         <ul>
             @foreach($setores as $setor)
                 <li>ID: {{ $setor->id_setor }} - Nome: {{ $setor->nome }}</li>
+                <a href="../pcp/showPcp/{{$setor->id_setor}}">a</a>
             @endforeach
-            <a href="../tarefa/showTarefa/{{$setor->id_setor}}">a</a>
+            
         </ul>
     @endif
 
