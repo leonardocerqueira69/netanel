@@ -16,6 +16,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/pcp', function () {
+    return view('pcp');
+});
+
+Route::get('/checklist', function () {
+    return view('checklist');
+});
+
+Route::get('/database', function () {
+    return view('database');
+});
 
 Route::resource('diretores', DiretorController::class);
 Route::resource('setores', SetorController::class);
