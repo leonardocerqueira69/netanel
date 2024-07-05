@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\TipoChecklistController;
+use App\Models\TipoCheckListModel;
+use App\Models\CheckListModel;
 
 class ChecklistController extends Controller
 {
@@ -11,9 +14,12 @@ class ChecklistController extends Controller
         // Código para listar todos os checklists
     }
 
-    public function show($id)
+    public function show($nome_tipo)
     {
-        // Código para mostrar um checklist específico
+        $tipoChecklist = TipoCheckListModel::where('nome_tipo', $nome_tipo)->firstOrFail();
+        $checklists = CheckListModel::where('tipo', $tipoChecklist->id_tipo)->get();
+        
+        return view('checklists.show', compact('tipoChecklist', 'checklists'));
     }
 
     public function create()

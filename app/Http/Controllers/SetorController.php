@@ -2,18 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\SetorModel;
 use Illuminate\Http\Request;
 
 class SetorController extends Controller
 {
-    public function index()
+    public function indexSetor()
     {
-        // Código para listar todos os setores
+       
+        $setores = SetorModel::all();
+
+        
+        return view('setor.indexSetor', compact('setores'));
     }
 
     public function show($id)
     {
-        // Código para mostrar um setor específico
+        $setor = SetorModel::all();
+
+        return view(compact('setor',$setor));
     }
 
     public function create()

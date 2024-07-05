@@ -19,11 +19,11 @@ class CheckListModel extends Model
 
     public function listas()
     {
-        return $this->hasMany(ListaModel::class, 'checklist', 'id_checklist');
+        return $this->hasMany(ListaModel::class, 'lista', 'id_lista');
     }
 
     public function cq()
     {
-        return $this->hasOne(CqModel::class, 'checklist', 'id_checklist');
+        return $this->hasOne(CqModel::class, 'cq', 'id_cq');
     }
 }

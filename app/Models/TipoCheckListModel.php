@@ -12,9 +12,11 @@ class TipoCheckListModel extends Model
     protected $table = 'tipo_checklist';
     protected $primaryKey = 'id_tipo';
 
+        
+
     public function checklists()
     {
-        return $this->hasMany(CheckListModel::class, 'tipo', 'id_tipo');
+        return $this->hasMany(CheckListModel::class, 'checklist', 'id_checklist');
     }
 }
 

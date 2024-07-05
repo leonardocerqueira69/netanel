@@ -12,8 +12,12 @@ class PcpModel extends Model
     protected $table = 'pcp';
     protected $primaryKey = 'id_pcp';
 
-    public function tarefa()
+    protected $fillable = [
+        'setor', 'texto', 'data_atual', 'data_atualizada', 'finalizado', 'andamento'
+    ];
+    
+    public function setor()
     {
-        return $this->belongsTo(SetorModel::class, 'tarefa', 'id_tarefa');
+        return $this->belongsTo(SetorModel::class, 'setor', 'id_setor');
     }
 }

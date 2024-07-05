@@ -28,16 +28,100 @@ Route::get('/database', function () {
     return view('database');
 });
 
-Route::resource('diretores', DiretorController::class);
-Route::resource('setores', SetorController::class);
-Route::resource('tarefas', TarefaController::class);
-Route::resource('pcps', PcpController::class);
-Route::resource('listas', ListaController::class);
-Route::resource('tarefas', ChecklistController::class);
-Route::resource('cqs', CqController::class);
-Route::resource('tipos-checklist', TipoChecklistController::class);
-Route::resource('colaboradores', ColaboradorController::class);
+
+Route::get('/setor/indexSetor', [SetorController::class, 'indexSetor'])->name('indexSetor');
+
+Route::get('pcp/showPcp/{id}', [PcpController::class, 'getPcpPorSetor'])->name('pcp.showPcp');
+Route::get('/pcp/create', [PcpController::class, 'create'])->name('pcp.create');;
+Route::post('/pcp', [PcpController::class, 'store'])->name('pcp.store');
+
+
+// Rotas para ChecklistController
+Route::get('/checklists/{nome_tipo}', [CheckListController::class, 'show'])->name('checklists.show');
+Route::get('/checklists/create', [ChecklistController::class, 'create']);
+Route::post('/checklists', [ChecklistController::class, 'store']);
+Route::get('/checklists/{id}/edit', [ChecklistController::class, 'edit']);
+Route::put('/checklists/{id}', [ChecklistController::class, 'update']);
+Route::delete('/checklists/{id}', [ChecklistController::class, 'destroy']);
+
+/* 
+Route::get('/', [DiretorController::class, 'index']);
+Route::get('/diretores/{id}', [DiretorController::class, 'show']);
+Route::get('/diretores/create', [DiretorController::class, 'create']);
+Route::post('/diretores', [DiretorController::class, 'store']);
+Route::get('/diretores/{id}/edit', [DiretorController::class, 'edit']);
+Route::put('/diretores/{id}', [DiretorController::class, 'update']);
+Route::delete('/diretores/{id}', [DiretorController::class, 'destroy']);
+
+
+/* 
+
+// Rotas para SetorController
+Route::get('/', [SetorController::class, 'index']);
+Route::get('/setores/{id}', [SetorController::class, 'show']);
+Route::get('/setores/create', [SetorController::class, 'create']);
+Route::post('/setores', [SetorController::class, 'store']);
+Route::get('/setores/{id}/edit', [SetorController::class, 'edit']);
+Route::put('/setores/{id}', [SetorController::class, 'update']);
+Route::delete('/setores/{id}', [SetorController::class, 'destroy']);
+
+// Rotas para TarefaController
+Route::get('/', [TarefaController::class, 'index']);
+Route::get('/tarefas/{id}', [TarefaController::class, 'show']);
+Route::get('/tarefas/create', [TarefaController::class, 'create']);
+Route::post('/tarefas', [TarefaController::class, 'store']);
+Route::get('/tarefas/{id}/edit', [TarefaController::class, 'edit']);
+Route::put('/tarefas/{id}', [TarefaController::class, 'update']);
+Route::delete('/tarefas/{id}', [TarefaController::class, 'destroy']);
+
+// Rotas para PcpController
+Route::get('/', [PcpController::class, 'index']);
+Route::get('/pcps/{id}', [PcpController::class, 'show']);
+Route::get('/pcps/create', [PcpController::class, 'create']);
+Route::post('/pcps', [PcpController::class, 'store']);
+Route::get('/pcps/{id}/edit', [PcpController::class, 'edit']);
+Route::put('/pcps/{id}', [PcpController::class, 'update']);
+Route::delete('/pcps/{id}', [PcpController::class, 'destroy']);
+
+// Rotas para ListaController
+Route::get('/', [ListaController::class, 'index']);
+Route::get('/listas/{id}', [ListaController::class, 'show']);
+Route::get('/listas/create', [ListaController::class, 'create']);
+Route::post('/listas', [ListaController::class, 'store']);
+Route::get('/listas/{id}/edit', [ListaController::class, 'edit']);
+Route::put('/listas/{id}', [ListaController::class, 'update']);
+Route::delete('/listas/{id}', [ListaController::class, 'destroy']);
+
+
+
+// Rotas para CqController
+Route::get('/', [CqController::class, 'index']);
+Route::get('/cqs/{id}', [CqController::class, 'show']);
+Route::get('/cqs/create', [CqController::class, 'create']);
+Route::post('/cqs', [CqController::class, 'store']);
+Route::get('/cqs/{id}/edit', [CqController::class, 'edit']);
+Route::put('/cqs/{id}', [CqController::class, 'update']);
+Route::delete('/cqs/{id}', [CqController::class, 'destroy']);
+
+// Rotas para TipoChecklistController   
+Route::get('/', [TipoChecklistController::class, 'index']);
+Route::get('/tipos-checklist/{id}', [TipoChecklistController::class, 'show']);
+Route::get('/tipos-checklist/create', [TipoChecklistController::class, 'create']);
+Route::post('/tipos-checklist', [TipoChecklistController::class, 'store']);
+Route::get('/tipos-checklist/{id}/edit', [TipoChecklistController::class, 'edit']);
+Route::put('/tipos-checklist/{id}', [TipoChecklistController::class, 'update']);
+Route::delete('/tipos-checklist/{id}', [TipoChecklistController::class, 'destroy']);
+
+
+Route::get('/', [ColaboradorController::class, 'index']);
+Route::get('/colaboradores/{id}', [ColaboradorController::class, 'show']);
+Route::get('/colaboradores/create', [ColaboradorController::class, 'create']);
+Route::post('/colaboradores', [ColaboradorController::class, 'store']);
+Route::get('/colaboradores/{id}/edit', [ColaboradorController::class, 'edit']);
+Route::put('/colaboradores/{id}', [ColaboradorController::class, 'update']);
+Route::delete('/colaboradores/{id}', [ColaboradorController::class, 'destroy']);
 
 
 
 
+*/
