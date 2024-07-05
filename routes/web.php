@@ -13,7 +13,7 @@ use App\Http\Controllers\TipoChecklistController;
 use App\Http\Controllers\ColaboradorController;
 
 
-Route::get('/main', function () {
+Route::get('/', function () {
     return view('layouts.main');
 });
 
