@@ -18,13 +18,7 @@ class ChecklistController extends Controller
     {
         $tipoChecklist = TipoCheckListModel::where('nome_tipo', $nome_tipo)->firstOrFail();
         $checklists = CheckListModel::where('tipo', $tipoChecklist->id_tipo)->get();
-
-        // Verifica o valor de $nome_tipo para retornar a view específica
-        if (view()->exists("checklists.$nome_tipo")) {
-            return view("checklists.$nome_tipo", compact('tipoChecklist', 'checklists'));
-        }
-
-        // Se a view específica não existir, retorna uma view genérica
+        
         return view('checklists.show', compact('tipoChecklist', 'checklists'));
     }
 
