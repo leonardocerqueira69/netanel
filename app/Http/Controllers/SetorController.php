@@ -9,11 +9,11 @@ class SetorController extends Controller
 {
     public function indexSetor()
     {
-        // Carrega todos os setores do banco de dados
+       
         $setores = SetorModel::all();
 
-        // Retorna a view 'pcp.indexSetor' passando a variável $setores
-        return view('setor/indexSetor', compact('setores'));
+        
+        return view('setor.indexSetor', compact('setores'));
     }
 
     public function show($id)

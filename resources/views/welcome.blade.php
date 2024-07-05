@@ -2,9 +2,6 @@
 
 @section('content')
 
-@foreach($diretores as $diretor)
-    <p>{{ $diretor->nome }}</p>
-    
-@endforeach
+<h1>Bom dia,<br>Colaborador!</h1>
 
 @endsection('content')

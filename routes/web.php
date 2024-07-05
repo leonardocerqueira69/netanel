@@ -12,17 +12,13 @@ use App\Http\Controllers\CqController;
 use App\Http\Controllers\TipoChecklistController;
 use App\Http\Controllers\ColaboradorController;
 
-Route::get('/teste', function () {
-    return 'Teste de rota simples';
-});
-
 Route::get('/', function () {
-    return view('layouts.main');
+    return view('welcome');
 });
 
 
 
-Route::get('/setor/indexSetor', [SetorController::class, 'indexSetor']);
+Route::get('/setor/indexSetor', [SetorController::class, 'indexSetor'])->name('indexSetor');
 
 Route::get('pcp/showPcp/{id}', [PcpController::class, 'getPcpPorSetor'])->name('pcp.showPcp');
 Route::get('/pcp/create', [PcpController::class, 'create'])->name('pcp.create');;
