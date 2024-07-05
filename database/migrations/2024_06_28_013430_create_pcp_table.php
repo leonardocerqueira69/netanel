@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tarefa', function (Blueprint $table) {
-            $table->id('id_tarefa');
+        Schema::create('pcp', function (Blueprint $table) {
+            $table->id('id_pcp');
             $table->foreignId('setor')->constrained('setor', 'id_setor');
             $table->text('texto');
             $table->date('data_atual');
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tarefa');
+        Schema::dropIfExists('pcp');
     }
 };

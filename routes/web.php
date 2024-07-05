@@ -12,19 +12,22 @@ use App\Http\Controllers\CqController;
 use App\Http\Controllers\TipoChecklistController;
 use App\Http\Controllers\ColaboradorController;
 
+Route::get('/teste', function () {
+    return 'Teste de rota simples';
+});
 
 Route::get('/', function () {
     return view('layouts.main');
 });
 
 
-//
-Route::get('/diretores/{id}', [DiretorController::class, 'show']);
-Route::get('/diretores/create', [DiretorController::class, 'create']);
-Route::post('/diretores', [DiretorController::class, 'store']);
-Route::get('/diretores/{id}/edit', [DiretorController::class, 'edit']);
-Route::put('/diretores/{id}', [DiretorController::class, 'update']);
-Route::delete('/diretores/{id}', [DiretorController::class, 'destroy']);
+
+Route::get('/setor/indexSetor', [SetorController::class, 'indexSetor']);
+
+Route::get('pcp/showPcp/{id}', [PcpController::class, 'getPcpPorSetor'])->name('pcp.showPcp');
+Route::get('/pcp/create', [PcpController::class, 'create'])->name('pcp.create');;
+Route::post('/pcp', [PcpController::class, 'store'])->name('pcp.store');
+
 
 // Rotas para ChecklistController
 Route::get('/checklists/{nome_tipo}', [CheckListController::class, 'show'])->name('checklists.show');
@@ -33,6 +36,17 @@ Route::post('/checklists', [ChecklistController::class, 'store']);
 Route::get('/checklists/{id}/edit', [ChecklistController::class, 'edit']);
 Route::put('/checklists/{id}', [ChecklistController::class, 'update']);
 Route::delete('/checklists/{id}', [ChecklistController::class, 'destroy']);
+
+/* 
+Route::get('/', [DiretorController::class, 'index']);
+Route::get('/diretores/{id}', [DiretorController::class, 'show']);
+Route::get('/diretores/create', [DiretorController::class, 'create']);
+Route::post('/diretores', [DiretorController::class, 'store']);
+Route::get('/diretores/{id}/edit', [DiretorController::class, 'edit']);
+Route::put('/diretores/{id}', [DiretorController::class, 'update']);
+Route::delete('/diretores/{id}', [DiretorController::class, 'destroy']);
+
+
 /* 
 
 // Rotas para SetorController
