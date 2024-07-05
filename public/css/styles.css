@@ -1,3 +1,43 @@
-body{
-   
+* {
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-style: light;
+}
+
+nav {
+    background: rgb(83, 116, 115);
+    background: linear-gradient(90deg, rgba(83, 116, 115, 1) 0%, rgba(255, 255, 255, 1) 50%, rgba(81, 168, 177, 1) 100%);
+}
+
+h1 {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #51A8B1 !important;
+    opacity: 0.3;
+  }
+
+.nav-link {
+    color: white !important;
+}
+
+.navbar-brand {
+    position: absolute;
+    transform: translateY(-20%);
+    top: 50%;
+    width: 100px;
+}
+
+#navs .container-fluid {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#navs .navbar-toggler {
+    position: absolute;
+    right: 15px;
 }

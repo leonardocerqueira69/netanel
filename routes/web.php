@@ -13,6 +13,9 @@ use App\Http\Controllers\TipoChecklistController;
 use App\Http\Controllers\ColaboradorController;
 
 
+Route::get('/main', function () {
+    return view('layouts.main');
+});
 
 
 
@@ -23,6 +26,15 @@ Route::post('/diretores', [DiretorController::class, 'store']);
 Route::get('/diretores/{id}/edit', [DiretorController::class, 'edit']);
 Route::put('/diretores/{id}', [DiretorController::class, 'update']);
 Route::delete('/diretores/{id}', [DiretorController::class, 'destroy']);
+
+// Rotas para ChecklistController
+Route::get('/checklist/{nome_tipo}', [ChecklistController::class, 'show'])->name('checklist.show');
+Route::get('/', [ChecklistController::class, 'index']);
+Route::get('/checklists/create', [ChecklistController::class, 'create']);
+Route::post('/checklists', [ChecklistController::class, 'store']);
+Route::get('/checklists/{id}/edit', [ChecklistController::class, 'edit']);
+Route::put('/checklists/{id}', [ChecklistController::class, 'update']);
+Route::delete('/checklists/{id}', [ChecklistController::class, 'destroy']);
 /* 
 
 // Rotas para SetorController
@@ -61,14 +73,7 @@ Route::get('/listas/{id}/edit', [ListaController::class, 'edit']);
 Route::put('/listas/{id}', [ListaController::class, 'update']);
 Route::delete('/listas/{id}', [ListaController::class, 'destroy']);
 
-// Rotas para ChecklistController
-Route::get('/', [ChecklistController::class, 'index']);
-Route::get('/checklists/{id}', [ChecklistController::class, 'show']);
-Route::get('/checklists/create', [ChecklistController::class, 'create']);
-Route::post('/checklists', [ChecklistController::class, 'store']);
-Route::get('/checklists/{id}/edit', [ChecklistController::class, 'edit']);
-Route::put('/checklists/{id}', [ChecklistController::class, 'update']);
-Route::delete('/checklists/{id}', [ChecklistController::class, 'destroy']);
+
 
 // Rotas para CqController
 Route::get('/', [CqController::class, 'index']);
@@ -79,7 +84,7 @@ Route::get('/cqs/{id}/edit', [CqController::class, 'edit']);
 Route::put('/cqs/{id}', [CqController::class, 'update']);
 Route::delete('/cqs/{id}', [CqController::class, 'destroy']);
 
-// Rotas para TipoChecklistController
+// Rotas para TipoChecklistController   
 Route::get('/', [TipoChecklistController::class, 'index']);
 Route::get('/tipos-checklist/{id}', [TipoChecklistController::class, 'show']);
 Route::get('/tipos-checklist/create', [TipoChecklistController::class, 'create']);
