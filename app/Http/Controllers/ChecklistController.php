@@ -16,6 +16,7 @@ class ChecklistController extends Controller
 
     public function show($nome_tipo)
     {
+
         $tipoChecklist = TipoCheckListModel::where('nome_tipo', $nome_tipo)->firstOrFail();
         $checklists = CheckListModel::where('tipo', $tipoChecklist->id_tipo)->get();
 

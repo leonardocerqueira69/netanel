@@ -32,10 +32,10 @@
                             Checklist
                         </a>
                         <div class="dropdown-menu" id="checklistMenu" aria-labelledby="checklistDropdown">
-                            <a class="dropdown-item" href="{{ route('checklist.show', ['nome_tipo' => 'KLABIN']) }}">Checklist KLABIN</a>
-                            <a class="dropdown-item" href="{{ route('checklist.show', ['nome_tipo' => 'PENHA']) }}">Checklist PENHA</a>
-                            <a class="dropdown-item" href="{{ route('checklist.show', ['nome_tipo' => 'GERAL']) }}">Checklist GERAL</a>
-                            <a class="dropdown-item" href="{{ route('checklist.show', ['nome_tipo' => 'PLANA']) }}">Checklist PLANA</a>
+                            <a class="dropdown-item" href="{{ route('checklists.show', ['nome_tipo' => 'klabin']) }}">Checklist KLABIN</a>
+                            <a class="dropdown-item" href="{{ route('checklists.show', ['nome_tipo' => 'penha']) }}">Checklist PENHA</a>
+                            <a class="dropdown-item" href="{{ route('checklists.show', ['nome_tipo' => 'geral']) }}">Checklist GERAL</a>
+                            <a class="dropdown-item" href="{{ route('checklists.show', ['nome_tipo' => 'plana']) }}">Checklist PLANA</a>
                         </div>
                     </li>
                     <li class="nav-item">

@@ -18,8 +18,7 @@ Route::get('/main', function () {
 });
 
 
-
-Route::get('/', [DiretorController::class, 'index']);
+//
 Route::get('/diretores/{id}', [DiretorController::class, 'show']);
 Route::get('/diretores/create', [DiretorController::class, 'create']);
 Route::post('/diretores', [DiretorController::class, 'store']);
@@ -28,7 +27,7 @@ Route::put('/diretores/{id}', [DiretorController::class, 'update']);
 Route::delete('/diretores/{id}', [DiretorController::class, 'destroy']);
 
 // Rotas para ChecklistController
-Route::get('/checklist/{nome_tipo}', [ChecklistController::class, 'show'])->name('checklist.show');
+Route::get('/checklists/{nome_tipo}', [ChecklistController::class, 'show'])->name('checklists.show');
 Route::get('/', [ChecklistController::class, 'index']);
 Route::get('/checklists/create', [ChecklistController::class, 'create']);
 Route::post('/checklists', [ChecklistController::class, 'store']);
