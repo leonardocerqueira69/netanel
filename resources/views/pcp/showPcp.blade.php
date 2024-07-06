@@ -39,6 +39,7 @@
                     @if(isset($pcp->data_atual))
                         <p>Data: {{ $pcp->data_atual }}</p>
                     @endif
+                    <a href="{{ route('pcp.edit', ['id' => $pcp->id_pcp]) }}" class="btn btn-primary">Editar</a>
                 </li>
             @endforeach
         </ul>

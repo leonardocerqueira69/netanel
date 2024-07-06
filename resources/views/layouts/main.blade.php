@@ -70,7 +70,7 @@
             </ul>
         </div>
     </nav>
-
+    @yield('content')
     <div class="fixed-footer"></div>
 
     <!-- SCRIPTS -->
