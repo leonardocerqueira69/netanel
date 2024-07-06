@@ -68,11 +68,15 @@ h1 {
 
 .dropdown-item:hover {
     background-color:#51a7b113;
+    color: #62acb6;
+}
+
+.dropdown-item {
+    color:#2f6268;
 }
 
 .dropdown-menu {
     background-color:#51a7b15b;
     border: none;
-    margin-top: 8px;
     border-radius: 13%;
 }
