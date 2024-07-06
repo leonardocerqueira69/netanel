@@ -17,16 +17,19 @@ h1 {
     transform: translate(-50%, -50%);
     color: #51A8B1 !important;
     opacity: 0.3;
-  }
+}
 
 .nav-link {
     color: white !important;
+    margin-left: 25px;
 }
 
 .navbar-brand {
     position: absolute;
     transform: translateY(-20%);
-    top: 50%;
+    transform: translateX(-50%);
+    left: 50%;
+    top: 20%;
     width: 100px;
 }
 
@@ -40,4 +43,35 @@ h1 {
 #navs .navbar-toggler {
     position: absolute;
     right: 15px;
+}
+
+.navbar {
+    justify-content: space-between;
+}
+
+.fixed-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgb(83, 116, 115);
+    background: linear-gradient(90deg, rgba(83, 116, 115, 1) 0%, rgba(255, 255, 255, 1) 50%, rgba(81, 168, 177, 1) 100%);
+    color: white;
+    text-align: center;
+    padding: 30px 0;
+}
+
+.navbar-toggler:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.dropdown-item:hover {
+    background-color:#51a7b113;
+}
+
+.dropdown-menu {
+    background-color:#51a7b15b;
+    border: none;
+    margin-top: 8px;
 }

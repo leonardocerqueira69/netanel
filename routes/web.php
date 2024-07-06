@@ -16,19 +16,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/pcp', function () {
-    return view('pcp');
-});
-
-Route::get('/checklist', function () {
-    return view('checklist');
-});
-
-Route::get('/database', function () {
-    return view('database');
-});
-
-
 Route::get('/setor/indexSetor', [SetorController::class, 'indexSetor'])->name('indexSetor');
 
 Route::get('pcp/showPcp/{id}', [PcpController::class, 'getPcpPorSetor'])->name('pcp.showPcp');
@@ -44,7 +31,7 @@ Route::get('/checklists/{id}/edit', [ChecklistController::class, 'edit']);
 Route::put('/checklists/{id}', [ChecklistController::class, 'update']);
 Route::delete('/checklists/{id}', [ChecklistController::class, 'destroy']);
 
-/* 
+/*
 Route::get('/', [DiretorController::class, 'index']);
 Route::get('/diretores/{id}', [DiretorController::class, 'show']);
 Route::get('/diretores/create', [DiretorController::class, 'create']);
@@ -54,7 +41,7 @@ Route::put('/diretores/{id}', [DiretorController::class, 'update']);
 Route::delete('/diretores/{id}', [DiretorController::class, 'destroy']);
 
 
-/* 
+/*
 
 // Rotas para SetorController
 Route::get('/', [SetorController::class, 'index']);
@@ -103,7 +90,7 @@ Route::get('/cqs/{id}/edit', [CqController::class, 'edit']);
 Route::put('/cqs/{id}', [CqController::class, 'update']);
 Route::delete('/cqs/{id}', [CqController::class, 'destroy']);
 
-// Rotas para TipoChecklistController   
+// Rotas para TipoChecklistController
 Route::get('/', [TipoChecklistController::class, 'index']);
 Route::get('/tipos-checklist/{id}', [TipoChecklistController::class, 'show']);
 Route::get('/tipos-checklist/create', [TipoChecklistController::class, 'create']);
