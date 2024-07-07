@@ -69,18 +69,21 @@ h1 {
 }
 
 .dropdown-item:hover {
-    background-color:#51a7b113;
-    color: #62acb6;
+    background-color:#51a7b154;
+    color: #ffffff;
 }
 
 .dropdown-item {
-    color:#2f6268;
+    color:#000000;
+    border-radius: 25px;
 }
 
 .dropdown-menu {
-    background-color:#51a7b15b;
+    background-color:#51a7b14d;
     border: none;
-    border-radius: 13%;
+    border-radius: 25px;
+    max-width: 200px;
+    margin-left: 25px;
 }
 
 .dropdown:hover .dropdown-menu {
@@ -105,6 +108,11 @@ h1 {
     border: none;
 }
 
+#btnCreatePCP:hover {
+    background-color: #51a7b173;
+    border: none;
+}
+
 #formCreatePCP .row {
 margin-top: 15px;
 color: #000000;
@@ -115,13 +123,19 @@ color: #000000;
     margin: auto;
     background-color: #51a7b169;
     border-radius: 30px;
-    padding-bottom: 50px;
+    padding-bottom: 25px;
+    border: 5px solid #51A8B1;
 }
 
 /*PCP EDIT*/
 
 #btnEditPCP {
     background-color: #51A8B1;
+    border: none;
+}
+
+#btnEditPCP:hover {
+    background-color: #51a7b173;
     border: none;
 }
 
@@ -137,4 +151,75 @@ color: #000000;
     border-radius: 30px;
     padding-bottom: 30px;
     padding-top: 10px;
+    border: 5px solid #51A8B1;
+}
+
+/*PCP POR SETOR*/
+
+#btnEditPCP,
+.btnEditPCP {
+    background-color: #51A8B1;
+    border: none;
+}
+
+#btnEditPCP,
+.btnEditPCP:hover {
+    background-color: #51a7b173;
+    border: none;
+}
+
+#pcpList .pcpItem {
+    margin-top: 10px;
+    color: #000000;
+}
+
+#pcpList {
+    max-width: 700px;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 100px;
+    background-color: #51a7b169;
+    border-radius: 30px;
+    padding-top: 10px;
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.pcpItem {
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+    border-radius: 30px;
+    border-color:#51A8B1;
+    border-width: 5px;
+}
+
+#tarefa {
+    background-color: #51a7b179;
+    padding: 10px;
+    border-radius: 20px;
+    color: white;
+}
+
+#finish {
+    background-color: springgreen;
+    max-width: 120px;
+    border-radius: 20px;
+    padding-left: 4px;
+}
+
+#load {
+    background-color: rgb(255, 255, 91);
+    max-width: 130px;
+    border-radius: 20px;
+    padding-left: 4px;
+}
+
+#notPCP {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #51A8B1 !important;
+    opacity: 0.3;
 }
