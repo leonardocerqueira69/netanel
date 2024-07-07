@@ -23,6 +23,7 @@ Route::get('/pcp/create', [PcpController::class, 'create'])->name('pcp.create');
 Route::post('/pcp', [PcpController::class, 'store'])->name('pcp.store');
 Route::get('/pcp/edit/{id}', [PcpController::class, 'edit'])->name('pcp.edit');
 Route::put('/pcp/update/{id}', [PcpController::class, 'update'])->name('pcp.update');
+Route::delete('/pcp/{id}', [PcpController::class, 'destroy'])->name('pcp.destroy');
 
 // Rotas para ChecklistController
 Route::get('/checklists/{nome_tipo}', [CheckListController::class, 'show'])->name('checklists.show');

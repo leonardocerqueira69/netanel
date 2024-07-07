@@ -17,9 +17,13 @@
             <p>Atualizado: {{ $pcp->data_atual }}</p>
             @endif
             <a href="{{ route('pcp.edit', ['id' => $pcp->id_pcp]) }}" class="btn btn-primary btnEditPCP">Editar</a>
-            <a href="#" class="btn btn-danger btnDeletePCP">
-                <img src="/img/delete_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" width="30" height="30" alt="Trash">
-            </a>
+            <form action="{{ route('pcp.destroy', ['id' => $pcp->id_pcp]) }}" method="POST" class="d-inline" onsubmit="return confirm('Tem certeza que deseja deletar este registro?');">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger btnDeletePCP">
+                    <img src="/img/delete_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" width="30" height="30" alt="Trash">
+                </button>
+            </form>
         </li>
         @endforeach
     </ul>

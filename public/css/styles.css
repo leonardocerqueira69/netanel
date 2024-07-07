@@ -194,10 +194,10 @@ h1 {
 }
 
 #tarefa {
-    background-color: #51a7b179;
+    background-color: white;
     padding: 10px;
     border-radius: 20px;
-    color: white;
+    color: black;
 }
 
 #finish {

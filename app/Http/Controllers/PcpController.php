@@ -61,32 +61,44 @@ class PcpController extends Controller
     }
 
     public function update(Request $request, $id)
-{
-    $request->validate([
-        'texto' => 'required|string|max:255',
-        'finalizado' => 'boolean',
-        'andamento' => 'boolean',
-    ]);
+    {
+        $request->validate([
+            'texto' => 'required|string|max:255',
+            'finalizado' => 'boolean',
+            'andamento' => 'boolean',
+        ]);
 
-    $pcp = PcpModel::find($id);
+        $pcp = PcpModel::find($id);
 
-    if (!$pcp) {
-        return redirect()->route('pcp.showPcp', ['id' => $id])->with('error', 'PCP não encontrado.');
+        if (!$pcp) {
+            return redirect()->route('pcp.showPcp', ['id' => $id])->with('error', 'PCP não encontrado.');
+        }
+
+        $pcp->texto = $request->input('texto');
+        $pcp->finalizado = $request->input('finalizado') == '1';
+        $pcp->andamento = $request->input('andamento') == '1';
+        $pcp->save();
+
+        $setorId = $pcp->setor;
+        return redirect()->route('pcp.showPcp', ['id' => $setorId])->with('success', 'PCP atualizado com sucesso!');
     }
-
-    $pcp->texto = $request->input('texto');
-    $pcp->finalizado = $request->input('finalizado') == '1'; // Converte para booleano
-    $pcp->andamento = $request->input('andamento') == '1'; // Converte para booleano
-    $pcp->save();
-
-    $setorId = $pcp->setor;
-    return redirect()->route('pcp.showPcp', ['id' => $setorId])->with('success', 'PCP atualizado com sucesso!');
-}
 
 
 
     public function destroy($id)
     {
-        // Código para deletar um PCP
+
+        $pcp = PcpModel::find($id);
+
+        if (!$pcp) {
+            return redirect()->route('pcp.showPcp')->with('error', 'PCP não encontrado.');
+        }
+
+
+        $setorId = $pcp->setor;
+
+        $pcp->delete();
+
+        return redirect()->route('pcp.showPcp', ['id' => $setorId])->with('success', 'PCP deletado com sucesso.');
     }
 }
