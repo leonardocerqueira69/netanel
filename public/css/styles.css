@@ -1,3 +1,5 @@
+/*HOME*/
+
 * {
     font-family: "Roboto", sans-serif;
     font-weight: 300;
@@ -79,4 +81,60 @@ h1 {
     background-color:#51a7b15b;
     border: none;
     border-radius: 13%;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.dropdown-menu.show {
+    display: block;
+    opacity: 1;
+}
+
+/*PCP CREATE*/
+
+#btnCreatePCP {
+    background-color: #51A8B1;
+    border: none;
+}
+
+#formCreatePCP .row {
+margin-top: 15px;
+color: #000000;
+}
+
+#formCreatePCP {
+    max-width: 700px;
+    margin: auto;
+    background-color: #51a7b169;
+    border-radius: 30px;
+    padding-bottom: 50px;
+}
+
+/*PCP EDIT*/
+
+#btnEditPCP {
+    background-color: #51A8B1;
+    border: none;
+}
+
+#formEditPCP .row {
+    margin-top: 10px;
+    color: #000000;
+    }
+
+#formEditPCP {
+    max-width: 700px;
+    margin: auto;
+    background-color: #51a7b169;
+    border-radius: 30px;
+    padding-bottom: 30px;
+    padding-top: 10px;
 }
