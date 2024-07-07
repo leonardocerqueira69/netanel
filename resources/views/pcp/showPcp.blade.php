@@ -3,7 +3,7 @@
 @section('content')
 
 @if($pcps->isEmpty())
-<h1 id="notPCP" >Não há PCP disponível no setor.</h1>
+<h1 id="notPCP">Não há PCP disponível no setor.</h1>
 @else
 <div class="container">
     <ul id="pcpList">
@@ -17,6 +17,9 @@
             <p>Atualizado: {{ $pcp->data_atual }}</p>
             @endif
             <a href="{{ route('pcp.edit', ['id' => $pcp->id_pcp]) }}" class="btn btn-primary btnEditPCP">Editar</a>
+            <a href="#" class="btn btn-danger btnDeletePCP">
+                <img src="/img/delete_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" width="30" height="30" alt="Trash">
+            </a>
         </li>
         @endforeach
     </ul>
