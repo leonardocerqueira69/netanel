@@ -21,7 +21,7 @@ class PcpController extends Controller
     public function getPcpPorSetor($id)
     {
         $pcps = PcpModel::where('setor', $id)
-            ->orderBy('data_atual', 'desc')
+            ->orderBy('data_atual', 'asc')
             ->get();
 
         return view('pcp.showPcp', compact('pcps'));
@@ -54,7 +54,6 @@ class PcpController extends Controller
 
     public function edit($id)
     {
-        // Código para mostrar o formulário de edição de PCP
 
         $pcp = PcpModel::find($id);
         return view('pcp.edit', compact('pcp'));
