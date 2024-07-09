@@ -9,7 +9,6 @@
     <ul id="pcpList">
         @foreach($pcps as $pcp)
         <li class="pcpItem">
-            <p class="setor-id">ID do PCP: {{ $pcp->id_pcp }}</p>
             <p id="tarefa">Tarefa: {{ $pcp->texto }}</p>
             <p id="finish">Finalizado: {{ $pcp->finalizado ? 'Sim' : 'Não' }}</p>
             <p id="load">Andamento: {{ $pcp->andamento ? 'Sim' : 'Não' }}</p>

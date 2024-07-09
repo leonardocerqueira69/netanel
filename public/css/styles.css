@@ -9,6 +9,9 @@
 nav {
     background: rgb(83, 116, 115);
     background: linear-gradient(90deg, rgba(83, 116, 115, 1) 0%, rgba(255, 255, 255, 1) 50%, rgba(81, 168, 177, 1) 100%);
+    box-shadow: 0 4px 8px rgba(47, 143, 156, 0.6);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
 h1 {
@@ -60,7 +63,11 @@ h1 {
     background: linear-gradient(90deg, rgba(83, 116, 115, 1) 0%, rgba(255, 255, 255, 1) 50%, rgba(81, 168, 177, 1) 100%);
     color: white;
     text-align: center;
-    padding: 30px 0;
+    padding: 12px 0;
+    box-shadow: 0 4px 8px rgba(47, 143, 156, 0.6);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    box-shadow: 0 -4px 8px rgba(47, 143, 156, 0.6);
 }
 
 .navbar-toggler:focus {
@@ -69,8 +76,8 @@ h1 {
 }
 
 .dropdown-item:hover {
-    background-color: #51a7b154;
-    color: #ffffff;
+    background-color: #51a7b13a;
+    color: #000000;
 }
 
 .dropdown-item {
@@ -79,26 +86,33 @@ h1 {
 }
 
 .dropdown-menu {
-    background-color: #51a7b14d;
+    background-color: #ffffff;
     border: none;
     border-radius: 25px;
     max-width: 200px;
     margin-left: 25px;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+    border: 1px solid #51A8B1;
+}
+
+.dropdown-divider {
+    background-color: #51A8B1;
 }
 
 .dropdown:hover .dropdown-menu {
     display: block;
 }
 
-.dropdown-menu {
-    display: none;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
 .dropdown-menu.show {
     display: block;
     opacity: 1;
+}
+
+#newPCP {
+    background-color: #51A8B1;
+    border: none;
 }
 
 /*PCP CREATE*/
@@ -179,10 +193,11 @@ h1 {
     margin-top: 50px;
     margin-bottom: 100px;
     background-color: #51a7b169;
-    border-radius: 30px;
-    padding-top: 10px;
     list-style-type: none;
     padding-left: 0;
+    padding-top: 25px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
 }
 
 .pcpItem {
