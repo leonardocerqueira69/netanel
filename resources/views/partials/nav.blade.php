@@ -44,7 +44,7 @@
 </nav>
 
 <div class="fixed-footer">
-    <a id="newPCP" href='{{ route('pcp.create') }}'" type=" button" class="btn btn-primary">
+    <a id="newPCP" href="{{ route('pcp.create') }}" type=" button" class="btn btn-primary">
         <img src="/img/add_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" alt="create"> Novo PCP
     </a>
 </div>

@@ -19,7 +19,7 @@ Route::get('/', function () {
 Route::get('/setor/indexSetor', [SetorController::class, 'indexSetor'])->name('indexSetor');
 
 Route::get('pcp/showPcp/{id}', [PcpController::class, 'getPcpPorSetor'])->name('pcp.showPcp');
-Route::get('/pcp/create', [PcpController::class, 'create'])->name('pcp.create');;
+Route::get('/pcp/create', [PcpController::class, 'create'])->name('pcp.create');
 Route::post('/pcp', [PcpController::class, 'store'])->name('pcp.store');
 Route::get('/pcp/edit/{id}', [PcpController::class, 'edit'])->name('pcp.edit');
 Route::put('/pcp/update/{id}', [PcpController::class, 'update'])->name('pcp.update');
