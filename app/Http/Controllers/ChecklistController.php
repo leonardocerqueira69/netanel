@@ -24,12 +24,27 @@ class ChecklistController extends Controller
 
     public function create()
     {
-        // Código para mostrar o formulário de criação de checklist
+        $checklists = CheckListModel::all(); // Carrega todos os tipos de checklist para o dropdown
+        
+        return view('checklists.createe', compact('tiposChecklist'));
     }
 
     public function store(Request $request)
     {
-        // Código para salvar um novo checklist
+        $validatedData = $request->validate([
+            'nome_forma' => 'required|max:150',
+            'medida_forma' => 'required|numeric',
+            'tipo' => 'required|exists:tipo_checklist,id_tipo',
+        ]);
+    
+        $checklist = new CheckListModel();
+        $checklist->nome_forma = $validatedData['nome_forma'];
+        $checklist->medida_forma = $validatedData['medida_forma'];
+        $checklist->tipo = $validatedData['tipo'];
+        $checklist->save();
+    
+        return redirect()->route('checklists.show', ['nome_tipo' => TipoCheckListModel::find($validatedData['tipo'])->nome_tipo])
+                         ->with('success', 'Checklist criado com sucesso!');
     }
 
     public function edit($id)
