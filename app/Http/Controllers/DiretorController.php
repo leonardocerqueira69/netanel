@@ -1,48 +1,40 @@
 <?php
 
+namespace App\Http\Controllers\Auth;
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
-
-use App\Models\DiretorModel;
+use Illuminate\Support\Facades\Auth;
 
 class DiretorController extends Controller
 {
-    public function index()
+    public function showLoginForm()
     {
-        // Código para listar todos os diretores
-        $diretores = DiretorModel::all();
-
-        return view ('welcome', compact('diretores'));
+        return view('auth.login');
     }
 
-    public function show($id)
+    public function login(Request $request)
     {
-        // Código para mostrar um diretor específico
+        $credentials = $request->only('nome', 'senha');
+
+        if (Auth::attempt($credentials)) {
+            // Autenticação bem-sucedida
+            $request->session()->regenerate();
+
+            return redirect()->intended('/dashboard'); // Redireciona para o painel do diretor
+        }
+
+        return back()->withErrors([
+            'nome' => 'As credenciais fornecidas não correspondem aos nossos registros.',
+        ]);
     }
 
-    public function create()
+    public function logout(Request $request)
     {
-        // Código para mostrar o formulário de criação de diretor
-    }
+        Auth::logout();
 
-    public function store(Request $request)
-    {
-        // Código para salvar um novo diretor
-    }
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
 
-    public function edit($id)
-    {
-        // Código para mostrar o formulário de edição de diretor
-    }
-
-    public function update(Request $request, $id)
-    {
-        // Código para atualizar um diretor existente
-    }
-
-    public function destroy($id)
-    {
-        // Código para deletar um diretor
+        return redirect('/');
     }
 }

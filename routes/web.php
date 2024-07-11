@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\DiretorController;
@@ -11,27 +12,43 @@ use App\Http\Controllers\ChecklistController;
 use App\Http\Controllers\CqController;
 use App\Http\Controllers\TipoChecklistController;
 use App\Http\Controllers\ColaboradorController;
+use App\Http\Middleware\EnsureUserIsLoggedIn;
 
-Route::get('/', function () {
-    return view('welcome');
+// Rota para exibir o formulário de login
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+
+// Rota para processar o formulário de login
+Route::post('/login', [LoginController::class, 'login']);
+
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+
+Route::middleware([EnsureUserIsLoggedIn::class])->group(function () {
+
+    Route::get('/', function () {
+        return view('welcome');
+    });
+    
+    Route::get('/setor/indexSetor', [SetorController::class, 'indexSetor'])->name('indexSetor');
+
+    Route::get('pcp/showPcp/{id}', [PcpController::class, 'getPcpPorSetor'])->name('pcp.showPcp');
+    Route::get('/pcp/create', [PcpController::class, 'create'])->name('pcp.create');
+    Route::post('/pcp', [PcpController::class, 'store'])->name('pcp.store');
+    Route::get('/pcp/edit/{id}', [PcpController::class, 'edit'])->name('pcp.edit');
+    Route::put('/pcp/update/{id}', [PcpController::class, 'update'])->name('pcp.update');
+    Route::delete('/pcp/{id}', [PcpController::class, 'destroy'])->name('pcp.destroy');
+
+    // Rotas para ChecklistController
+    Route::get('/checklists/{nome_tipo}', [CheckListController::class, 'show'])->name('checklists.show');
+    Route::get('/checklists/create', [ChecklistController::class, 'create']);
+    Route::post('/checklists', [ChecklistController::class, 'store']);
+    Route::get('/checklists/{id}/edit', [ChecklistController::class, 'edit']);
+    Route::put('/checklists/{id}', [ChecklistController::class, 'update']);
+    Route::delete('/checklists/{id}', [ChecklistController::class, 'destroy']);
 });
 
-Route::get('/setor/indexSetor', [SetorController::class, 'indexSetor'])->name('indexSetor');
 
-Route::get('pcp/showPcp/{id}', [PcpController::class, 'getPcpPorSetor'])->name('pcp.showPcp');
-Route::get('/pcp/create', [PcpController::class, 'create'])->name('pcp.create');
-Route::post('/pcp', [PcpController::class, 'store'])->name('pcp.store');
-Route::get('/pcp/edit/{id}', [PcpController::class, 'edit'])->name('pcp.edit');
-Route::put('/pcp/update/{id}', [PcpController::class, 'update'])->name('pcp.update');
-Route::delete('/pcp/{id}', [PcpController::class, 'destroy'])->name('pcp.destroy');
 
-// Rotas para ChecklistController
-Route::get('/checklists/{nome_tipo}', [CheckListController::class, 'show'])->name('checklists.show');
-Route::get('/checklists/create', [ChecklistController::class, 'create']);
-Route::post('/checklists', [ChecklistController::class, 'store']);
-Route::get('/checklists/{id}/edit', [ChecklistController::class, 'edit']);
-Route::put('/checklists/{id}', [ChecklistController::class, 'update']);
-Route::delete('/checklists/{id}', [ChecklistController::class, 'destroy']);
 
 /*
 Route::get('/', [DiretorController::class, 'index']);

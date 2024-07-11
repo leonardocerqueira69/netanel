@@ -47,6 +47,10 @@
     <a id="newPCP" href="{{ route('pcp.create') }}" type=" button" class="btn btn-primary">
         <img src="/img/add_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" alt="create"> Novo PCP
     </a>
+    <form action="{{ route('logout') }}" method="POST">
+    @csrf
+    <button type="submit">Logout</button>
+</form>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
