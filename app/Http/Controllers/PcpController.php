@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\PcpModel;
 use App\Models\SetorModel;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 
 class PcpController extends Controller
@@ -23,6 +24,12 @@ class PcpController extends Controller
         $pcps = PcpModel::where('setor', $id)
             ->orderBy('data_atual', 'asc')
             ->get();
+
+        foreach ($pcps as $pcp) {
+            if ($pcp->data_atual) {
+                $pcp->data_atual = Carbon::parse($pcp->data_atual)->format('d/m/Y');
+            }
+        }
 
         return view('pcp.showPcp', compact('pcps'));
     }

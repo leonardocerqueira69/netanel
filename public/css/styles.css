@@ -95,6 +95,7 @@ h1 {
     border-top-right-radius: 20px;
     box-shadow: 0 -4px 8px rgba(47, 143, 156, 0.6);
     animation: footerShadowMove 3s infinite linear;
+    z-index: 1;
 }
 
 .navbar-toggler:focus {
@@ -209,16 +210,16 @@ background-color: #51a7b169;;
 .btnEditPCP {
     background-color: #51A8B1;
     border: none;
+    margin-right: 10px;
 }
 
-#btnEditPCP,
+#btnEditPCP:hover,
 .btnEditPCP:hover {
     background-color: #51a7b173;
     border: none;
 }
 
 #pcpList .pcpItem {
-    margin-top: 10px;
     color: #000000;
 }
 
@@ -241,6 +242,12 @@ background-color: #51a7b169;;
     border-radius: 30px;
     border-color: #51A8B1;
     border-width: 5px;
+    transition: transform 0.3s ease;
+}
+
+.pcpItem:hover {
+    transform: scale(0.9);
+    background-color: #51a7b12a;
 }
 
 #tarefa {
@@ -267,4 +274,6 @@ background-color: #51a7b169;;
 .btnDeletePCP {
     padding-left: 5px;
     padding-right: 5px;
+    border-radius: 100%;
+    margin-left: 10px;
 }
