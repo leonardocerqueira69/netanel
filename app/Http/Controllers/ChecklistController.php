@@ -18,15 +18,15 @@ class ChecklistController extends Controller
     {
         $tipoChecklist = TipoCheckListModel::where('nome_tipo', $nome_tipo)->firstOrFail();
         $checklists = CheckListModel::where('tipo', $tipoChecklist->id_tipo)->get();
-        
+
         return view('checklists.show', compact('tipoChecklist', 'checklists'));
     }
 
     public function create()
     {
-        $checklists = CheckListModel::all(); // Carrega todos os tipos de checklist para o dropdown
         
-        return view('checklists.createe', compact('tiposChecklist'));
+        $tiposChecklist = TipoCheckListModel::all(); // Carrega todos os tipos de checklist para o dropdown
+        return view('checklists.create', compact('tiposChecklist'));
     }
 
     public function store(Request $request)
@@ -36,15 +36,15 @@ class ChecklistController extends Controller
             'medida_forma' => 'required|numeric',
             'tipo' => 'required|exists:tipo_checklist,id_tipo',
         ]);
-    
+
         $checklist = new CheckListModel();
         $checklist->nome_forma = $validatedData['nome_forma'];
         $checklist->medida_forma = $validatedData['medida_forma'];
         $checklist->tipo = $validatedData['tipo'];
         $checklist->save();
-    
+
         return redirect()->route('checklists.show', ['nome_tipo' => TipoCheckListModel::find($validatedData['tipo'])->nome_tipo])
-                         ->with('success', 'Checklist criado com sucesso!');
+            ->with('success', 'Checklist criado com sucesso!');
     }
 
     public function edit($id)
