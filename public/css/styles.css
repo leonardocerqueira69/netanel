@@ -12,6 +12,20 @@ nav {
     box-shadow: 0 4px 8px rgba(47, 143, 156, 0.6);
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
+    animation: shadowMove 3s infinite linear;
+    position: relative;
+}
+
+@keyframes shadowMove {
+    0% {
+        box-shadow: 0 4px 8px rgba(47, 143, 156, 0.6);
+    }
+    50% {
+        box-shadow: 0 4px 8px rgba(255, 255, 255, 0.8);
+    }
+    100% {
+        box-shadow: 0 4px 8px rgba(47, 143, 156, 0.6);
+    }
 }
 
 h1 {
@@ -54,6 +68,18 @@ h1 {
     justify-content: space-between;
 }
 
+@keyframes footerShadowMove {
+    0% {
+        box-shadow: 0 -4px 8px rgba(47, 143, 156, 0.6);
+    }
+    50% {
+        box-shadow: 0 -4px 8px rgba(255, 255, 255, 0.8);
+    }
+    100% {
+        box-shadow: 0 -4px 8px rgba(47, 143, 156, 0.6);
+    }
+}
+
 .fixed-footer {
     position: fixed;
     bottom: 0;
@@ -68,6 +94,8 @@ h1 {
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     box-shadow: 0 -4px 8px rgba(47, 143, 156, 0.6);
+    animation: footerShadowMove 3s infinite linear;
+    z-index: 1;
 }
 
 .navbar-toggler:focus {
@@ -76,29 +104,33 @@ h1 {
 }
 
 .dropdown-item:hover {
-    background-color: #51a7b13a;
-    color: #000000;
+    background-color: #51a7b113;
+    color:#51A8B1;
 }
 
 .dropdown-item {
-    color: #000000;
-    border-radius: 25px;
+    color: #537473;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .dropdown-menu {
     background-color: #ffffff;
     border: none;
-    border-radius: 25px;
+    border-radius: 20px;
     max-width: 200px;
     margin-left: 25px;
     display: none;
     opacity: 0;
     transition: opacity 0.3s;
     border: 1px solid #51A8B1;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    overflow: hidden;
 }
 
 .dropdown-divider {
     background-color: #51A8B1;
+    margin: 0px;
 }
 
 .dropdown:hover .dropdown-menu {
@@ -113,6 +145,10 @@ h1 {
 #newPCP {
     background-color: #51A8B1;
     border: none;
+}
+
+#newPCP:hover {
+background-color: #51a7b169;;
 }
 
 /*PCP CREATE*/
@@ -174,16 +210,16 @@ h1 {
 .btnEditPCP {
     background-color: #51A8B1;
     border: none;
+    margin-right: 10px;
 }
 
-#btnEditPCP,
+#btnEditPCP:hover,
 .btnEditPCP:hover {
     background-color: #51a7b173;
     border: none;
 }
 
 #pcpList .pcpItem {
-    margin-top: 10px;
     color: #000000;
 }
 
@@ -206,6 +242,12 @@ h1 {
     border-radius: 30px;
     border-color: #51A8B1;
     border-width: 5px;
+    transition: transform 0.3s ease;
+}
+
+.pcpItem:hover {
+    transform: scale(0.9);
+    background-color: #51a7b12a;
 }
 
 #tarefa {
@@ -232,4 +274,6 @@ h1 {
 .btnDeletePCP {
     padding-left: 5px;
     padding-right: 5px;
+    border-radius: 100%;
+    margin-left: 10px;
 }

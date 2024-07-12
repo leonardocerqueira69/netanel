@@ -28,7 +28,7 @@ Route::middleware([EnsureUserIsLoggedIn::class])->group(function () {
     Route::get('/', function () {
         return view('welcome');
     });
-    
+
     Route::get('/setor/indexSetor', [SetorController::class, 'indexSetor'])->name('indexSetor');
 
     Route::get('pcp/showPcp/{id}', [PcpController::class, 'getPcpPorSetor'])->name('pcp.showPcp');
@@ -40,12 +40,14 @@ Route::middleware([EnsureUserIsLoggedIn::class])->group(function () {
 
     // Rotas para ChecklistController
     Route::get('/checklists/{nome_tipo}', [CheckListController::class, 'show'])->name('checklists.show');
-    Route::get('/checklists/create', [ChecklistController::class, 'create']);
-    Route::post('/checklists', [ChecklistController::class, 'store']);
+    Route::get('/check/create', [ChecklistController::class, 'create'])->name('check.create');
+    Route::post('/checklists', [ChecklistController::class, 'store'])->name('checklists.store');
     Route::get('/checklists/{id}/edit', [ChecklistController::class, 'edit']);
     Route::put('/checklists/{id}', [ChecklistController::class, 'update']);
     Route::delete('/checklists/{id}', [ChecklistController::class, 'destroy']);
 });
+
+
 
 
 
