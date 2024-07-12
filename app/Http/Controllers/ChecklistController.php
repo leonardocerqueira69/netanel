@@ -26,7 +26,7 @@ class ChecklistController extends Controller
     {
         
         $tiposChecklist = TipoCheckListModel::all(); // Carrega todos os tipos de checklist para o dropdown
-        return view('checklists.create', compact('tiposChecklist'));
+        return view('check.create', compact('tiposChecklist'));
     }
 
     public function store(Request $request)

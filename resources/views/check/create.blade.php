@@ -35,13 +35,13 @@
             </div>
             <div class="col-md-6">
                 <label for="tipo" class="form-label">Tipo:</label>
-                <select name="tipo" id="tipo" class="form-select" required>
+
                 <select name="tipo" id="tipo" class="form-select" required>
                     @foreach($tiposChecklist as $tipo)
-                        <option value="{{ $tipo->id_tipo }}">{{ $tipo->nome_tipo }}</option>
+                    <option value="{{ $tipo->id_tipo }}">{{ $tipo->nome_tipo }}</option>
                     @endforeach
                 </select>
-                </select>
+
             </div>
             <div class="col-md-2">
                 <label for="finalizado" class="form-label">Finalizado:</label>
