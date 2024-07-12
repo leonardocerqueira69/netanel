@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('lista', function (Blueprint $table) {
-            $table->id('id_lista');
+        Schema::create('checklist', function (Blueprint $table) {
+            $table->id('id_checklist');
             $table->text('texto');
-            $table->foreignId('checklist')->constrained('checklist', 'id_checklist');
+            $table->foreignId('tipo')->constrained('tipo_checklist', 'id_tipo');
             $table->tinyInteger('finalizado');
             $table->timestamps();
         });
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('lista');
+        Schema::dropIfExists('checklist');
     }
 };

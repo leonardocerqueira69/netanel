@@ -16,7 +16,7 @@ class TipoCheckListModel extends Model
 
     public function checklists()
     {
-        return $this->hasMany(CheckListModel::class, 'checklist', 'id_checklist');
+        return $this->hasMany(ChecklistModel::class, 'tipo', 'id_tipo');
     }
 }
 
