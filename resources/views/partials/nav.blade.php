@@ -44,14 +44,18 @@
 </nav>
 
 <div class="fixed-footer">
-    <a id="newPCP" href="{{ route('pcp.create') }}" type=" button" class="btn btn-primary">
+    <a id="newPCP" href="{{ route('pcp.create') }}" class="btn btn-primary">
         <img src="/img/add_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" alt="create"> Novo PCP
     </a>
-    <form action="{{ route('logout') }}" method="POST">
-    @csrf
-    <button type="submit">Logout</button>
-</form>
+    <a id="newChecklist" href="{{ route('check.create') }}" class="btn btn-primary">
+        <img src="/img/add_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" alt="create"> Criar Checklist
+    </a>
+    <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+        @csrf
+        <button type="submit" class="btn btn-danger">Logout</button>
+    </form>
 </div>
+
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>

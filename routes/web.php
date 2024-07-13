@@ -39,12 +39,12 @@ Route::middleware([EnsureUserIsLoggedIn::class])->group(function () {
     Route::delete('/pcp/{id}', [PcpController::class, 'destroy'])->name('pcp.destroy');
 
     // Rotas para ChecklistController
-    Route::get('/checklists/{nome_tipo}', [CheckListController::class, 'show'])->name('checklists.show');
+    Route::get('/checklists/{nome_tipo}', [ChecklistController::class, 'show'])->name('checklists.show');
     Route::get('/check/create', [ChecklistController::class, 'create'])->name('check.create');
     Route::post('/checklists', [ChecklistController::class, 'store'])->name('checklists.store');
-    Route::get('/checklists/{id}/edit', [ChecklistController::class, 'edit']);
-    Route::put('/checklists/{id}', [ChecklistController::class, 'update']);
-    Route::delete('/checklists/{id}', [ChecklistController::class, 'destroy']);
+    Route::get('/checklists/{id}/edit', [ChecklistController::class, 'edit'])->name('checklists.edit');
+    Route::put('/checklists/{id}', [ChecklistController::class, 'update'])->name('checklists.update');
+    Route::delete('/checklists/{id}', [ChecklistController::class, 'destroy'])->name('checklists.destroy');
 });
 
 

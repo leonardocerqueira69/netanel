@@ -32,15 +32,14 @@ class ChecklistController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'nome_forma' => 'required|max:150',
-            'medida_forma' => 'required|numeric',
+            'texto' => 'required|max:255',
             'tipo' => 'required|exists:tipo_checklist,id_tipo',
         ]);
 
         $checklist = new CheckListModel();
-        $checklist->nome_forma = $validatedData['nome_forma'];
-        $checklist->medida_forma = $validatedData['medida_forma'];
+        $checklist->texto = $validatedData['texto'];
         $checklist->tipo = $validatedData['tipo'];
+        $checklist->finalizado = 0; // Inicializa como não finalizado
         $checklist->save();
 
         return redirect()->route('checklists.show', ['nome_tipo' => TipoCheckListModel::find($validatedData['tipo'])->nome_tipo])
@@ -54,7 +53,11 @@ class ChecklistController extends Controller
 
     public function update(Request $request, $id)
     {
-        // Código para atualizar um checklist existente
+        $checklist = CheckListModel::findOrFail($id);
+        $checklist->finalizado = $request->input('finalizado');
+        $checklist->save();
+    
+        return redirect()->back()->with('success', 'Checklist atualizado com sucesso!');
     }
 
     public function destroy($id)
