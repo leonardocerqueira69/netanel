@@ -38,4 +38,9 @@
     </tbody>
 </table>
 
+<div class="sign-cq">
+    <a href="{{ route('download.excel') }}" class="btn btn-primary">Assinar CQ</a>
+</div>
+
+
 @endsection
