@@ -43,6 +43,11 @@ h1 {
     margin-left: 25px;
 }
 
+.nav-link:hover {
+    color: rgba(255, 255, 255, 0.61) !important;
+    margin-left: 25px;
+}
+
 .navbar-brand {
     position: absolute;
     transform: translateY(-20%);
@@ -143,12 +148,12 @@ h1 {
 }
 
 #newPCP {
-    background-color: #51A8B1;
+    background-color: #78A75A;
     border: none;
 }
 
 #newPCP:hover {
-background-color: #51a7b169;;
+background-color: #78a75a93;
 }
 
 /*PCP CREATE*/
@@ -276,4 +281,60 @@ background-color: #51a7b169;;
     padding-right: 5px;
     border-radius: 100%;
     margin-left: 10px;
+}
+
+/*CHECKLISTS*/
+
+#newChecklist {
+    background-color: #78A75A;
+    border: none;
+}
+
+#newChecklist:hover {
+    background-color: #78a75a93;
+    }
+
+table {
+    margin-top: 100px;
+}
+
+.checklist-item {
+    padding: 10px;
+    margin-right: 20px;
+}
+
+.checklist-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.checklist-text {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.checkbox-cell {
+    vertical-align: middle;
+    text-align: center;
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    background: url(/img/check_box_outline_blank_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg) no-repeat;
+    background-size: 100%;
+    width: 30px;
+    height: 30px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+input[type="checkbox"]:checked {
+    background: url(/img/check_24dp_78A75A_FILL0_wght400_GRAD0_opsz24.svg) no-repeat;
+    background-size: 100%;
+    width: 30px;
+    height: 30px;
 }
