@@ -45,15 +45,20 @@
 
 <div class="fixed-footer">
     <a id="newPCP" href="{{ route('pcp.create') }}" class="btn btn-primary">
-        <img src="/img/add_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" alt="create"> Novo PCP
+        <img src="/img/add_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" alt="create" style="margin-bottom: 3px"> PCP
     </a>
+
     <a id="newChecklist" href="{{ route('check.create') }}" class="btn btn-primary">
-        <img src="/img/add_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" alt="create"> Criar Checklist
+        <img src="/img/add_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" alt="create" style="margin-bottom: 3px"> Checklist
     </a>
+
     <form action="{{ route('logout') }}" method="POST" style="display: inline;">
         @csrf
-        <button type="submit" class="btn btn-danger">Logout</button>
+        <button type="submit" class="btn btn-danger">
+            <img src="/img/logout_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg" alt="" style="margin-bottom: 3px"> Logout
+        </button>
     </form>
+
 </div>
 
 
