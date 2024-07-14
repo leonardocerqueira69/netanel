@@ -21,7 +21,7 @@
             <td class="checklist-item checkbox-cell">
                 <form id="checklistForm{{ $checklist->id_checklist }}" data-checklist-id="{{ $checklist->id_checklist }}">
                     <input type="hidden" name="finalizado" value="{{ $checklist->finalizado ? 0 : 1 }}">
-                    <input type="checkbox" onchange="submitForm({{ $checklist->id_checklist }})" {{ $checklist->finalizado ? 'checked' : '' }}>
+                    <input type="checkbox" onchange="submitForm('{{ $checklist->id_checklist }}')" {{ $checklist->finalizado ? 'checked' : '' }}>
                 </form>
             </td>
             <td class="checklist-item">
@@ -62,7 +62,11 @@
 
         fetch(form.action, {
             method: 'POST',
-            body: formData
+            body: formData,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            }
         })
         .then(response => {
             if (response.ok) {
@@ -71,8 +75,7 @@
             throw new Error('Erro ao atualizar checklist');
         })
         .then(data => {
-            // Atualizar interface se necessário
-            console.log(data); // Exemplo de resposta do servidor
+            console.log(data);
         })
         .catch(error => {
             console.error('Erro:', error);

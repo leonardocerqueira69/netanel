@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 
 use App\Http\Controllers\DiretorController;
 use App\Http\Controllers\SetorController;
@@ -45,7 +46,7 @@ Route::middleware([EnsureUserIsLoggedIn::class])->group(function () {
     Route::get('/checklists/{id}/edit', [ChecklistController::class, 'edit'])->name('checklists.edit');
     Route::put('/checklists/{id}', [ChecklistController::class, 'update'])->name('checklists.update');
     Route::delete('/checklists/{id}', [ChecklistController::class, 'destroy'])->name('checklists.destroy');
-    
+
     //rota pra porra do excel
     Route::get('/download-excel', function () {
         return Storage::download('public/CQ.xlsx');
