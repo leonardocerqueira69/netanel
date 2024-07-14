@@ -48,20 +48,36 @@ class ChecklistController extends Controller
 
     public function edit($id)
     {
-        // Código para mostrar o formulário de edição de checklist
+        $checklist = CheckListModel::findOrFail($id);
+        $tiposChecklist = TipoCheckListModel::all();
+        
+        return view('check.edit', compact('checklist', 'tiposChecklist'));
     }
 
     public function update(Request $request, $id)
     {
+        $validatedData = $request->validate([
+            'texto' => 'required|max:255',
+            'tipo' => 'required|exists:tipo_checklist,id_tipo',
+        ]);
+
         $checklist = CheckListModel::findOrFail($id);
-        $checklist->finalizado = $request->input('finalizado');
+        $checklist->texto = $validatedData['texto'];
+        $checklist->tipo = $validatedData['tipo'];
+        $checklist->finalizado = $request->has('finalizado') ? 1 : 0;
         $checklist->save();
-    
-        return redirect()->back()->with('success', 'Checklist atualizado com sucesso!');
+
+        return redirect()->route('checklists.show', ['nome_tipo' => TipoCheckListModel::find($validatedData['tipo'])->nome_tipo])
+            ->with('success', 'Checklist atualizado com sucesso!');
     }
 
-    public function destroy($id)
+        public function destroy($id)
     {
-        // Código para deletar um checklist
+        $checklist = CheckListModel::findOrFail($id);
+        $checklist->delete();
+
+        return redirect()->back()->with('success', 'Checklist excluído com sucesso!');
     }
+
+
 }

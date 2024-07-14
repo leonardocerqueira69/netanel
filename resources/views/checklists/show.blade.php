@@ -25,6 +25,14 @@
                     {{ $checklist->texto }}
                 </div>
             </td>
+            <td class="checklist-item actions-cell">
+                <a href="{{ route('checklists.edit', $checklist->id_checklist) }}" class="btn btn-warning">Editar</a>
+                <form action="{{ route('checklists.destroy', $checklist->id_checklist) }}" method="POST" style="display:inline;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja excluir este item?')">Excluir</button>
+                </form>
+            </td>
         </tr>
         @endforeach
     </tbody>
