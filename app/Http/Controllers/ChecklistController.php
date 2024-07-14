@@ -56,15 +56,17 @@ class ChecklistController extends Controller
 
     public function update(Request $request, $id)
     {
+        // Validar os dados recebidos
         $validatedData = $request->validate([
-            'finalizado' => 'required|boolean',
+            'texto' => 'required|string|max:255',
         ]);
 
+        
         $checklist = CheckListModel::findOrFail($id);
-        $checklist->finalizado = $validatedData['finalizado'];
+        $checklist->texto = $validatedData['texto'];
         $checklist->save();
 
-
+        // Obter o tipo de checklist associado
         $tipoChecklist = $checklist->tipoChecklist;
 
         // Verificar se tipoChecklist não é nulo
@@ -75,5 +77,32 @@ class ChecklistController extends Controller
             return redirect()->route('checklists.index')
                 ->with('error', 'Tipo de checklist não encontrado.');
         }
+    }
+
+
+    public function destroy($id)
+    {
+
+        $check = CheckListModel::find($id);
+
+
+        if (!$check) {
+            return redirect()->route('welcome')->with('error', 'Checklist não encontrado.');
+        }
+
+
+        $tipoChecklist = $check->tipoChecklist;
+
+        if (!$tipoChecklist) {
+            return redirect()->route('welcome')->with('error', 'Tipo de checklist não encontrado.');
+        }
+
+        $nome_tipo = $tipoChecklist->nome_tipo;
+
+
+        $check->delete();
+
+
+        return redirect()->route('checklists.show', ['nome_tipo' => $nome_tipo])->with('success', 'Checklist deletado com sucesso.');
     }
 }

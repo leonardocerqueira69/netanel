@@ -24,17 +24,6 @@
                 <textarea id="texto" name="texto" class="form-control" rows="5" required>{{ old('texto', $checklist->texto) }}</textarea>
             </div>
 
-            <div class="mb-3">
-                <label for="tipo" class="form-label">Tipo de Checklist:</label>
-                <select id="tipo" name="tipo" class="form-control" required>
-                    @foreach($tiposChecklist as $tipo)
-                    <option value="{{ $tipo->id_tipo }}" {{ $checklist->tipo == $tipo->id_tipo ? 'selected' : '' }}>
-                        {{ $tipo->nome_tipo }}
-                    </option>
-                    @endforeach
-                </select>
-            </div>
-
             <button id="btnEditCHK" type="submit" class="btn btn-primary">Salvar Alterações</button>
         </form>
     </div>
