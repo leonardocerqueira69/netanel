@@ -54,29 +54,20 @@ class ChecklistController extends Controller
         return view('check.edit', compact('checklist', 'tiposChecklist'));
     }
 
-    public function update(Request $request, $id)
+        public function update(Request $request, $id)
     {
-        // Validar os dados recebidos
         $validatedData = $request->validate([
-            'texto' => 'required|string|max:255',
+            'texto' => 'required|max:255',
+            'finalizado' => 'required|boolean',
         ]);
 
-        
         $checklist = CheckListModel::findOrFail($id);
         $checklist->texto = $validatedData['texto'];
+        $checklist->finalizado = $validatedData['finalizado'];
         $checklist->save();
 
-        // Obter o tipo de checklist associado
-        $tipoChecklist = $checklist->tipoChecklist;
-
-        // Verificar se tipoChecklist não é nulo
-        if ($tipoChecklist) {
-            return redirect()->route('checklists.show', ['nome_tipo' => $tipoChecklist->nome_tipo])
-                ->with('success', 'Checklist atualizado com sucesso!');
-        } else {
-            return redirect()->route('checklists.index')
-                ->with('error', 'Tipo de checklist não encontrado.');
-        }
+        return redirect()->route('checklists.show', ['nome_tipo' => $checklist->tipoChecklist->nome_tipo])
+            ->with('success', 'Checklist atualizado com sucesso!');
     }
 
 

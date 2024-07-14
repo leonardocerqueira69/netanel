@@ -24,6 +24,11 @@
                 <textarea id="texto" name="texto" class="form-control" rows="5" required>{{ old('texto', $checklist->texto) }}</textarea>
             </div>
 
+            <div class="mb-3">
+                <label for="finalizado" class="form-label">Finalizado:</label>
+                <input type="checkbox" id="finalizado" name="finalizado" value="1" {{ $checklist->finalizado ? 'checked' : '' }}>
+            </div>
+
             <button id="btnEditCHK" type="submit" class="btn btn-primary">Salvar Alterações</button>
         </form>
     </div>

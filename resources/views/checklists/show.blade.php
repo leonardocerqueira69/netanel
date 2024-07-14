@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', '- Checklist KLABIN')
+@section('title', '- Checklist')
 @section('content')
 
 @if (session('success'))
@@ -19,9 +19,12 @@
         @foreach ($checklists as $checklist)
         <tr>
             <td class="checklist-item checkbox-cell">
-                <form id="checklistForm{{ $checklist->id_checklist }}" data-checklist-id="{{ $checklist->id_checklist }}">
+                <form action="{{ route('checklists.update', $checklist->id_checklist) }}" method="POST">
+                    @csrf
+                    @method('PUT')
                     <input type="hidden" name="finalizado" value="{{ $checklist->finalizado ? 0 : 1 }}">
-                    <input type="checkbox" onchange="submitForm('{{ $checklist->id_checklist }}')" {{ $checklist->finalizado ? 'checked' : '' }}>
+                    <input type="hidden" name="texto" value="{{ $checklist->texto }}">
+                    <input type="checkbox" onchange="this.form.submit()" {{ $checklist->finalizado ? 'checked' : '' }}>
                 </form>
             </td>
             <td class="checklist-item">
@@ -48,38 +51,16 @@
 
 <div class="parent">
     <div class="sign-cq">
-        <a id="ass-cq" href="{{ route('download.excel') }}" class="btn btn-primary">Assinar CQ</a>
+        @php
+        $allFinalized = true;
+        foreach ($checklists as $checklist) {
+            if (!$checklist->finalizado) {
+                $allFinalized = false;
+                break;
+            }
+        }
+        @endphp
+        <a id="ass-cq" href="{{ $allFinalized ? route('download.excel') : '#' }}" class="btn btn-primary {{ $allFinalized ? '' : 'disabled' }}">Assinar CQ</a>
     </div>
-</div>
 
-@endsection
-
-@section('scripts')
-<script>
-    function submitForm(checklistId) {
-        const form = document.getElementById('checklistForm' + checklistId);
-        const formData = new FormData(form);
-
-        fetch(form.action, {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'X-Requested-With': 'XMLHttpRequest',
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            }
-        })
-        .then(response => {
-            if (response.ok) {
-                return response.json();
-            }
-            throw new Error('Erro ao atualizar checklist');
-        })
-        .then(data => {
-            console.log(data);
-        })
-        .catch(error => {
-            console.error('Erro:', error);
-        });
-    }
-</script>
 @endsection
