@@ -24,7 +24,7 @@ class ChecklistController extends Controller
 
     public function create()
     {
-        
+
         $tiposChecklist = TipoCheckListModel::all(); // Carrega todos os tipos de checklist para o dropdown
         return view('check.create', compact('tiposChecklist'));
     }
@@ -50,34 +50,30 @@ class ChecklistController extends Controller
     {
         $checklist = CheckListModel::findOrFail($id);
         $tiposChecklist = TipoCheckListModel::all();
-        
+
         return view('check.edit', compact('checklist', 'tiposChecklist'));
     }
 
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'texto' => 'required|max:255',
-            'tipo' => 'required|exists:tipo_checklist,id_tipo',
+            'finalizado' => 'required|boolean',
         ]);
 
         $checklist = CheckListModel::findOrFail($id);
-        $checklist->texto = $validatedData['texto'];
-        $checklist->tipo = $validatedData['tipo'];
-        $checklist->finalizado = $request->has('finalizado') ? 1 : 0;
+        $checklist->finalizado = $validatedData['finalizado'];
         $checklist->save();
 
-        return redirect()->route('checklists.show', ['nome_tipo' => TipoCheckListModel::find($validatedData['tipo'])->nome_tipo])
-            ->with('success', 'Checklist atualizado com sucesso!');
+
+        $tipoChecklist = $checklist->tipoChecklist;
+
+        // Verificar se tipoChecklist não é nulo
+        if ($tipoChecklist) {
+            return redirect()->route('checklists.show', ['nome_tipo' => $tipoChecklist->nome_tipo])
+                ->with('success', 'Checklist atualizado com sucesso!');
+        } else {
+            return redirect()->route('checklists.index')
+                ->with('error', 'Tipo de checklist não encontrado.');
+        }
     }
-
-        public function destroy($id)
-    {
-        $checklist = CheckListModel::findOrFail($id);
-        $checklist->delete();
-
-        return redirect()->back()->with('success', 'Checklist excluído com sucesso!');
-    }
-
-
 }

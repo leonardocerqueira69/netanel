@@ -12,7 +12,7 @@ class TipoCheckListModel extends Model
     protected $table = 'tipo_checklist';
     protected $primaryKey = 'id_tipo';
 
-        
+
 
     public function checklists()
     {

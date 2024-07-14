@@ -304,6 +304,7 @@ background-color: #78a75a93;
 
 table {
     margin-top: 100px;
+    margin-bottom: 20px;
 }
 
 .checklist-item {
@@ -346,3 +347,212 @@ input[type="checkbox"]:checked {
     width: 30px;
     height: 30px;
 }
+
+#ass-cq {
+    background-color: #51A8B1;
+    border: none;
+    margin-bottom: 75px;
+}
+
+#ass-cq:hover {
+    background-color: #51a7b175;
+    border: none;
+    margin-bottom: 100px;
+}
+
+.parent {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+/*CREATE CHECKLIST*/
+
+#texto {
+    background-color: #ffffff;
+    border: none;
+    color: rgb(0, 0, 0);
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.row {
+    margin-top: 15px;
+    color: #000000;
+}
+
+#formCreateCHK {
+    background-color: #51a7b169;
+    border-radius: 30px;
+    padding-bottom: 25px;
+    border: 5px solid #51A8B1;
+    padding: 20px;
+}
+
+#tipo {
+    background-color: #ffffff;
+    border: none;
+    color: rgb(0, 0, 0);
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+}
+
+#tipo:hover {
+    background-color: #f1f1f1;
+}
+
+#btnCreateCHK {
+    background-color: #51A8B1;
+    border: none;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+    display: block;
+}
+
+#btnCreateCHK:hover {
+    background-color: #51a7b173;
+}
+
+/*EDIT CHECKLIST*/
+
+#texto {
+    background-color: #ffffff;
+    border: none;
+    color: rgb(0, 0, 0);
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.row {
+    margin-top: 15px;
+    color: #000000;
+}
+
+#formEditCHK {
+    background-color: #51a7b169;
+    border-radius: 30px;
+    padding-bottom: 25px;
+    border: 5px solid #51A8B1;
+    padding: 20px;
+}
+
+#tipo {
+    background-color: #ffffff;
+    border: none;
+    color: rgb(0, 0, 0);
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+}
+
+#tipo:hover {
+    background-color: #f1f1f1;
+}
+
+#btnEditCHK {
+    background-color: #51A8B1;
+    border: none;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+    display: block;
+}
+
+#btnEditCHK:hover {
+    background-color: #51a7b173;
+}
+
+/*LOGIN*/
+
+.login-page {
+  width: 360px;
+  padding: 8% 0 0;
+  margin: auto;
+}
+
+.form {
+    position: relative;
+    z-index: 1;
+    background: #FFFFFF;
+    max-width: 360px;
+    margin: auto; /* Define margem automática para centralizar horizontalmente */
+    margin-top: 100px; /* Espaçamento superior para alinhar verticalmente */
+    padding: 45px;
+    text-align: center;
+    border-radius: 30px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    display: flex; /* Ativa o modelo flexível */
+    flex-direction: column; /* Coluna para empilhar conteúdo verticalmente */
+    justify-content: center; /* Alinha verticalmente no centro */
+  }
+
+
+.form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  margin-top: 5px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+  border-radius: 30px;
+}
+
+.form button {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background:rgba(47, 143, 156, 1);
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.form button:hover,.form button:active,.form button:focus {
+  background: #43A047;
+  border-radius: 30px;
+}
+
+@keyframes changeGradient {
+    0% {
+        background-position: 0% 100%; /* Começa do final (de baixo para cima) */
+    }
+    100% {
+        background-position: 0% 0%; /* Termina no topo */
+    }
+}
+
+#bckg-login {
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(to top, #51A8B1, #ffffff);
+    background-size: 100% 200%; /* Ajusta o tamanho do gradiente para cobrir toda a altura */
+    animation: changeGradient 5s infinite alternate; /* Animação de 5 segundos, alternando direção */
+}
+
+  .form-logo {
+    display: block;
+    margin: -35px auto 20px;
+    position: absolute;
+    transform: translateY(-210%) translateX(-50%);
+    left: 50%;
+    top: 50%;
+    width: 100px;
+  }
