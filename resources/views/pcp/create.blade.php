@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div id="formCreatePCP">
-        <form class="row g-3" action="{{ route('pcp.store') }}" method="POST">
+        <form class="row g-3" action="{{ route('pcp.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-4">

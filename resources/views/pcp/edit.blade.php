@@ -3,7 +3,7 @@
 @section('content')
 <div class="d-flex vh-100 justify-content-center align-items-center">
     <div id="formEditPCP" class="container">
-        <form action="{{ route('pcp.update', ['id' => $pcp->id_pcp]) }}" method="POST">
+        <form action="{{ route('pcp.update', ['id' => $pcp->id_pcp]) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -25,6 +25,13 @@
                 <div class="form-group">
                     <label for="andamento">Andamento:</label>
                     <input type="checkbox" id="andamento" name="andamento" value="1" {{ $pcp->andamento ? 'checked' : '' }}>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <label for="arquivo">Arquivo:</label>
+                    <input type="file" id="arquivo" name="arquivo" class="form-control">
                 </div>
             </div>
 
