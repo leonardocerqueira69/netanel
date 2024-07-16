@@ -1,7 +1,5 @@
 @extends('layouts.main')
-
 @section('title', '- Editar PCP')
-
 @section('content')
 <div class="d-flex vh-100 justify-content-center align-items-center">
     <div id="formEditPCP" class="container">
@@ -39,5 +37,16 @@
         </form>
     </div>
 </div>
+
+<script src="https://cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        CKEDITOR.replace('texto', {
+            extraPlugins: 'colorbutton',
+            colorButton_colors: 'CF5D4E,454545,FFF,CCC,CCEAEE,66AB16',
+            colorButton_enableMore: true
+        });
+    });
+</script>
 
 @endsection

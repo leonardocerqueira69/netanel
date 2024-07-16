@@ -1,7 +1,6 @@
 @extends('layouts.main')
 @section('title', '- Checklist')
 @section('content')
-
 @if (session('success'))
 <div>
     {{ session('success') }}
@@ -29,7 +28,7 @@
             </td>
             <td class="checklist-item">
                 <div class="checklist-text">
-                    {{ $checklist->texto }}
+                    {!! $checklist->texto !!}
                 </div>
             </td>
             <td class="checklist-item actions-cell">
@@ -62,5 +61,6 @@
         @endphp
         <a id="ass-cq" href="{{ $allFinalized ? route('download.excel') : '#' }}" class="btn btn-primary {{ $allFinalized ? '' : 'disabled' }}">Assinar CQ</a>
     </div>
+</div>
 
 @endsection
