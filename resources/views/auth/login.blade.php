@@ -2,8 +2,10 @@
 <html id="bckg-login">
 
 <head>
-    <title>Login</title>
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <link rel="icon" href="{{ asset('favicon.png') }}" type="image/png">
+    <link rel="shortcut icon" href="{{ asset('favicon.png') }}" type="image/png">
+    <title>Netanel - Login</title>
 </head>
 
 <body>

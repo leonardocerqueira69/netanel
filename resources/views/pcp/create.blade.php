@@ -1,28 +1,8 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    @section('title', ' - Novo Item PCP')
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="favicon.png" type="image/png">
-    <link rel="shortcut icon" href="favicon.png" type="image/png">
-    <title>Netanel @yield('title')</title>
-    <!-- BOOTSTRAP -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- GOOGLE FONTS -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
-    <!-- CSS APLICAÇÃO -->
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-</head>
-
-<body>
-    @include('partials.nav')
-
-    <div class="d-flex vh-100">
-    <div id="formCreatePCP" class="container align-self-center position-absolute top-50 start-50 translate-middle mt-1">
+@extends('layouts.main')
+@section('title', '- Criar PCP')
+@section('content')
+<div class="container">
+    <div id="formCreatePCP">
         <form class="row g-3" action="{{ route('pcp.store') }}" method="POST">
             @csrf
             <div class="row">
@@ -38,7 +18,13 @@
             <div class="row">
                 <div class="col-10">
                     <label for="texto" class="form-label">Tarefa:</label>
-                    <textarea type="text" class="form-control" name="texto" id="texto" required></textarea>
+                    <textarea type="text" class="form-control" name="texto" id="texto" required>{{ old('texto') }}</textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <label for="arquivo" class="form-label">Arquivo:</label>
+                    <input type="file" name="arquivo" id="arquivo" class="form-control">
                 </div>
             </div>
             <div class="row">
@@ -72,9 +58,21 @@
     </div>
 </div>
 
+<script src="https://cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        try {
+            CKEDITOR.replace('texto', {
+                extraPlugins: 'colorbutton',
+                colorButton_colors: 'CF5D4E,454545,FFF,CCC,CCEAEE,66AB16',
+                colorButton_enableMore: true
+            });
+            console.log('CKEditor initialized successfully');
+        } catch (e) {
+            console.error('Error initializing CKEditor:', e);
+        }
+    });
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
 
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
-
-</body>
-
-</html>
+@endsection

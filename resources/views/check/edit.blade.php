@@ -1,7 +1,5 @@
 @extends('layouts.main')
-
-@section('title', '- Checklist KLABIN')
-
+@section('title', '- Editar Checklist')
 @section('content')
 <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
     <div id="formEditCHK" style="background-color: #51a7b169; border-radius: 30px; padding: 20px; border: 5px solid #51A8B1; width: 80%; max-width: 600px;">
@@ -33,4 +31,11 @@
         </form>
     </div>
 </div>
+
+<script src="https://cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        CKEDITOR.replace('texto');
+    });
+</script>
 @endsection
