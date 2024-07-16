@@ -54,18 +54,22 @@ class ChecklistController extends Controller
         return view('check.edit', compact('checklist', 'tiposChecklist'));
     }
 
-        public function update(Request $request, $id)
+    public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
             'texto' => 'required|max:255',
-            'finalizado' => 'required|boolean',
         ]);
-
+    
         $checklist = CheckListModel::findOrFail($id);
         $checklist->texto = $validatedData['texto'];
-        $checklist->finalizado = $validatedData['finalizado'];
+        
+        // Somente atualize 'finalizado' se estiver presente na requisição
+        if ($request->has('finalizado')) {
+            $checklist->finalizado = $request->boolean('finalizado');
+        }
+    
         $checklist->save();
-
+    
         return redirect()->route('checklists.show', ['nome_tipo' => $checklist->tipoChecklist->nome_tipo])
             ->with('success', 'Checklist atualizado com sucesso!');
     }
