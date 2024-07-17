@@ -32,7 +32,9 @@ class PcpController extends Controller
             }
         }
 
-        return view('pcp.showPcp', compact('pcps'));
+        $setor = SetorModel::where('id_setor', $id)->first();
+
+        return view('pcp.showPcp', compact('pcps', 'setor'));
     }
 
     public function create()
@@ -66,10 +68,13 @@ class PcpController extends Controller
 
         PcpModel::create($validatedData);
 
+        $setor = SetorModel::where('id_setor', $validatedData['setor'])->first();
 
-        return redirect()->route('pcp.showPcp', ['id' => $validatedData['setor']])
+
+        return redirect()->route('pcp.showPcp', ['id' => $setor->id_setor])
             ->with('success', 'PCP criado com sucesso!');
     }
+
     public function edit($id)
     {
 
@@ -97,48 +102,51 @@ class PcpController extends Controller
         $pcp->andamento = $request->input('andamento') == '1';
 
         if ($request->hasFile('arquivo')) {
-         
+
             if ($pcp->arquivo) {
                 if (Storage::disk('public')->exists($pcp->arquivo)) {
                     Storage::disk('public')->delete($pcp->arquivo);
                 }
             }
-    
-           
+
+
             $arquivoPath = $request->file('arquivo')->store('arquivos', 'public');
             $pcp->arquivo = $arquivoPath;
         }
 
         $pcp->save();
 
-        $setorId = $pcp->setor;
-        return redirect()->route('pcp.showPcp', ['id' => $setorId])->with('success', 'PCP atualizado com sucesso!');
+        $setor = SetorModel::where('id_setor', $pcp->setor)->first();
+
+        return redirect()->route('pcp.showPcp', ['id' => $setor->id_setor])->with('success', 'PCP atualizado com sucesso!');
     }
 
 
 
     public function destroy($id)
     {
-       
+
         $pcp = PcpModel::find($id);
 
-    
+
         if (!$pcp) {
             return redirect()->route('pcp.showPcp')->with('error', 'PCP não encontrado.');
         }
 
-        
+
         if ($pcp->arquivo) {
-            
+
             if (Storage::disk('public')->exists($pcp->arquivo)) {
                 Storage::disk('public')->delete($pcp->arquivo);
             }
         }
 
-        
-        $pcp->delete();
 
-        
-        return redirect()->route('pcp.showPcp', ['id' => $pcp->setor])->with('success', 'PCP deletado com sucesso.');
+        $setorId = $pcp->setor;
+        $pcp->delete();
+    
+        $setor = SetorModel::where('id_setor', $setorId)->first();
+    
+        return redirect()->route('pcp.showPcp', ['id' => $setor->id_setor])->with('success', 'PCP deletado com sucesso.');
     }
 }

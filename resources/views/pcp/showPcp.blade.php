@@ -6,6 +6,10 @@
 <h1 id="notPCP">Não há PCP disponível no setor.</h1>
 @else
 
+<div id="identificadorCHK" class="text-center">
+    <h2  style="margin-bottom: 0;">Projeto PCP: {{ $setor->nome }}</h2>
+</div>
+
 <div class="container">
     <ul id="pcpList">
         @foreach($pcps as $pcp)
