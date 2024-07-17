@@ -224,21 +224,31 @@ h1 {
 
 /*PCP POR SETOR*/
 
-#btnEditPCP,
 .btnEditPCP {
     background-color: #51A8B1;
     border: none;
-    margin-right: 10px;
+    border-radius: 30px;
+    padding: 5px;
+    transition: background-color 0.3s ease;
 }
 
-#btnEditPCP:hover,
 .btnEditPCP:hover {
     background-color: #51a7b173;
-    border: none;
 }
 
 #pcpList .pcpItem {
     color: #000000;
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Adicionando transição para transform e opacity */
+}
+
+#pcpList .pcpItem:hover {
+    transform: scale(0.95);
+    background-color: #51a7b12a;
+}
+
+#pcpList .pcpItem.deleted {
+    transform: scale(0);
+    opacity: 0;
 }
 
 #pcpList {
@@ -260,12 +270,6 @@ h1 {
     border-radius: 30px;
     border-color: #51A8B1;
     border-width: 5px;
-    transition: transform 0.3s ease;
-}
-
-.pcpItem:hover {
-    transform: scale(0.9);
-    background-color: #51a7b12a;
 }
 
 #tarefa {
@@ -280,6 +284,7 @@ h1 {
     max-width: 120px;
     border-radius: 20px;
     padding-left: 4px;
+    margin: 10px 0px 10px;
 }
 
 #load {
@@ -287,6 +292,12 @@ h1 {
     max-width: 130px;
     border-radius: 20px;
     padding-left: 4px;
+    margin: 10px 0px 10px;
+}
+
+.button-container {
+    display: flex;
+    align-items: center;
 }
 
 .btnDeletePCP {
@@ -295,6 +306,20 @@ h1 {
     border-radius: 100%;
     margin-left: 10px;
 }
+
+#btnDownload {
+    border-radius: 30px;
+    padding: 5px;
+    margin-left: 10px;
+}
+
+.pcpItem-footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 10px;
+}
+
 
 /*CHECKLISTS*/
 
@@ -473,6 +498,16 @@ input[type="checkbox"]:checked {
 
 #btnEditCHK:hover {
     background-color: #51a7b173;
+}
+
+#btnDeleteCHK {
+    border-radius: 30px;
+    padding: 5px;
+}
+
+#btnCHKedit {
+    border-radius: 30px;
+    padding: 5px;
 }
 
 /*LOGIN*/

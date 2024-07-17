@@ -32,13 +32,13 @@
                 </div>
             </td>
             <td class="checklist-item actions-cell">
-                <a href="{{ route('checklists.edit', $checklist->id_checklist) }}" class="btn">
+                <a id="btnCHKedit" href="{{ route('checklists.edit', $checklist->id_checklist) }}" class="btn">
                     <img src="/img/edit_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Editar">
                 </a>
                 <form action="{{ route('checklists.destroy', $checklist->id_checklist) }}" method="POST" style="display:inline;">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja excluir este item?')">
+                    <button id="btnDeleteCHK" type="submit" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja excluir este item?')">
                         <img src="/img/delete_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" width="24" height="24" alt="">
                     </button>
                 </form>
