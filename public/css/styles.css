@@ -238,7 +238,7 @@ h1 {
 
 #pcpList .pcpItem {
     color: #000000;
-    transition: transform 0.3s ease, opacity 0.3s ease; /* Adicionando transição para transform e opacity */
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 #pcpList .pcpItem:hover {
@@ -396,6 +396,26 @@ input[type="checkbox"]:checked {
     margin-bottom: 10px;
 }
 
+#identificadorCHK {
+    margin-top: 150px;
+    padding: 5px;
+    background: linear-gradient(to right, #a8d0d4,#537473, #a8d0d4, #537473, #a8d0d4);
+    background-size: 500% 100%;
+    animation: gradientMovement 20s infinite linear;
+    color: #FFFFFF;
+}
+
+@keyframes gradientMovement {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+
+
 /*CREATE CHECKLIST*/
 
 #texto {
@@ -524,19 +544,14 @@ input[type="checkbox"]:checked {
     background: #FFFFFF;
     max-width: 360px;
     margin: auto;
-    /* Define margem automática para centralizar horizontalmente */
     margin-top: 100px;
-    /* Espaçamento superior para alinhar verticalmente */
     padding: 45px;
     text-align: center;
     border-radius: 30px;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
     display: flex;
-    /* Ativa o modelo flexível */
     flex-direction: column;
-    /* Coluna para empilhar conteúdo verticalmente */
     justify-content: center;
-    /* Alinha verticalmente no centro */
 }
 
 
@@ -580,12 +595,10 @@ input[type="checkbox"]:checked {
 @keyframes changeGradient {
     0% {
         background-position: 0% 100%;
-        /* Começa do final (de baixo para cima) */
     }
 
     100% {
         background-position: 0% 0%;
-        /* Termina no topo */
     }
 }
 
@@ -594,9 +607,7 @@ input[type="checkbox"]:checked {
     height: 100vh;
     background: linear-gradient(to top, #51A8B1, #ffffff);
     background-size: 100% 200%;
-    /* Ajusta o tamanho do gradiente para cobrir toda a altura */
     animation: changeGradient 5s infinite alternate;
-    /* Animação de 5 segundos, alternando direção */
 }
 
 .form-logo {
