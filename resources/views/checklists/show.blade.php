@@ -13,6 +13,10 @@
 </div>
 @endif
 
+<div id="identificadorCHK" class="text-center">
+    <h2  style="margin-bottom: 0;">Projeto Checklist: {{ request()->segment(count(request()->segments())) }}</h2>
+</div>
+
 <table class="checklist-table">
     <tbody>
         @foreach ($checklists as $checklist)

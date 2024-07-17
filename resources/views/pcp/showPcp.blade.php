@@ -5,6 +5,7 @@
 @if($pcps->isEmpty())
 <h1 id="notPCP">Não há PCP disponível no setor.</h1>
 @else
+
 <div class="container">
     <ul id="pcpList">
         @foreach($pcps as $pcp)
