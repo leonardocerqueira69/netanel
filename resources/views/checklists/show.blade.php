@@ -67,4 +67,12 @@
     </div>
 </div>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        console.log('DOM fully loaded and parsed'); // Verifique se esta mensagem aparece no console
+        var element = document.getElementById('identificadorCHK');
+        element.classList.add('show');
+    });
+</script>
+
 @endsection

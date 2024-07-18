@@ -1,10 +1,12 @@
 /*HOME*/
 
 * {
-    font-family: "Roboto", sans-serif;
-    font-weight: 300;
-    font-style: light;
-}
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+  }
+
+
 
 nav {
     background: rgb(83, 116, 115);
@@ -160,12 +162,12 @@ h1 {
 }
 
 #newPCP {
-    background-color: #78A75A;
+    background-color: #51A8B1;
     border: none;
 }
 
 #newPCP:hover {
-    background-color: #78a75a93;
+    background-color: #537473;
 }
 
 /*PCP CREATE*/
@@ -259,9 +261,7 @@ h1 {
     background-color: #51a7b169;
     list-style-type: none;
     padding-left: 0;
-    padding-top: 25px;
-    border-bottom-left-radius: 30px;
-    border-bottom-right-radius: 30px;
+    border-radius: 30px;
 }
 
 .pcpItem {
@@ -280,19 +280,29 @@ h1 {
 }
 
 #finish {
-    background-color: springgreen;
-    max-width: 120px;
+    background-color: #006400;
+    color: white;
+    max-width: 130px;
     border-radius: 20px;
-    padding-left: 4px;
+    padding: 3px;
     margin: 10px 0px 10px;
 }
 
 #load {
-    background-color: rgb(255, 255, 91);
-    max-width: 130px;
+    background-color: #FFD700;
+    max-width: 145px;
     border-radius: 20px;
-    padding-left: 4px;
+    padding: 3px;
     margin: 10px 0px 10px;
+}
+
+#dateUpdate {
+    background-color: #000000;
+    color: rgb(255, 255, 255);
+    max-width: 193px;
+    border-radius: 20px;
+    margin: 10px 0px 10px;
+    padding: 3px;
 }
 
 .button-container {
@@ -324,38 +334,46 @@ h1 {
 /*CHECKLISTS*/
 
 #newChecklist {
-    background-color: #78A75A;
+    background-color: #51A8B1;
     border: none;
 }
 
 #newChecklist:hover {
-    background-color: #78a75a93;
+    background-color: #537473;
 }
 
 table {
     margin-top: 100px;
     margin-bottom: 20px;
+    width: 100%;
 }
 
 .checklist-item {
     padding: 10px;
     margin-right: 20px;
+    width: 100%;
 }
 
 .checklist-table {
     border-collapse: collapse;
-    width: 100%;
+    width: 95%;
 }
 
 .checklist-text {
     background-color: #f0f0f0;
     padding: 10px;
     border-radius: 10px;
+    width: 100%;
 }
 
 .checkbox-cell {
     vertical-align: middle;
     text-align: center;
+    width: 5%;
+}
+
+.actions-cell {
+    width: 5%;
 }
 
 input[type="checkbox"] {
@@ -396,19 +414,48 @@ input[type="checkbox"]:checked {
     margin-bottom: 10px;
 }
 
-#identificadorCHK {
-    margin-top: 150px;
-    padding: 5px;
-    background: linear-gradient(to right, #a8d0d4,#537473, #a8d0d4, #537473, #a8d0d4);
-    background-size: 500% 100%;
-    animation: gradientMovement 20s infinite linear;
-    color: #FFFFFF;
+.parent .sign-cq {
+    width: 100%;
+    text-align: center;
 }
+
+
+#identificadorCHK {
+    margin-top: 18px;
+    padding-bottom: 75px;
+    border-bottom-left-radius: 500px;
+    border-bottom-right-radius: 500px;
+    background-color: #537473;
+    color: #FFFFFF;
+    opacity: 0;
+    transform: translateY(-50px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+#identificadorCHK.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#identificadorCHK h2 {
+    margin-top: 0;
+    margin-bottom: 0;
+    transform: translateY(180%);
+}
+
+
+.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
 
 @keyframes gradientMovement {
     0% {
         background-position: 0% 50%;
     }
+
     100% {
         background-position: 100% 50%;
     }
