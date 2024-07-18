@@ -440,7 +440,7 @@ input[type="checkbox"]:checked {
 #identificadorCHK h2 {
     margin-top: 0;
     margin-bottom: 0;
-    transform: translateY(180%);
+    transform: translateY(200%);
 }
 
 
