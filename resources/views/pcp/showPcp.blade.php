@@ -7,7 +7,7 @@
 @else
 
 <div id="identificadorCHK" class="text-center">
-    <h2  style="margin-bottom: 0;">Projeto PCP: {{ $setor->nome }}</h2>
+    <h2>PCP: {{ $setor->nome }}</h2>
 </div>
 
 <div class="container">
@@ -18,7 +18,7 @@
             <div id="finish">Finalizado: {{ $pcp->finalizado ? 'Sim' : 'Não' }}</div>
             <div id="load">Andamento: {{ $pcp->andamento ? 'Sim' : 'Não' }}</div>
             @if(isset($pcp->data_atual))
-            <div>Atualizado: {{ $pcp->data_atual }}</div>
+            <div id="dateUpdate">Criado em: {{ $pcp->data_atual }}</div>
             @endif
             <div class="pcpItem-footer">
                 <a href="{{ route('pcp.edit', ['id' => $pcp->id_pcp]) }}" class="btn btn-primary btnEditPCP"><img src="/img/edit_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Edit" height="30" width="30"></a>
@@ -40,5 +40,13 @@
     </ul>
 </div>
 @endif
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        console.log('DOM fully loaded and parsed'); // Verifique se esta mensagem aparece no console
+        var element = document.getElementById('identificadorCHK');
+        element.classList.add('show');
+    });
+</script>
 
 @endsection
