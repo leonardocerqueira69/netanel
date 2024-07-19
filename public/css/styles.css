@@ -425,7 +425,7 @@ input[type="checkbox"]:checked {
     padding-bottom: 75px;
     border-bottom-left-radius: 500px;
     border-bottom-right-radius: 500px;
-    background-color: #e0e0e0;
+    background-color: #f0f0f0;
     color: #000000;
     opacity: 0;
     transform: translateY(-50px);
