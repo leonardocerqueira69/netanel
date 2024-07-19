@@ -425,8 +425,8 @@ input[type="checkbox"]:checked {
     padding-bottom: 75px;
     border-bottom-left-radius: 500px;
     border-bottom-right-radius: 500px;
-    background-color: #537473;
-    color: #FFFFFF;
+    background-color: #e0e0e0;
+    color: #000000;
     opacity: 0;
     transform: translateY(-50px);
     transition: opacity 1s ease-out, transform 1s ease-out;
@@ -440,7 +440,7 @@ input[type="checkbox"]:checked {
 #identificadorCHK h2 {
     margin-top: 0;
     margin-bottom: 0;
-    transform: translateY(180%);
+    transform: translateY(175%);
 }
 
 
