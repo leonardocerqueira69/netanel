@@ -1,8 +1,8 @@
 @extends('layouts.main')
 @section('title', '- Criar PCP')
 @section('content')
-<div class="container">
-    <div id="formCreatePCP">
+<div style="display: flex; justify-content: center; align-items: center; min-height: calc(100vh - 140px); padding-top: 70px; padding-bottom: 70px;">
+    <div id="formCreatePCP" style="background-color: #51a7b169; border-radius: 30px; padding: 20px; border: 5px solid #51A8B1; width: 80%; max-width: 800px;">
         <form class="row g-3" action="{{ route('pcp.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row">
@@ -29,7 +29,7 @@
             </div>
             <div class="row">
                 <div class="col-4">
-                    <label for="data_atual" class="form-label">Data Atual:</label>
+                    <label for="data_atual" class="form-label">Criado em:</label>
                     <input type="date" name="data_atual" id="data_atual" class="form-select" required>
                 </div>
             </div>
@@ -80,5 +80,4 @@
     });
 </script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
-
 @endsection
