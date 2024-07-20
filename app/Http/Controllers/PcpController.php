@@ -55,6 +55,7 @@ class PcpController extends Controller
             'data_atual' => 'required|date',
             'finalizado' => 'required|boolean',
             'andamento' => 'required|boolean',
+            'entrega' => 'nullable|date_format:Y-m-d\TH:i',
         ]);
 
 
@@ -85,10 +86,11 @@ class PcpController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'texto' => 'required|string|max:255',
+            'texto' => 'required',
             'finalizado' => 'boolean',
             'andamento' => 'boolean',
             'arquivo' => 'nullable|file',
+            'entrega' => 'nullable|date_format:Y-m-d\TH:i',
         ]);
 
         $pcp = PcpModel::find($id);
@@ -100,6 +102,7 @@ class PcpController extends Controller
         $pcp->texto = $request->input('texto');
         $pcp->finalizado = $request->input('finalizado') == '1';
         $pcp->andamento = $request->input('andamento') == '1';
+        $pcp->entrega = $request->input('entrega');
 
         if ($request->hasFile('arquivo')) {
 

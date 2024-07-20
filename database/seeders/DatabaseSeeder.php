@@ -12,5 +12,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(TipoCheckListSeeder::class);
         $this->call(UsersTableSeeder::class);
+        $this->call(SetorTableSeeder::class);
     }
 }

@@ -34,6 +34,13 @@
                     <input type="file" id="arquivo" name="arquivo" class="form-control">
                 </div>
             </div>
+            
+            <div class="row">
+                <div class="form-group">
+                    <label for="entrega">Entrega:</label>
+                    <input type="datetime-local" id="entrega" name="entrega" class="form-control" value="{{ $pcp->entrega ? date('Y-m-d\TH:i', strtotime($pcp->entrega)) : '' }}">
+                </div>
+            </div>
 
             <div class="row">
                 <div class="col-12">

@@ -20,6 +20,9 @@
             @if(isset($pcp->data_atual))
             <div id="dateUpdate">Criado em: {{ $pcp->data_atual }}</div>
             @endif
+            @if(isset($pcp->entrega))
+            <div id="entrega">Entrega: {{ \Carbon\Carbon::parse($pcp->entrega)->format('d/m/Y H:i') }}</div>
+            @endif
             <div class="pcpItem-footer">
                 <a href="{{ route('pcp.edit', ['id' => $pcp->id_pcp]) }}" class="btn btn-primary btnEditPCP"><img src="/img/edit_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Edit" height="30" width="30"></a>
                 <form action="{{ route('pcp.destroy', ['id' => $pcp->id_pcp]) }}" method="POST" class="d-inline" onsubmit="return confirm('Tem certeza que deseja deletar este registro?')">
