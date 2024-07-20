@@ -29,8 +29,14 @@
             </div>
             <div class="row">
                 <div class="col-4">
-                    <label for="data_atual" class="form-label">Data:</label>
+                    <label for="data_atual" class="form-label">Data Atual:</label>
                     <input type="date" name="data_atual" id="data_atual" class="form-select" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <label for="entrega" class="form-label">Data e Hora de Entrega:</label>
+                    <input type="datetime-local" name="entrega" id="entrega" class="form-control">
                 </div>
             </div>
             <div class="row">
