@@ -21,7 +21,7 @@
             <div id="dateUpdate">Criado em: {{ $pcp->data_atual }}</div>
             @endif
             @if(isset($pcp->entrega))
-            <div id="entrega">Entrega: {{ \Carbon\Carbon::parse($pcp->entrega)->format('d/m/Y H:i') }}</div>
+            <div id="entrega">Entrega: {{ $pcp->entrega }}</div>
             @endif
             <div class="pcpItem-footer">
                 <a href="{{ route('pcp.edit', ['id' => $pcp->id_pcp]) }}" class="btn btn-primary btnEditPCP"><img src="/img/edit_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Edit" height="30" width="30"></a>

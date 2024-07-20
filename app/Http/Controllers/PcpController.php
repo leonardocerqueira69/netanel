@@ -30,6 +30,10 @@ class PcpController extends Controller
             if ($pcp->data_atual) {
                 $pcp->data_atual = Carbon::parse($pcp->data_atual)->format('d/m/Y');
             }
+
+            if ($pcp->entrega) {
+                $pcp->entrega = Carbon::parse($pcp->entrega)->format('d/m/Y H:i');
+            }    
         }
 
         $setor = SetorModel::where('id_setor', $id)->first();
