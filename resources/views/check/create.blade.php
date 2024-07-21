@@ -3,7 +3,7 @@
 @section('title', '- Novo Checklist')
 
 @section('content')
-<div style="display: flex; justify-content: center; align-items: center; min-height: calc(100vh - 140px); padding-top: 150px; padding-bottom: 150px;">
+<div style="display: flex; justify-content: center; align-items: center; min-height: calc(100vh - 140px); padding-top: 100px; padding-bottom: 100px;">
     <div id="formCreateCHK" style="background-color: #51a7b169; border-radius: 30px; padding: 20px; border: 5px solid #51A8B1; width: 80%; max-width: 600px;">
 
         @if ($errors->any())

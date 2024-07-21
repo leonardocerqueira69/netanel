@@ -10,10 +10,10 @@ class TipoCheckListSeeder extends Seeder
     public function run()
     {
         DB::table('tipo_checklist')->insert([
-            ['nome_tipo' => 'geral'],
-            ['nome_tipo' => 'plana'],
-            ['nome_tipo' => 'klabin'],
-            ['nome_tipo' => 'penha'],
+            ['nome_tipo' => 'GERAL'],
+            ['nome_tipo' => 'KLABIN'],
+            ['nome_tipo' => 'PENHA'],
+            ['nome_tipo' => 'FACA PLANA'],
         ]);
     }
 }

@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('title', '- Criar PCP')
 @section('content')
-<div style="display: flex; justify-content: center; align-items: center; min-height: calc(100vh - 140px); padding-top: 70px; padding-bottom: 70px;">
+<div style="display: flex; justify-content: center; align-items: center; min-height: calc(100vh - 140px); padding-top: 100px; padding-bottom: 100px;">
     <div id="formCreatePCP" style="background-color: #51a7b169; border-radius: 30px; padding: 20px; border: 5px solid #51A8B1; width: 80%; max-width: 800px;">
         <form class="row g-3" action="{{ route('pcp.store') }}" method="POST" enctype="multipart/form-data">
             @csrf

@@ -8,15 +8,15 @@ use Illuminate\Support\Facades\DB;
 
 class SetorTableSeeder extends Seeder
 {
-   
+
     public function run(): void
     {
         DB::table('setor')->insert([
-            ['nome' => 'emborrachamento'],
-            ['nome' => 'montagem'],
-            ['nome' => 'projetos'],
-            ['nome' => 'expedição'],
-            ['nome' => 'outros'],
+            ['nome' => 'PROJETO'],
+            ['nome' => 'MONTAGEM'],
+            ['nome' => 'EMBORRACHAMENTO'],
+            ['nome' => 'EXPEDIÇÃO'],
+            ['nome' => 'OUTROS'],
         ]);
     }
 }

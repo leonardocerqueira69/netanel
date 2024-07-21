@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('title', '- Editar Checklist')
 @section('content')
-<div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+<div style="display: flex; justify-content: center; align-items: center; min-height: calc(100vh - 140px); padding-top: 100px; padding-bottom: 100px;">
     <div id="formEditCHK" style="background-color: #51a7b169; border-radius: 30px; padding: 20px; border: 5px solid #51A8B1; width: 80%; max-width: 600px;">
         @if ($errors->any())
         <div class="alert alert-danger">
@@ -21,7 +21,6 @@
                 <label for="texto" class="form-label">Texto do Checklist:</label>
                 <textarea id="texto" name="texto" class="form-control" rows="5" required>{{ old('texto', $checklist->texto) }}</textarea>
             </div>
-
 
             <button id="btnEditCHK" type="submit" class="btn btn-primary">Salvar Alterações</button>
         </form>

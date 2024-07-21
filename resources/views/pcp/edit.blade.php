@@ -1,8 +1,8 @@
 @extends('layouts.main')
 @section('title', '- Editar PCP')
 @section('content')
-<div class="d-flex vh-100 justify-content-center align-items-center">
-    <div id="formEditPCP" class="container">
+<div style="display: flex; justify-content: center; align-items: center; min-height: calc(100vh - 140px); padding-top: 100px; padding-bottom: 100px;">
+    <div id="formEditPCP" class="container" style="background-color: #51a7b169; border-radius: 30px; padding: 20px; border: 5px solid #51A8B1; width: 80%; max-width: 600px;">
         <form action="{{ route('pcp.update', ['id' => $pcp->id_pcp]) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
@@ -34,7 +34,7 @@
                     <input type="file" id="arquivo" name="arquivo" class="form-control">
                 </div>
             </div>
-            
+
             <div class="row">
                 <div class="form-group">
                     <label for="entrega">Entrega:</label>
