@@ -13,7 +13,7 @@ class ChecklistSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('checklists')->insert([
+        DB::table('checklist')->insert([
             [
                 'texto' => '<p>INFORMA&Ccedil;&Atilde;O e/ou SOLICITA&Ccedil;&Atilde;O EXTRA DOCUMENTO (EMAIL / LIGA&Ccedil;&Atilde;O / W. ZAP / O. SERVI&Ccedil;O / PCP DI&Aacute;RIO)</p>',
                 'tipo' => 2,
@@ -194,6 +194,12 @@ class ChecklistSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'texto' => '<p><span style="font-size:20px">DILATA&Ccedil;&Atilde;O</span> <span style="color:#cf5d4e"><span style="background-color:#ffff00">VER PADR&Atilde;O DO CLIENTE EM PROCEDIMENTOS B&Aacute;SICOS</span></span></p>',
+                'tipo' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
                 'texto' => '<p><span style="font-size:20px">ESPELHAMENTO</span> <span style="color:#cf5d4e"><span style="background-color:#ffff00">SEGUIR VISTA EXTERNA DO PROJETO APROVADO OU AMOSTRA</span></span></p>',
                 'tipo' => 1,
                 'created_at' => now(),
@@ -207,6 +213,18 @@ class ChecklistSeeder extends Seeder
  <p><span style="background-color:#cceaee">NR NETA: JUN&Ccedil;&Otilde;ES DE ARRANJO COM CONFIGURA&Ccedil;&Atilde;O DE ANGULO 0 (SOLICITAR ALTERA&Ccedil;&Atilde;O P/ CLIENTE)</span></p>
 
  <p><span style="color:#cf5d4e"><span style="background-color:#ffff00">*REFILES FECHADOS 50x50mm (PENHA / SAPELBA e KLABIN)</span></span></p>',
+                'tipo' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'texto' => '<p><span style="font-size:20px">PONTES</span> <span style="background-color:#ffff00">OBS GERAL: SEGUIR DISTANCIAMENTO COM NRT COM M&Iacute;NIMO DE 54mm, COM EXCESS&Otilde;ES DOS CASOS DE L&Acirc;MINAS DE CORTE DA ENTRADA ou SA&Iacute;DA ou EMENDA DE CALHA QUE POSSUEM DISTANCIAMENTO ABAIXO DE 70. NESTES CASOS AUMENTAR QUANTITATIVO P/ REFOR&Ccedil;O DA MADEIRA.</span></p>
+
+ <p><span style="background-color:#cceaee">EM CASOS DE CALHA DE EMENDA (COMPRIMENTO) PONTE DA AL&Ccedil;A COM 10 mm.</span></p>
+
+ <p><span style="background-color:#cceaee">APLICA&Ccedil;&Atilde;O NOS A&Ccedil;OS DA EMENDA / VAZADORES PONTES com 5mm.</span></p>
+
+ <p><span style="background-color:#cceaee">A&Ccedil;OS MENOR DO QUE 30mm VERIFICAR NECESSIDADE DE APLICA&Ccedil;&Atilde;O JUNTO COM O T&Eacute;CNICO DE MONTAGEM.</span></p>',
                 'tipo' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),

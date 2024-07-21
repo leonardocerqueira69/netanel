@@ -13,7 +13,7 @@ class TipoCheckListSeeder extends Seeder
             ['nome_tipo' => 'GERAL'],
             ['nome_tipo' => 'KLABIN'],
             ['nome_tipo' => 'PENHA'],
-            ['nome_tipo' => 'FACA PLANA'],
+            ['nome_tipo' => 'PLANA'],
         ]);
     }
 }
