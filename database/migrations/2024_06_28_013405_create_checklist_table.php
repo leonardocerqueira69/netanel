@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('id_checklist');
             $table->text('texto');
             $table->foreignId('tipo')->constrained('tipo_checklist', 'id_tipo');
-            $table->tinyInteger('finalizado');
+            $table->tinyInteger('finalizado')->default(false);
             $table->timestamps();
         });
     }

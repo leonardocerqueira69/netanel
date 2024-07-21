@@ -32,14 +32,14 @@ class ChecklistController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'texto' => 'required|max:255',
+            'texto' => 'required|string',
             'tipo' => 'required|exists:tipo_checklist,id_tipo',
         ]);
 
         $checklist = new CheckListModel();
         $checklist->texto = $validatedData['texto'];
         $checklist->tipo = $validatedData['tipo'];
-        $checklist->finalizado = 0; // Inicializa como não finalizado
+        $checklist->finalizado = 0;
         $checklist->save();
 
         return redirect()->route('checklists.show', ['nome_tipo' => TipoCheckListModel::find($validatedData['tipo'])->nome_tipo])
@@ -57,19 +57,19 @@ class ChecklistController extends Controller
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'texto' => 'required|max:255',
+            'texto' => 'required|string',
         ]);
-    
+
         $checklist = CheckListModel::findOrFail($id);
         $checklist->texto = $validatedData['texto'];
-        
+
         // Somente atualize 'finalizado' se estiver presente na requisição
         if ($request->has('finalizado')) {
             $checklist->finalizado = $request->boolean('finalizado');
         }
-    
+
         $checklist->save();
-    
+
         return redirect()->route('checklists.show', ['nome_tipo' => $checklist->tipoChecklist->nome_tipo])
             ->with('success', 'Checklist atualizado com sucesso!');
     }
