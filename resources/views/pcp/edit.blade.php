@@ -30,8 +30,8 @@
 
             <div class="row">
                 <div class="form-group">
-                    <label for="arquivo">Arquivo:</label>
-                    <input type="file" id="arquivo" name="arquivo" class="form-control">
+                    <label for="arquivos">Arquivos:</label>
+                    <input type="file" id="arquivos" name="arquivos[]" class="form-control" multiple>
                 </div>
             </div>
 

@@ -23,8 +23,8 @@
             </div>
             <div class="row">
                 <div class="col-6">
-                    <label for="arquivo" class="form-label">Arquivo:</label>
-                    <input type="file" name="arquivo" id="arquivo" class="form-control">
+                    <label for="arquivos" class="form-label">Arquivos:</label>
+                    <input type="file" name="arquivos[]" id="arquivos" class="form-control" multiple>
                 </div>
             </div>
             <div class="row">

@@ -32,10 +32,15 @@
                         <img src="/img/delete_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" width="30" height="30" alt="Trash">
                     </button>
                 </form>
-                @if($pcp->arquivo)
-                <a id="btnDownload" class="btn btn-light" href="{{ asset('storage/' . $pcp->arquivo) }}" target="_blank">
+                @if($pcp->arquivos)
+                @php
+                $arquivos = explode(',', $pcp->arquivos);
+                @endphp
+                @foreach($arquivos as $arquivo)
+                <a id="btnDownload" class="btn btn-light" href="{{ asset('storage/' . $arquivo) }}" target="_blank">
                     <img src="/img/download_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Download" width="30" height="30">
                 </a>
+                @endforeach
                 @endif
             </div>
         </li>

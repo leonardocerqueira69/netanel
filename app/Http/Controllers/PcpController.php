@@ -33,7 +33,7 @@ class PcpController extends Controller
 
             if ($pcp->entrega) {
                 $pcp->entrega = Carbon::parse($pcp->entrega)->format('d/m/Y H:i');
-            }    
+            }
         }
 
         $setor = SetorModel::where('id_setor', $id)->first();
@@ -55,26 +55,24 @@ class PcpController extends Controller
         $validatedData = $request->validate([
             'setor' => 'required|exists:setor,id_setor',
             'texto' => 'required|string',
-            'arquivo' => 'nullable|file',
+            'arquivos.*' => 'nullable|file',
             'data_atual' => 'required|date',
             'finalizado' => 'required|boolean',
             'andamento' => 'required|boolean',
             'entrega' => 'nullable|date_format:Y-m-d\TH:i',
         ]);
 
-
-        if ($request->hasFile('arquivo')) {
-
-            $arquivoPath = $request->file('arquivo')->store('arquivos', 'public');
-
-            $validatedData['arquivo'] = $arquivoPath;
+        if ($request->hasFile('arquivos')) {
+            $arquivosPaths = [];
+            foreach ($request->file('arquivos') as $arquivo) {
+                $arquivosPaths[] = $arquivo->store('arquivos', 'public');
+            }
+            $validatedData['arquivos'] = implode(',', $arquivosPaths);
         }
-
 
         PcpModel::create($validatedData);
 
         $setor = SetorModel::where('id_setor', $validatedData['setor'])->first();
-
 
         return redirect()->route('pcp.showPcp', ['id' => $setor->id_setor])
             ->with('success', 'PCP criado com sucesso!');
@@ -93,7 +91,7 @@ class PcpController extends Controller
             'texto' => 'required',
             'finalizado' => 'boolean',
             'andamento' => 'boolean',
-            'arquivo' => 'nullable|file',
+            'arquivos.*' => 'nullable|file',
             'entrega' => 'nullable|date_format:Y-m-d\TH:i',
         ]);
 
@@ -108,17 +106,23 @@ class PcpController extends Controller
         $pcp->andamento = $request->input('andamento') == '1';
         $pcp->entrega = $request->input('entrega');
 
-        if ($request->hasFile('arquivo')) {
-
-            if ($pcp->arquivo) {
-                if (Storage::disk('public')->exists($pcp->arquivo)) {
-                    Storage::disk('public')->delete($pcp->arquivo);
+        if ($request->hasFile('arquivos')) {
+            
+            if ($pcp->arquivos) {
+                $arquivosAntigos = explode(',', $pcp->arquivos);
+                foreach ($arquivosAntigos as $arquivoAntigo) {
+                    if (Storage::disk('public')->exists($arquivoAntigo)) {
+                        Storage::disk('public')->delete($arquivoAntigo);
+                    }
                 }
             }
 
-
-            $arquivoPath = $request->file('arquivo')->store('arquivos', 'public');
-            $pcp->arquivo = $arquivoPath;
+            
+            $arquivosPaths = [];
+            foreach ($request->file('arquivos') as $arquivo) {
+                $arquivosPaths[] = $arquivo->store('arquivos', 'public');
+            }
+            $pcp->arquivos = implode(',', $arquivosPaths);
         }
 
         $pcp->save();
@@ -132,28 +136,29 @@ class PcpController extends Controller
 
     public function destroy($id)
     {
-
         $pcp = PcpModel::find($id);
-
 
         if (!$pcp) {
             return redirect()->route('pcp.showPcp')->with('error', 'PCP não encontrado.');
         }
 
+        if ($pcp->arquivos) {
 
-        if ($pcp->arquivo) {
+            $arquivos = explode(',', $pcp->arquivos);
 
-            if (Storage::disk('public')->exists($pcp->arquivo)) {
-                Storage::disk('public')->delete($pcp->arquivo);
+            foreach ($arquivos as $arquivo) {
+                $arquivo = trim($arquivo);
+                if (Storage::disk('public')->exists($arquivo)) {
+                    Storage::disk('public')->delete($arquivo);
+                }
             }
         }
 
-
         $setorId = $pcp->setor;
         $pcp->delete();
-    
+
         $setor = SetorModel::where('id_setor', $setorId)->first();
-    
+
         return redirect()->route('pcp.showPcp', ['id' => $setor->id_setor])->with('success', 'PCP deletado com sucesso.');
     }
 }
