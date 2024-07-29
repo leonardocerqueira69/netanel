@@ -14,7 +14,17 @@
 @endif
 
 <div id="identificadorCHK" class="text-center">
-    <h2  style="margin-bottom: 0;">Projeto Checklist: {{ request()->segment(count(request()->segments())) }}</h2>
+    <h2 style="margin-bottom: 0;">Projeto Checklist: {{ request()->segment(count(request()->segments())) }}</h2>
+</div>
+
+<div class="parent">
+    <form action="{{ route('checklists.uncheckAll') }}" method="POST" class="uncheck-form">
+        @csrf
+        <input type="hidden" name="tipo" value="{{ $tipoChecklist->id_tipo }}">
+        <button style="transform: translateY(150%);" type="submit" class="btn btn-danger">
+            <img src="/img/clear_all_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" alt="Limpar"> Limpar
+        </button>
+    </form>
 </div>
 
 <table class="checklist-table">
@@ -57,15 +67,25 @@
         @php
         $allFinalized = true;
         foreach ($checklists as $checklist) {
-            if (!$checklist->finalizado) {
-                $allFinalized = false;
-                break;
-            }
+        if (!$checklist->finalizado) {
+        $allFinalized = false;
+        break;
+        }
         }
         @endphp
         <a id="ass-cq" href="{{ $allFinalized ? route('download.excel') : '#' }}" class="btn btn-primary {{ $allFinalized ? '' : 'disabled' }}">Assinar CQ</a>
     </div>
 </div>
+
+<div class="parent">
+        <form action="{{ route('checklists.uncheckAll') }}" method="POST" class="uncheck-form">
+            @csrf
+            <input type="hidden" name="tipo" value="{{ $tipoChecklist->id_tipo }}">
+            <button type="submit" class="btn btn-danger">
+                <img src="/img/clear_all_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" alt="Limpar"> Limpar
+            </button>
+        </form>
+    </div>
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {

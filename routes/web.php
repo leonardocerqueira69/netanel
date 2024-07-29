@@ -42,6 +42,7 @@ Route::middleware([EnsureUserIsLoggedIn::class])->group(function () {
     // Rotas para ChecklistController
     Route::get('/checklists/{nome_tipo}', [ChecklistController::class, 'show'])->name('checklists.show');
     Route::get('/check/create', [ChecklistController::class, 'create'])->name('check.create');
+    Route::post('/checklists/uncheck-all', [ChecklistController::class, 'uncheckAll'])->name('checklists.uncheckAll');
     Route::post('/checklists', [ChecklistController::class, 'store'])->name('checklists.store');
     Route::get('/checklists/{id}/edit', [ChecklistController::class, 'edit'])->name('checklists.edit');
     Route::put('/checklists/{id}', [ChecklistController::class, 'update'])->name('checklists.update');

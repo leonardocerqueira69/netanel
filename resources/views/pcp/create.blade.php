@@ -6,7 +6,7 @@
         <form class="row g-3" action="{{ route('pcp.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row">
-                <div class="col-4">
+                <div class="col-12 col-sm-4">
                     <label for="setor" class="form-label">Setor:</label>
                     <select name="setor" id="setor" class="form-select" required>
                         @foreach($setores as $setor)
@@ -16,38 +16,38 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-10">
+                <div class="col-12 col-sm-10">
                     <label for="texto" class="form-label">Tarefa:</label>
                     <textarea type="text" class="form-control" name="texto" id="texto" required>{{ old('texto') }}</textarea>
                 </div>
             </div>
             <div class="row">
-                <div class="col-6">
+                <div class="col-12 col-sm-6">
                     <label for="arquivos" class="form-label">Arquivos:</label>
                     <input type="file" name="arquivos[]" id="arquivos" class="form-control" multiple>
                 </div>
             </div>
             <div class="row">
-                <div class="col-4">
+                <div class="col-12 col-sm-4">
                     <label for="data_atual" class="form-label">Criado em:</label>
-                    <input type="date" name="data_atual" id="data_atual" class="form-select" required>
+                    <input type="date" name="data_atual" id="data_atual" class="form-control" required>
                 </div>
             </div>
             <div class="row">
-                <div class="col-4">
+                <div class="col-12 col-sm-4">
                     <label for="entrega" class="form-label">Data e Hora de Entrega:</label>
                     <input type="datetime-local" name="entrega" id="entrega" class="form-control">
                 </div>
             </div>
             <div class="row">
-                <div class="col-2">
+                <div class="col-12 col-sm-2">
                     <label for="finalizado" class="form-label">Finalizado:</label>
                     <select name="finalizado" id="finalizado" class="form-select" required>
                         <option value="0">Não</option>
                         <option value="1">Sim</option>
                     </select>
                 </div>
-                <div class="col-2">
+                <div class="col-12 col-sm-2">
                     <label for="andamento" class="form-label">Andamento:</label>
                     <select name="andamento" id="andamento" class="form-select" required>
                         <option value="0">Não</option>
@@ -80,4 +80,19 @@
     });
 </script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+
+<style>
+@media (max-width: 412px) and (max-height: 914px) {
+    #formCreatePCP {
+        padding: 10px;
+    }
+    .form-label {
+        margin-bottom: 5px;
+    }
+    .form-control, .form-select {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+</style>
 @endsection
