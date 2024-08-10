@@ -43,6 +43,13 @@
             </div>
 
             <div class="row">
+                <div class="form-group">
+                    <label for="conclusao">Conclusao:</label>
+                    <input type="datetime-local" id="conclusao" name="conclusao" class="form-control" value="{{ $pcp->conclusao ? date('Y-m-d\TH:i', strtotime($pcp->entrega)) : '' }}">
+                </div>
+            </div>
+
+            <div class="row">
                 <div class="col-12">
                     <button id="btnEditPCP" type="submit" class="btn btn-primary">Salvar</button>
                 </div>
