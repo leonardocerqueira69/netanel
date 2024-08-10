@@ -30,7 +30,7 @@
             <div class="row">
                 <div class="col-12 col-sm-4">
                     <label for="data_atual" class="form-label">Criado em:</label>
-                    <input type="date" name="data_atual" id="data_atual" class="form-control" required>
+                    <input type="datetime-local" name="data_atual" id="data_atual" class="form-control" required>
                 </div>
             </div>
             <div class="row">

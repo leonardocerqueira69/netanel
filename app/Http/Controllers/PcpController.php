@@ -28,7 +28,7 @@ class PcpController extends Controller
 
         foreach ($pcps as $pcp) {
             if ($pcp->data_atual) {
-                $pcp->data_atual = Carbon::parse($pcp->data_atual)->format('d/m/Y');
+                $pcp->data_atual = Carbon::parse($pcp->data_atual)->format('d/m/Y H:i');
             }
 
             if ($pcp->entrega) {
@@ -56,7 +56,7 @@ class PcpController extends Controller
             'setor' => 'required|exists:setor,id_setor',
             'texto' => 'required|string',
             'arquivos.*' => 'nullable|file',
-            'data_atual' => 'required|date',
+            'data_atual' => 'required|date_format:Y-m-d\TH:i',
             'finalizado' => 'required|boolean',
             'andamento' => 'required|boolean',
             'entrega' => 'nullable|date_format:Y-m-d\TH:i',
