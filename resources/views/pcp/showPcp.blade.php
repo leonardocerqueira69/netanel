@@ -22,6 +22,9 @@
             @endif
             @if(isset($pcp->entrega))
             <div id="entrega">Entrega: {{ $pcp->entrega }}</div>
+                @if(isset($pcp->cliente))
+                <p>TRANSPORTADORA : {{$pcp->cliente}}</p>
+                @endif
             @endif
             @if(isset($pcp->conclusao))
             <div id="conclusao">Conclusao: {{ $pcp->conclusao }}</div>

@@ -13,6 +13,15 @@
                         <option value="{{ $setor->id_setor }}">{{ $setor->nome }}</option>
                         @endforeach
                     </select>
+                    <label for="cliente" class="form-label">Cliente:</label>
+                    <select name="cliente" id="cliente" class="form-select">
+                        <option value="">NENHUM</option>
+                        <option value="GONTIJO">GONTIJO</option>
+                        <option value="GASPARZINHO">GASPARZINHO</option>
+                        <option value="ÁGUIA BRANCA">ÁGUIA BRANCA</option>
+                        <option value="NOVO HORIZONTE">NOVO HORIZONTE</option>
+                        <option value="CAMINHONEIRO">CAMINHONEIRO</option>
+                    </select>
                 </div>
             </div>
             <div class="row">
@@ -82,17 +91,20 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
 
 <style>
-@media (max-width: 412px) and (max-height: 914px) {
-    #formCreatePCP {
-        padding: 10px;
+    @media (max-width: 412px) and (max-height: 914px) {
+        #formCreatePCP {
+            padding: 10px;
+        }
+
+        .form-label {
+            margin-bottom: 5px;
+        }
+
+        .form-control,
+        .form-select {
+            width: 100%;
+            margin-bottom: 10px;
+        }
     }
-    .form-label {
-        margin-bottom: 5px;
-    }
-    .form-control, .form-select {
-        width: 100%;
-        margin-bottom: 10px;
-    }
-}
 </style>
 @endsection

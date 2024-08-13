@@ -64,6 +64,7 @@ class PcpController extends Controller
             'finalizado' => 'required|boolean',
             'andamento' => 'required|boolean',
             'entrega' => 'nullable|date_format:Y-m-d\TH:i',
+            'cliente' => 'nullable|string',
         ]);
 
         if ($request->hasFile('arquivos')) {
@@ -98,6 +99,7 @@ class PcpController extends Controller
             'arquivos.*' => 'nullable|file',
             'entrega' => 'nullable|date_format:Y-m-d\TH:i',
             'conclusao' => 'nullable|date_format:Y-m-d\TH:i',
+            'cliente' => 'nullable|string',
         ]);
 
         $pcp = PcpModel::find($id);
@@ -111,6 +113,7 @@ class PcpController extends Controller
         $pcp->andamento = $request->input('andamento') == '1';
         $pcp->entrega = $request->input('entrega');
         $pcp->conclusao = $request->input('conclusao');
+        $pcp->cliente = $request->input('cliente');
 
         if ($request->hasFile('arquivos')) {
             

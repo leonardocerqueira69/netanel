@@ -49,6 +49,16 @@
                 </div>
             </div>
 
+            <label for="cliente" class="form-label">Cliente:</label>
+            <select name="cliente" id="cliente" class="form-select">
+                <option value="" {{ old('cliente', $pcp->cliente ?? '') == '' ? 'selected' : '' }}>NENHUM</option>
+                <option value="GONTIJO" {{ old('cliente', $pcp->cliente ?? '') == 'GONTIJO' ? 'selected' : '' }}>GONTIJO</option>
+                <option value="GASPARZINHO" {{ old('cliente', $pcp->cliente ?? '') == 'GASPARZINHO' ? 'selected' : '' }}>GASPARZINHO</option>
+                <option value="ÁGUIA BRANCA" {{ old('cliente', $pcp->cliente ?? '') == 'ÁGUIA BRANCA' ? 'selected' : '' }}>ÁGUIA BRANCA</option>
+                <option value="NOVO HORIZONTE" {{ old('cliente', $pcp->cliente ?? '') == 'NOVO HORIZONTE' ? 'selected' : '' }}>NOVO HORIZONTE</option>
+                <option value="CAMINHONEIRO" {{ old('cliente', $pcp->cliente ?? '') == 'CAMINHONEIRO' ? 'selected' : '' }}>CAMINHONEIRO</option>
+            </select>
+
             <div class="row">
                 <div class="col-12">
                     <button id="btnEditPCP" type="submit" class="btn btn-primary">Salvar</button>
