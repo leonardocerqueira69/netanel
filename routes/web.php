@@ -48,10 +48,14 @@ Route::middleware([EnsureUserIsLoggedIn::class])->group(function () {
     Route::put('/checklists/{id}', [ChecklistController::class, 'update'])->name('checklists.update');
     Route::delete('/checklists/{id}', [ChecklistController::class, 'destroy'])->name('checklists.destroy');
 
-    //rota pra porra do excel
+   
     Route::get('/download-excel', function () {
         return Storage::download('public/CQ.xlsx');
     })->name('download.excel');
+
+    Route::get('/download-cqplana', function () {
+        return Storage::download('public/CQPlana.xlsx');
+    })->name('download.cqplana');
 });
 
 

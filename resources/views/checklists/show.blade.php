@@ -73,19 +73,27 @@
         }
         }
         @endphp
-        <a id="ass-cq" href="{{ $allFinalized ? route('download.excel') : '#' }}" class="btn btn-primary {{ $allFinalized ? '' : 'disabled' }}">Assinar CQ</a>
+        @if ($tipoChecklist->nome_tipo == 'PLANA')
+        <a id="ass-cq" href="{{ $allFinalized ? route('download.cqplana') : '#' }}" class="btn btn-primary {{ $allFinalized ? '' : 'disabled' }}">
+            Assinar CQ PLANA
+        </a>
+        @else
+        <a id="ass-cq" href="{{ $allFinalized ? route('download.excel') : '#' }}" class="btn btn-primary {{ $allFinalized ? '' : 'disabled' }}">
+            Assinar CQ
+        </a>
+        @endif
     </div>
 </div>
 
 <div class="parent">
-        <form action="{{ route('checklists.uncheckAll') }}" method="POST" class="uncheck-form">
-            @csrf
-            <input type="hidden" name="tipo" value="{{ $tipoChecklist->id_tipo }}">
-            <button type="submit" class="btn btn-danger">
-                <img src="/img/clear_all_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" alt="Limpar"> Limpar
-            </button>
-        </form>
-    </div>
+    <form action="{{ route('checklists.uncheckAll') }}" method="POST" class="uncheck-form">
+        @csrf
+        <input type="hidden" name="tipo" value="{{ $tipoChecklist->id_tipo }}">
+        <button type="submit" class="btn btn-danger">
+            <img src="/img/clear_all_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" alt="Limpar"> Limpar
+        </button>
+    </form>
+</div>
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
