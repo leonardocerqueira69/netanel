@@ -8,6 +8,19 @@
             @method('PUT')
 
             <div class="row">
+                <div class="col-12 col-sm-4">
+                    <label for="setor" class="form-label">Setor:</label>
+                    <select name="setor" id="setor" class="form-select">
+                        @foreach($setores as $setor)
+                        <option value="{{ $setor->id_setor }}"
+                            {{ $setor->id_setor == $pcp->setor ? 'selected' : '' }}>
+                            {{ $setor->nome }}
+                        </option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            <div class="row">
                 <div class="form-group">
                     <label for="texto">Tarefa:</label>
                     <textarea class="form-control" id="texto" name="texto">{{ $pcp->texto }}</textarea>

@@ -87,12 +87,14 @@ class PcpController extends Controller
     {
 
         $pcp = PcpModel::find($id);
-        return view('pcp.edit', compact('pcp'));
+        $setores = SetorModel::all();
+        return view('pcp.edit', compact('pcp','setores'));
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
+            'setor' => 'nullable|exists:setor,id_setor',
             'texto' => 'required',
             'finalizado' => 'boolean',
             'andamento' => 'boolean',
@@ -106,6 +108,10 @@ class PcpController extends Controller
 
         if (!$pcp) {
             return redirect()->route('pcp.showPcp', ['id' => $id])->with('error', 'PCP não encontrado.');
+        }
+
+        if ($request->input('setor')) {
+            $pcp->setor = $request->input('setor');
         }
 
         $pcp->texto = $request->input('texto');
