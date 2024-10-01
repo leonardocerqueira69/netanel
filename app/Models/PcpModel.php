@@ -13,7 +13,7 @@ class PcpModel extends Model
     protected $primaryKey = 'id_pcp';
 
     protected $fillable = [
-        'setor', 'texto', 'data_atual', 'finalizado', 'andamento', 'arquivos', 'entrega', 'conclusao','cliente'
+        'setor', 'texto', 'data_atual', 'finalizado', 'andamento', 'arquivos', 'entrega', 'conclusao','cliente', 'meta_conclusao','iniciado'
     ];
     
     public function setor()
