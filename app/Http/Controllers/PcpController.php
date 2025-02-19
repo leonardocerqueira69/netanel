@@ -39,11 +39,11 @@ class PcpController extends Controller
                 $pcp->conclusao = Carbon::parse($pcp->conclusao)->format('H:i');
             }
             if ($pcp->meta_conclusao) {
-              $pcp->meta_conclusao = Carbon::parse($pcp->meta_conclusao)->format('H:i');
-          }
-          	if ($pcp->iniciado) {
-            	$pcp->iniciado = Carbon::parse($pcp->iniciado)->format('d/m/Y H:i');
-        	}
+                $pcp->meta_conclusao = Carbon::parse($pcp->meta_conclusao)->format('H:i');
+            }
+            if ($pcp->iniciado) {
+                $pcp->iniciado = Carbon::parse($pcp->iniciado)->format('d/m/Y H:i');
+            }
         }
 
         $setor = SetorModel::where('id_setor', $id)->first();
@@ -71,8 +71,8 @@ class PcpController extends Controller
             'andamento' => 'required|boolean',
             'entrega' => 'nullable|date_format:Y-m-d\TH:i',
             'cliente' => 'nullable|string',
-          	'meta_conclusao' => 'nullable|date_format:H:i',
-            
+            'meta_conclusao' => 'nullable|date_format:H:i',
+
         ]);
 
         if ($request->hasFile('arquivos')) {
@@ -96,13 +96,13 @@ class PcpController extends Controller
 
         $pcp = PcpModel::find($id);
         $setores = SetorModel::all();
-        return view('pcp.edit', compact('pcp','setores'));
+        return view('pcp.edit', compact('pcp', 'setores'));
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
-          	'setor' => 'nullable|exists:setor,id_setor',
+            'setor' => 'nullable|exists:setor,id_setor',
             'texto' => 'required',
             'finalizado' => 'boolean',
             'andamento' => 'boolean',
@@ -110,9 +110,9 @@ class PcpController extends Controller
             'entrega' => 'nullable|date_format:Y-m-d\TH:i',
             'conclusao' => 'nullable|date_format:Y-m-d\TH:i',
             'cliente' => 'nullable|string',
-          	'meta_conclusao' => 'nullable|date_format:H:i',
-          	'iniciado' => 'nullable|date_format:Y-m-d\TH:i',
-          	'data_atual' => 'nullable|date_format:Y-m-d\TH:i',
+            'meta_conclusao' => 'nullable|date_format:H:i',
+            'iniciado' => 'nullable|date_format:Y-m-d\TH:i',
+            'data_atual' => 'nullable|date_format:Y-m-d\TH:i',
         ]);
 
         $pcp = PcpModel::find($id);
@@ -120,8 +120,8 @@ class PcpController extends Controller
         if (!$pcp) {
             return redirect()->route('pcp.showPcp', ['id' => $id])->with('error', 'PCP não encontrado.');
         }
-      
-      	if ($request->input('setor')) {
+
+        if ($request->input('setor')) {
             $pcp->setor = $request->input('setor');
         }
 
@@ -131,12 +131,12 @@ class PcpController extends Controller
         $pcp->entrega = $request->input('entrega');
         $pcp->conclusao = $request->input('conclusao');
         $pcp->cliente = $request->input('cliente');
-      	$pcp->meta_conclusao = $request->input('meta_conclusao');
-      	$pcp->iniciado = $request->input('iniciado');
-      	$pcp->data_atual = $request->input('data_atual');
+        $pcp->meta_conclusao = $request->input('meta_conclusao');
+        $pcp->iniciado = $request->input('iniciado');
+        $pcp->data_atual = $request->input('data_atual');
 
         if ($request->hasFile('arquivos')) {
-            
+
             if ($pcp->arquivos) {
                 $arquivosAntigos = explode(',', $pcp->arquivos);
                 foreach ($arquivosAntigos as $arquivoAntigo) {
@@ -146,7 +146,7 @@ class PcpController extends Controller
                 }
             }
 
-            
+
             $arquivosPaths = [];
             foreach ($request->file('arquivos') as $arquivo) {
                 $arquivosPaths[] = $arquivo->store('arquivos', 'public');
@@ -189,5 +189,25 @@ class PcpController extends Controller
         $setor = SetorModel::where('id_setor', $setorId)->first();
 
         return redirect()->route('pcp.showPcp', ['id' => $setor->id_setor])->with('success', 'PCP deletado com sucesso.');
+    }
+
+    public function saveTempo(Request $request)
+    {
+        // Validação dos dados
+        $request->validate([
+            'id' => 'required|exists:pcp,id_pcp',
+            'tempo' => 'required|string', 
+        ]);
+
+        
+        $pcp = PcpModel::find($request->id);
+        if ($pcp) {
+            $pcp->tempo = $request->tempo;
+            $pcp->save();
+
+            return response()->json(['success' => true, 'message' => 'Tempo salvo com sucesso!']);
+        }
+
+        return response()->json(['success' => false, 'message' => 'Registro não encontrado.'], 404);
     }
 }

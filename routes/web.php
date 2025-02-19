@@ -15,6 +15,7 @@ use App\Http\Controllers\TipoChecklistController;
 use App\Http\Controllers\ColaboradorController;
 use App\Http\Middleware\EnsureUserIsLoggedIn;
 
+
 // Rota para exibir o formulário de login
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 
@@ -47,8 +48,10 @@ Route::middleware([EnsureUserIsLoggedIn::class])->group(function () {
     Route::get('/checklists/{id}/edit', [ChecklistController::class, 'edit'])->name('checklists.edit');
     Route::put('/checklists/{id}', [ChecklistController::class, 'update'])->name('checklists.update');
     Route::delete('/checklists/{id}', [ChecklistController::class, 'destroy'])->name('checklists.destroy');
+    Route::post('/checklists/update-ajax', [ChecklistController::class, 'updateAjax'])->name('checklists.update.ajax');
 
-   
+    Route::post('/saveTempo', [CronometroController::class, 'store']);
+
     Route::get('/download-excel', function () {
         return Storage::download('public/CQ.xlsx');
     })->name('download.excel');

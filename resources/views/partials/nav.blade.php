@@ -35,6 +35,8 @@
                     <a class="dropdown-item" href="{{ route('checklists.show', ['nome_tipo' => 'geral']) }}">Checklist GERAL</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{ route('checklists.show', ['nome_tipo' => 'plana']) }}">Checklist PLANA</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{ route('checklists.show', ['nome_tipo' => 'MONTAGEM']) }}">Checklist MONTAGEM</a>
                 </div>
             </li>
         </ul>
