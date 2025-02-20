@@ -12,7 +12,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('pcp', function (Blueprint $table) {
-            $table->dateTime('meta_conclusao')->nullable();
+            $table->Time('meta_conclusao')->nullable();
         });
     }
 

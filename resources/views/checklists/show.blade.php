@@ -30,6 +30,87 @@
     </form>
 </div>
 
+<!-- Adicionando os controles do cronômetro mais abaixo -->
+<div class="text-center" style="margin-top: 75px;">
+    <p id="timer-display" style="font-size: 24px;">00:00:00.0</p>
+    <button class="btn btn-success btnLigar">Ligar</button>
+    <button class="btn btn-warning btnPausar">Pausar</button>
+    <button class="btn btn-danger btnResetar">Resetar</button>
+    <button class="btn btn-primary btnSalvar">Salvar</button>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const btnLigar = document.querySelector(".btnLigar");
+    const btnPausar = document.querySelector(".btnPausar");
+    const btnResetar = document.querySelector(".btnResetar");
+    const btnSalvar = document.querySelector(".btnSalvar");
+
+    let timer;
+    let tempoDecimos = 0; // Tempo em décimos de segundo
+    let cronometroAtivo = false;
+
+    // Função para converter tempo "hh:mm:ss.d" para décimos de segundo
+    function tempoParaDecimos(tempo) {
+        const [hora, min, seg] = tempo.split(":");
+        const [segundos, decimos] = seg.split(".");
+        return (parseInt(hora) * 36000) + (parseInt(min) * 600) + (parseInt(segundos) * 10) + parseInt(decimos);
+    }
+
+    // Função para formatar o tempo em "hh:mm:ss.d"
+    function formatTime(decSeg) {
+        let ms = decSeg % 10; 
+        let seg = Math.floor(decSeg / 10);
+        let min = Math.floor(seg / 60);
+        let hora = Math.floor(min / 60);
+
+        seg = seg % 60;
+        min = min % 60;
+
+        return `${hora.toString().padStart(2, '0')}:${min.toString().padStart(2, '0')}:${seg.toString().padStart(2, '0')}.${ms}`;
+    }
+
+    // Função para iniciar o cronômetro
+    function iniciarCronometro() {
+        if (!cronometroAtivo) {
+            cronometroAtivo = true;
+            timer = setInterval(() => {
+                tempoDecimos++;
+                document.getElementById('timer-display').innerText = formatTime(tempoDecimos);
+            }, 100);
+        }
+    }
+
+    // Função para pausar o cronômetro
+    function pausarCronometro() {
+        if (cronometroAtivo) {
+            clearInterval(timer);
+            cronometroAtivo = false;
+        }
+    }
+
+    // Função para resetar o cronômetro
+    function resetarCronometro() {
+        clearInterval(timer);
+        cronometroAtivo = false;
+        tempoDecimos = 0;
+        document.getElementById('timer-display').innerText = formatTime(tempoDecimos);
+    }
+
+    // Função para salvar o tempo
+    function salvarCronometro() {
+        alert("Tempo salvo: " + formatTime(tempoDecimos));
+        // Aqui você pode adicionar lógica para salvar o tempo em uma base de dados ou realizar outra ação.
+    }
+
+    // Eventos dos botões
+    btnLigar.addEventListener('click', iniciarCronometro);
+    btnPausar.addEventListener('click', pausarCronometro);
+    btnResetar.addEventListener('click', resetarCronometro);
+    btnSalvar.addEventListener('click', salvarCronometro);
+});
+</script>
+
 <table class="checklist-table">
     <tbody>
         @foreach ($checklists as $checklist)
