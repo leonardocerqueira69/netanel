@@ -50,7 +50,7 @@ Route::middleware([EnsureUserIsLoggedIn::class])->group(function () {
     Route::delete('/checklists/{id}', [ChecklistController::class, 'destroy'])->name('checklists.destroy');
     Route::post('/checklists/update-ajax', [ChecklistController::class, 'updateAjax'])->name('checklists.update.ajax');
 
-    Route::post('/saveTempo', [CronometroController::class, 'store']);
+    Route::post('/saveTempo', [PcpController::class, 'saveTempo']);
 
     Route::get('/download-excel', function () {
         return Storage::download('public/CQ.xlsx');
