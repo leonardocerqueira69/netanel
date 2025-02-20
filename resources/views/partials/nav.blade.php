@@ -12,11 +12,11 @@
                     PCP
                 </a>
                 <div class="dropdown-menu fade" id="pcpMenu" aria-labelledby="pcpDropdown">
-                    <a class="dropdown-item" href="{{ route('pcp.showPcp', ['id' => '1']) }}">EMBORRACHAMENTO</a>
+                    <a class="dropdown-item" href="{{ route('pcp.showPcp', ['id' => '1']) }}">PROJETOS</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{ route('pcp.showPcp', ['id' => '2']) }}">MONTAGEM</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{{ route('pcp.showPcp', ['id' => '3']) }}">PROJETOS</a>
+                    <a class="dropdown-item" href="{{ route('pcp.showPcp', ['id' => '3']) }}">EMBORRACHAMENTO</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{ route('pcp.showPcp', ['id' => '4']) }}">EXPEDIÇÃO</a>
                     <div class="dropdown-divider"></div>
