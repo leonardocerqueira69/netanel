@@ -64,6 +64,7 @@ class PcpController extends Controller
     {
         $validatedData = $request->validate([
             'setor' => 'required|exists:setor,id_setor',
+            'colaborador' => 'required|string',
             'texto' => 'required|string',
             'arquivos.*' => 'nullable|file',
             'data_atual' => 'required|date_format:Y-m-d\TH:i',
@@ -72,7 +73,6 @@ class PcpController extends Controller
             'entrega' => 'nullable|date_format:Y-m-d\TH:i',
             'cliente' => 'nullable|string',
             'meta_conclusao' => 'nullable|date_format:H:i',
-
         ]);
 
         if ($request->hasFile('arquivos')) {
@@ -84,10 +84,7 @@ class PcpController extends Controller
         }
 
         PcpModel::create($validatedData);
-
-        $setor = SetorModel::where('id_setor', $validatedData['setor'])->first();
-
-        return redirect()->route('pcp.showPcp', ['id' => $setor->id_setor])
+        return redirect()->route('pcp.showPcp', ['id' => $validatedData['setor']])
             ->with('success', 'PCP criado com sucesso!');
     }
 
@@ -113,6 +110,7 @@ class PcpController extends Controller
             'meta_conclusao' => 'nullable|date_format:H:i',
             'iniciado' => 'nullable|date_format:Y-m-d\TH:i',
             'data_atual' => 'nullable|date_format:Y-m-d\TH:i',
+            'colaborador' => 'nullable|string|max:255',
         ]);
 
         $pcp = PcpModel::find($id);
@@ -134,6 +132,7 @@ class PcpController extends Controller
         $pcp->meta_conclusao = $request->input('meta_conclusao');
         $pcp->iniciado = $request->input('iniciado');
         $pcp->data_atual = $request->input('data_atual');
+        $pcp->colaborador = $request->input('colaborador');
 
         if ($request->hasFile('arquivos')) {
 
@@ -192,23 +191,23 @@ class PcpController extends Controller
     }
 
     public function saveTempo(Request $request)
-    {
-        $request->validate([
-            'id' => 'required|exists:pcp,id_pcp',
-            'cronId' => 'required|in:1,2,3',
-            'tempo' => 'required|string', 
-        ]);
+{
+    $request->validate([
+        'id' => 'required|exists:pcp,id_pcp',
+        'cronId' => 'required|in:1,2,3',
+        'tempo' => 'required|string', 
+    ]);
 
-        $pcp = PcpModel::find($request->id);
-        if ($pcp) {
-            $campo = "tempo" . $request->cronId;
-            $pcp->$campo = $request->tempo;
-            $pcp->save();
+    $pcp = PcpModel::find($request->id);
+    if ($pcp) {
+        $campo = "tempo" . $request->cronId;
+        $pcp->$campo = $request->tempo;
+        $pcp->save();
 
-            return response()->json(['success' => true, 'message' => 'Tempo salvo com sucesso!']);
-        }
-
-        return response()->json(['success' => false, 'message' => 'Registro não encontrado.'], 404);
+        return response()->json(['success' => true, 'message' => 'Tempo salvo com sucesso!']);
     }
+
+    return response()->json(['success' => false, 'message' => 'Registro não encontrado.'], 404);
+}
 
 }

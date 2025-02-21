@@ -42,6 +42,13 @@
                     <input type="checkbox" id="andamento" name="andamento" value="1" {{ $pcp->andamento ? 'checked' : '' }}>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <label for="colaborador" style="color: white;">Colaborador:</label>
+                    <input style="max-width: 360px;" type="text" id="colaborador" name="colaborador" class="form-control" value="{{ old('colaborador', $pcp->colaborador ?? '') }}">
+                </div>
+            </div>
           
           	<div class="row">
     			<div class="form-group">

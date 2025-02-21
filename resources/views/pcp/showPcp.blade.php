@@ -48,22 +48,25 @@
                     <p id="transp">Transportadora : {{$pcp->cliente}}</p>
                 </div>
                 @endif
+                @if(isset($pcp->colaborador))
+                <div id="colaborador">Colaborador Responsável: {{ $pcp->colaborador }}</div>
+                @endif
 
 
                 <p id="cronometro-{{ $pcp->id_pcp }}-1">{{ $pcp->tempo1 ?? '00:00:00.0' }}</p>
-                <button class="btnLigar" data-id="{{ $pcp->id_pcp }}" data-cron="1">Ligar Cronômetro</button>
+                <button class="btnLigar" data-id="{{ $pcp->id_pcp }}" data-cron="1">Ligar Cronômetro - Projeto</button>
                 <button class="btnPausar" data-id="{{ $pcp->id_pcp }}" data-cron="1">Pausar</button>
                 <button class="btnResetar" data-id="{{ $pcp->id_pcp }}" data-cron="1">Resetar</button>
                 <button class="btnSalvar" data-id="{{ $pcp->id_pcp }}" data-cron="1">Salvar</button>
 
                 <p id="cronometro-{{ $pcp->id_pcp }}-2">{{ $pcp->tempo2 ?? '00:00:00.0' }}</p>
-                <button class="btnLigar" data-id="{{ $pcp->id_pcp }}" data-cron="2">Ligar Cronômetro</button>
+                <button class="btnLigar" data-id="{{ $pcp->id_pcp }}" data-cron="2">Ligar Cronômetro - Montagem</button>
                 <button class="btnPausar" data-id="{{ $pcp->id_pcp }}" data-cron="2">Pausar</button>
                 <button class="btnResetar" data-id="{{ $pcp->id_pcp }}" data-cron="2">Resetar</button>
                 <button class="btnSalvar" data-id="{{ $pcp->id_pcp }}" data-cron="2">Salvar</button>
 
                 <p id="cronometro-{{ $pcp->id_pcp }}-3">{{ $pcp->tempo3 ?? '00:00:00.0' }}</p>
-                <button class="btnLigar" data-id="{{ $pcp->id_pcp }}" data-cron="3">Ligar Cronômetro</button>
+                <button class="btnLigar" data-id="{{ $pcp->id_pcp }}" data-cron="3">Ligar Cronômetro - Emborrachamento</button>
                 <button class="btnPausar" data-id="{{ $pcp->id_pcp }}" data-cron="3">Pausar</button>
                 <button class="btnResetar" data-id="{{ $pcp->id_pcp }}" data-cron="3">Resetar</button>
                 <button class="btnSalvar" data-id="{{ $pcp->id_pcp }}" data-cron="3">Salvar</button>
