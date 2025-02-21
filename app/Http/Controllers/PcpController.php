@@ -193,16 +193,16 @@ class PcpController extends Controller
 
     public function saveTempo(Request $request)
     {
-        // Validação dos dados
         $request->validate([
             'id' => 'required|exists:pcp,id_pcp',
+            'cronId' => 'required|in:1,2,3',
             'tempo' => 'required|string', 
         ]);
 
-        
         $pcp = PcpModel::find($request->id);
         if ($pcp) {
-            $pcp->tempo = $request->tempo;
+            $campo = "tempo" . $request->cronId;
+            $pcp->$campo = $request->tempo;
             $pcp->save();
 
             return response()->json(['success' => true, 'message' => 'Tempo salvo com sucesso!']);
@@ -210,4 +210,5 @@ class PcpController extends Controller
 
         return response()->json(['success' => false, 'message' => 'Registro não encontrado.'], 404);
     }
+
 }

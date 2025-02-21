@@ -9,20 +9,19 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::table('pcp', function (Blueprint $table) {
-            $table->string('tempo')->nullable();
+            $table->string('tempo1')->nullable();
+            $table->string('tempo2')->nullable();
+            $table->string('tempo3')->nullable();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
         Schema::table('pcp', function (Blueprint $table) {
-            $table->dropColumn('tempo');
+            $table->dropColumn(['tempo1', 'tempo2', 'tempo3']);
         });
     }
 };

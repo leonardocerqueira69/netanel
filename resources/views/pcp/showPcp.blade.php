@@ -50,11 +50,24 @@
                 @endif
 
 
-                <p id="cronometro-{{ $pcp->id_pcp }}">{{ $pcp->tempo ?? '00:00:00.0' }}</p>
-                <button class="btnLigar" data-id="{{ $pcp->id_pcp }}">Ligar Cronômetro</button>
-                <button class="btnPausar" data-id="{{ $pcp->id_pcp }}">Pausar Cronômetro</button>
-                <button class="btnResetar" data-id="{{ $pcp->id_pcp }}">Resetar</button>
-                <button class="btnSalvar" data-id="{{ $pcp->id_pcp }}">Salvar</button>
+                <p id="cronometro-{{ $pcp->id_pcp }}-1">{{ $pcp->tempo1 ?? '00:00:00.0' }}</p>
+                <button class="btnLigar" data-id="{{ $pcp->id_pcp }}" data-cron="1">Ligar Cronômetro</button>
+                <button class="btnPausar" data-id="{{ $pcp->id_pcp }}" data-cron="1">Pausar</button>
+                <button class="btnResetar" data-id="{{ $pcp->id_pcp }}" data-cron="1">Resetar</button>
+                <button class="btnSalvar" data-id="{{ $pcp->id_pcp }}" data-cron="1">Salvar</button>
+
+                <p id="cronometro-{{ $pcp->id_pcp }}-2">{{ $pcp->tempo2 ?? '00:00:00.0' }}</p>
+                <button class="btnLigar" data-id="{{ $pcp->id_pcp }}" data-cron="2">Ligar Cronômetro</button>
+                <button class="btnPausar" data-id="{{ $pcp->id_pcp }}" data-cron="2">Pausar</button>
+                <button class="btnResetar" data-id="{{ $pcp->id_pcp }}" data-cron="2">Resetar</button>
+                <button class="btnSalvar" data-id="{{ $pcp->id_pcp }}" data-cron="2">Salvar</button>
+
+                <p id="cronometro-{{ $pcp->id_pcp }}-3">{{ $pcp->tempo3 ?? '00:00:00.0' }}</p>
+                <button class="btnLigar" data-id="{{ $pcp->id_pcp }}" data-cron="3">Ligar Cronômetro</button>
+                <button class="btnPausar" data-id="{{ $pcp->id_pcp }}" data-cron="3">Pausar</button>
+                <button class="btnResetar" data-id="{{ $pcp->id_pcp }}" data-cron="3">Resetar</button>
+                <button class="btnSalvar" data-id="{{ $pcp->id_pcp }}" data-cron="3">Salvar</button>
+
 
 
                 <div class="pcpItem-footer">
@@ -102,16 +115,14 @@
     const btnResetar = document.querySelectorAll(".btnResetar");
     const btnSalvar = document.querySelectorAll(".btnSalvar");
 
-    const cronometros = {}; // Armazena o estado de cada cronômetro
+    const cronometros = {};
 
-    // Função para converter tempo "hh:mm:ss.d" para décimos de segundo
     function tempoParaDecimos(tempo) {
         const [hora, min, seg] = tempo.split(":");
         const [segundos, decimos] = seg.split(".");
         return (parseInt(hora) * 36000) + (parseInt(min) * 600) + (parseInt(segundos) * 10) + parseInt(decimos);
     }
 
-    // Função para formatar o tempo em "hh:mm:ss.d"
     function formatTime(decSeg) {
         let ms = decSeg % 10; 
         let seg = Math.floor(decSeg / 10);
@@ -124,111 +135,71 @@
         return `${hora.toString().padStart(2, '0')}:${min.toString().padStart(2, '0')}:${seg.toString().padStart(2, '0')}.${ms}`;
     }
 
-    // Inicializa cronômetros com tempos salvos do banco
     document.querySelectorAll("[id^='cronometro-']").forEach(el => {
-        const id = el.id.split("-")[1];
-        const tempoSalvo = el.textContent.trim();
-        cronometros[id] = {
-            decSeg: tempoParaDecimos(tempoSalvo),
+        const [_, id, cronId] = el.id.split("-");
+        if (!cronometros[id]) cronometros[id] = {};
+        cronometros[id][cronId] = {
+            decSeg: tempoParaDecimos(el.textContent.trim()),
             contando: false,
             idContagem: null
         };
     });
 
-    // Função de iniciar cronômetro
-    btnLigar.forEach((button) => {
-        button.addEventListener("click", (event) => {
-            const id = event.target.getAttribute("data-id");
-            if (!cronometros[id]) return;
+    function iniciarCronometro(id, cronId) {
+        if (cronometros[id][cronId].contando) return;
+        const cronometroEl = document.getElementById(`cronometro-${id}-${cronId}`);
+        cronometros[id][cronId].idContagem = setInterval(() => {
+            cronometros[id][cronId].decSeg++;
+            cronometroEl.textContent = formatTime(cronometros[id][cronId].decSeg);
+        }, 100);
+        cronometros[id][cronId].contando = true;
+    }
 
-            const cronometroEl = document.getElementById(`cronometro-${id}`);
-            const cronometro = cronometros[id];
+    function pausarCronometro(id, cronId) {
+        clearInterval(cronometros[id][cronId].idContagem);
+        cronometros[id][cronId].contando = false;
+    }
 
-            if (cronometro.contando) return;
+    function resetarCronometro(id, cronId) {
+        clearInterval(cronometros[id][cronId].idContagem);
+        cronometros[id][cronId].decSeg = 0;
+        cronometros[id][cronId].contando = false;
+        document.getElementById(`cronometro-${id}-${cronId}`).textContent = "00:00:00.0";
+    }
 
-            cronometro.idContagem = setInterval(() => {
-                cronometro.decSeg++;
-                cronometroEl.textContent = formatTime(cronometro.decSeg);
-            }, 100);
-            cronometro.contando = true;
-        });
+    function salvarCronometro(id, cronId) {
+        fetch("/saveTempo", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
+            },
+            body: JSON.stringify({
+                id: id,
+                cronId: cronId,
+                tempo: document.getElementById(`cronometro-${id}-${cronId}`).textContent,
+            }),
+        }).then(response => response.json())
+        .then(data => alert(data.success ? "Tempo salvo com sucesso!" : "Erro ao salvar."))
+        .catch(error => console.error("Erro:", error));
+    }
+
+    document.querySelectorAll(".btnLigar").forEach(button => {
+        button.addEventListener("click", () => iniciarCronometro(button.dataset.id, button.dataset.cron));
     });
 
-    // Função de pausar cronômetro
-    btnPausar.forEach((button) => {
-        button.addEventListener("click", (event) => {
-            const id = event.target.getAttribute("data-id");
-            if (!cronometros[id]) return;
-
-            const cronometro = cronometros[id];
-
-            if (cronometro.contando) {
-                clearInterval(cronometro.idContagem);
-                cronometro.contando = false;
-                button.textContent = "Retomar Cronômetro";
-            } else {
-                cronometro.idContagem = setInterval(() => {
-                    cronometro.decSeg++;
-                    document.getElementById(`cronometro-${id}`).textContent = formatTime(cronometro.decSeg);
-                }, 100);
-                cronometro.contando = true;
-                button.textContent = "Pausar Cronômetro";
-            }
-        });
+    document.querySelectorAll(".btnPausar").forEach(button => {
+        button.addEventListener("click", () => pausarCronometro(button.dataset.id, button.dataset.cron));
     });
 
-    // Função de resetar cronômetro
-    btnResetar.forEach((button) => {
-        button.addEventListener("click", (event) => {
-            const id = event.target.getAttribute("data-id");
-            if (!cronometros[id]) return;
-
-            const cronometroEl = document.getElementById(`cronometro-${id}`);
-            const cronometro = cronometros[id];
-
-            clearInterval(cronometro.idContagem);
-            cronometro.decSeg = 0;
-            cronometro.contando = false;
-            cronometroEl.textContent = "00:00:00.0";
-        });
+    document.querySelectorAll(".btnResetar").forEach(button => {
+        button.addEventListener("click", () => resetarCronometro(button.dataset.id, button.dataset.cron));
     });
 
-    // Função para salvar tempo no backend
-    btnSalvar.forEach((button) => {
-        button.addEventListener("click", (event) => {
-            const id = event.target.getAttribute("data-id");
-            if (!cronometros[id]) return;
-
-            const cronometroEl = document.getElementById(`cronometro-${id}`);
-            const tempoAtual = cronometroEl.textContent;
-
-            fetch("/saveTempo", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
-                },
-                body: JSON.stringify({
-                    id: id,
-                    tempo: tempoAtual,
-                }),
-            })
-            .then((response) => response.json())
-            .then((data) => {
-                if (data.success) {
-                    alert("Tempo salvo com sucesso!");
-                } else {
-                    alert("Erro ao salvar o tempo no servidor.");
-                }
-            })
-            .catch((error) => {
-                console.error("Erro ao salvar o tempo:", error);
-                alert("Erro ao se conectar ao servidor. Verifique sua conexão.");
-            });
-        });
+    document.querySelectorAll(".btnSalvar").forEach(button => {
+        button.addEventListener("click", () => salvarCronometro(button.dataset.id, button.dataset.cron));
     });
 });
-
 </script>
 
 
