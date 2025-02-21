@@ -110,7 +110,8 @@ class PcpController extends Controller
             'meta_conclusao' => 'nullable|date_format:H:i',
             'iniciado' => 'nullable|date_format:Y-m-d\TH:i',
             'data_atual' => 'nullable|date_format:Y-m-d\TH:i',
-            'colaborador' => 'nullable|string|max:255',
+            'colaborador' => 'nullable|array', 
+            'colaborador.*' => 'string|max:255',
         ]);
 
         $pcp = PcpModel::find($id);
@@ -133,6 +134,11 @@ class PcpController extends Controller
         $pcp->iniciado = $request->input('iniciado');
         $pcp->data_atual = $request->input('data_atual');
         $pcp->colaborador = $request->input('colaborador');
+
+        if ($request->has('colaborador')) {
+            $pcp->colaborador = implode(',', $request->input('colaborador')); // Salva como CSV (separado por vírgula)
+        }
+        
 
         if ($request->hasFile('arquivos')) {
 

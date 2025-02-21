@@ -43,12 +43,41 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="form-group">
-                    <label for="colaborador" style="color: white;">Colaborador:</label>
-                    <input style="max-width: 360px;" type="text" id="colaborador" name="colaborador" class="form-control" value="{{ old('colaborador', $pcp->colaborador ?? '') }}">
+            <div class="form-group">
+                <label for="colaborador" style="color: white;">Colaboradores:</label>
+                <div id="colaboradores-container">
+                    @php
+                        $colaboradores = explode(',', $pcp->colaborador ?? '');
+                    @endphp
+                    @foreach($colaboradores as $colaborador)
+                        <div class="colaborador-item">
+                            <input type="text" name="colaborador[]" class="form-control" value="{{ trim($colaborador) }}" style="max-width: 360px; display: inline-block;">
+                            <button type="button" class="remove-colaborador btn btn-danger btn-sm">-</button>
+                        </div>
+                    @endforeach
                 </div>
+                <button type="button" id="add-colaborador" class="btn btn-primary btn-sm">Adicionar Colaborador</button>
             </div>
+
+            <script>
+            document.getElementById('add-colaborador').addEventListener('click', function () {
+                let container = document.getElementById('colaboradores-container');
+                let div = document.createElement('div');
+                div.classList.add('colaborador-item');
+                div.innerHTML = `
+                    <input type="text" name="colaborador[]" class="form-control" style="max-width: 360px; display: inline-block;">
+                    <button type="button" class="remove-colaborador btn btn-danger btn-sm">-</button>
+                `;
+                container.appendChild(div);
+            });
+
+            document.addEventListener('click', function (e) {
+                if (e.target.classList.contains('remove-colaborador')) {
+                    e.target.parentElement.remove();
+                }
+            });
+            </script>
+
           
           	<div class="row">
     			<div class="form-group">

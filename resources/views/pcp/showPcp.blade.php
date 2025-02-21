@@ -48,9 +48,18 @@
                     <p id="transp">Transportadora : {{$pcp->cliente}}</p>
                 </div>
                 @endif
-                @if(isset($pcp->colaborador))
-                <div id="colaborador">Colaborador Responsável: {{ $pcp->colaborador }}</div>
+                
+                @if(!empty($pcp->colaborador))
+                    <div id="colaborador">
+                        <strong>Colaboradores:</strong>
+                        <ul>
+                            @foreach(explode(',', $pcp->colaborador) as $colab)
+                                <li>{{ trim($colab) }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
                 @endif
+
 
 
                 <p id="cronometro-{{ $pcp->id_pcp }}-1">{{ $pcp->tempo1 ?? '00:00:00.0' }}</p>

@@ -12,14 +12,14 @@ return new class extends Migration
     public function up()
     {
         Schema::table('pcp', function (Blueprint $table) {
-            $table->string('colaborador')->after('cliente'); // Ajuste conforme necessário
+            $table->text('colaborador')->nullable()->change();// Ajuste conforme necessário
         });
     }
 
     public function down()
     {
         Schema::table('pcp', function (Blueprint $table) {
-            $table->dropColumn('colaborador');
+            $table->dropColumn('colaborador')->nullable()->change();
         });
     }
 };
