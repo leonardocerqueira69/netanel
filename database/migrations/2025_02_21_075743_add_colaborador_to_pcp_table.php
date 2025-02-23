@@ -12,14 +12,21 @@ return new class extends Migration
     public function up()
     {
         Schema::table('pcp', function (Blueprint $table) {
-            $table->text('colaborador')->nullable()->change();// Ajuste conforme necessário
+            if (!Schema::hasColumn('pcp', 'colaborador')) {
+                $table->text('colaborador')->nullable();
+            }
         });
     }
 
+    /**
+     * Reverse the migrations.
+     */
     public function down()
     {
         Schema::table('pcp', function (Blueprint $table) {
-            $table->dropColumn('colaborador')->nullable()->change();
+            if (Schema::hasColumn('pcp', 'colaborador')) {
+                $table->dropColumn('colaborador');
+            }
         });
     }
 };
