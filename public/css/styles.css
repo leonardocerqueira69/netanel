@@ -260,6 +260,88 @@ background: radial-gradient(circle at 10% 20%, rgb(87, 108, 117) 0%, rgb(37, 50,
 
 /*PCP POR SETOR*/
 
+#timeProjeto {
+    margin-bottom: 10px;
+}
+
+#timeMontagem {
+    margin-bottom: 10px;
+}
+
+#timeEmborrachamento {
+    margin-bottom: 10px;
+}
+
+#colaborador {
+    background-color: #51a7b175;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    max-width: 25%;
+}
+
+@media (max-width: 768px) {
+    #colaborador {
+        max-width: 90%;
+    }
+}
+
+#colaborador strong {
+margin-left: 20px;
+}
+
+#cronometro-1-1 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+#cronometro-1-2 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+#cronometro-1-3 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.btnLigar {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.btnLigar.ativo {
+    background-color: green;
+    border-radius: 5px;
+}
+
+.btnPausar {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.btnPausar.ativo {
+    background-color: red;
+    border-radius: 5px;
+}
+
+.btnResetar {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.btnSalvar {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
 .btnEditPCP {
     background-color: #51A8B1;
     border: none;

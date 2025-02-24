@@ -33,10 +33,10 @@
 <!-- Adicionando os controles do cronômetro mais abaixo -->
 <div class="text-center" style="margin-top: 75px;">
     <p id="timer-display" style="font-size: 24px;">00:00:00.0</p>
-    <button class="btn btn-success btnLigar">Ligar</button>
-    <button class="btn btn-warning btnPausar">Pausar</button>
-    <button class="btn btn-danger btnResetar">Resetar</button>
-    <button class="btn btn-primary btnSalvar">Salvar</button>
+    <button class="btn btn-success btnLigar"><img src="/img/play_arrow_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg"></button>
+    <button class="btn btn-warning btnPausar"><img src="/img/pause_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg"></button>
+    <button class="btn btn-danger btnResetar"><img src="/img/restart_alt_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg"></button>
+    <button class="btn btn-primary btnSalvar"><img src="/img/save_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg"></button>
 </div>
 
 <script>
