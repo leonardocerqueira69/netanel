@@ -48,12 +48,7 @@
                     <input type="datetime-local" name="entrega" id="entrega" class="form-control">
                 </div>
             </div>
-            <div class="row">
-                <div class="col-12 col-sm-6">
-                    <label for="colaborador" class="form-label">Colaborador:</label>
-                    <input type="text" name="colaborador" id="colaborador" class="form-control" required value="{{ old('colaborador') }}">
-                </div>
-            </div>
+            
 
             <div class="row">
                 <div class="col-12 col-sm-2">

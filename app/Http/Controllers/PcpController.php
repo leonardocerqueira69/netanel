@@ -64,7 +64,6 @@ class PcpController extends Controller
     {
         $validatedData = $request->validate([
             'setor' => 'required|exists:setor,id_setor',
-            'colaborador' => 'required|string',
             'texto' => 'required|string',
             'arquivos.*' => 'nullable|file',
             'data_atual' => 'required|date_format:Y-m-d\TH:i',
