@@ -51,6 +51,9 @@ Route::middleware([EnsureUserIsLoggedIn::class])->group(function () {
     Route::post('/checklists/update-ajax', [ChecklistController::class, 'updateAjax'])->name('checklists.update.ajax');
 
     Route::post('/saveTempo', [PcpController::class, 'saveTempo']);
+    Route::get('/pcp/cronometro/{id}', [PcpController::class, 'showPcpCronometro'])->name('pcp.cronometro');
+
+
 
     Route::get('/download-excel', function () {
         return Storage::download('public/CQ.xlsx');

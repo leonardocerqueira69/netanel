@@ -196,23 +196,29 @@ class PcpController extends Controller
     }
 
     public function saveTempo(Request $request)
-{
-    $request->validate([
-        'id' => 'required|exists:pcp,id_pcp',
-        'cronId' => 'required|in:1,2,3',
-        'tempo' => 'required|string', 
-    ]);
+    {
+        $request->validate([
+            'id' => 'required|exists:pcp,id_pcp',
+            'cronId' => 'required|in:1,2,3',
+            'tempo' => 'required|string', 
+        ]);
 
-    $pcp = PcpModel::find($request->id);
-    if ($pcp) {
-        $campo = "tempo" . $request->cronId;
-        $pcp->$campo = $request->tempo;
-        $pcp->save();
+        $pcp = PcpModel::find($request->id);
+        if ($pcp) {
+            $campo = "tempo" . $request->cronId;
+            $pcp->$campo = $request->tempo;
+            $pcp->save();
 
-        return response()->json(['success' => true, 'message' => 'Tempo salvo com sucesso!']);
+            return response()->json(['success' => true, 'message' => 'Tempo salvo com sucesso!']);
+        }
+
+        return response()->json(['success' => false, 'message' => 'Registro não encontrado.'], 404);
     }
 
-    return response()->json(['success' => false, 'message' => 'Registro não encontrado.'], 404);
-}
+    public function showPcpCronometro($id)
+    {
+        $pcp = PcpModel::findOrFail($id); // Busca apenas um PCP pelo ID ou dá erro 404 se não existir
+        return view('pcp.cronometro', compact('pcp'));
+    }
 
 }
