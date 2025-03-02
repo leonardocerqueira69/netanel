@@ -66,9 +66,10 @@
                                         width="30">
                                 </a>
 
-                                <button onclick="abrirNovaJanela({{ $pcp->id_pcp }})" class="btn btn-info">
-                                    Abrir Cronômetro
+                                <button onclick="abrirNovaJanela({{ $pcp->id_pcp }})" class="btn btn-info" style="margin-left: 10px;">
+                                    <i class="fas fa-clock"></i>
                                 </button>
+
 
                                 <script>
                                     function abrirNovaJanela(pcpId) {

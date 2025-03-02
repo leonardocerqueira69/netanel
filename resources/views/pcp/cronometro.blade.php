@@ -14,10 +14,18 @@
             </p>
 
             <div class="botoes">
-                <button class="btn iniciar" data-id="{{ $pcp->id_pcp }}" data-cron="{{ $cronId }}">▶ Iniciar</button>
-                <button class="btn pausar" data-id="{{ $pcp->id_pcp }}" data-cron="{{ $cronId }}">⏸ Pausar</button>
-                <button class="btn resetar" data-id="{{ $pcp->id_pcp }}" data-cron="{{ $cronId }}">🔄 Resetar</button>
-                <button class="btn salvar" data-id="{{ $pcp->id_pcp }}" data-cron="{{ $cronId }}">💾 Salvar</button>
+                <button class="btn iniciar" data-id="{{ $pcp->id_pcp }}" data-cron="{{ $cronId }}">
+                    <i class="fa-solid fa-play"></i>
+                </button>
+                <button class="btn pausar" data-id="{{ $pcp->id_pcp }}" data-cron="{{ $cronId }}">
+                    <i class="fa-solid fa-pause"></i>
+                </button>
+                <button class="btn resetar" data-id="{{ $pcp->id_pcp }}" data-cron="{{ $cronId }}">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                </button>
+                <button class="btn salvar" data-id="{{ $pcp->id_pcp }}" data-cron="{{ $cronId }}">
+                    <i class="fa-solid fa-floppy-disk"></i>
+                </button>
             </div>
         </div>
     @endforeach
@@ -152,9 +160,9 @@ document.addEventListener("DOMContentLoaded", () => {
     display: inline-block;
     margin: 20px;
     padding: 20px;
-    border: 2px solid #444;
-    border-radius: 10px;
     background: #f4f4f4;
+    margin-bottom: 20px; 
+    width: 100%;
 }
 
 body {
