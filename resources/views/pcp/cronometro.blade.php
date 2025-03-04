@@ -36,9 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const cronometros = {};
 
     function tempoParaDecimos(tempo) {
-        if (!tempo || typeof tempo !== 'string' || !tempo.match(/^\d{2}:\d{2}:\d{2}\.\d$/)) {
-            return 0;
-        }
+        if (!tempo.match(/^\d{2}:\d{2}:\d{2}\.\d$/)) return 0;
         const [hora, min, seg] = tempo.split(":");
         const [segundos, decimos] = seg.split(".");
         return (parseInt(hora) * 36000) + (parseInt(min) * 600) + (parseInt(segundos) * 10) + parseInt(decimos);
@@ -75,10 +73,12 @@ document.addEventListener("DOMContentLoaded", () => {
         cronometros[id][cronId] = {
             decSeg: tempoInicial,
             contando: estadoSalvo ? estadoSalvo.contando : false,
+            timestampInicio: estadoSalvo ? estadoSalvo.timestampInicio : null,
             idContagem: null
         };
 
         if (estadoSalvo && estadoSalvo.contando) {
+            calcularTempoDecorrido(id, cronId);
             iniciarCronometro(id, cronId);
         } else {
             el.querySelector('.tempo').textContent = formatTime(tempoInicial);
@@ -88,27 +88,38 @@ document.addEventListener("DOMContentLoaded", () => {
     function iniciarCronometro(id, cronId) {
         if (cronometros[id][cronId].contando) return;
 
-        const cronometroEl = document.getElementById(`cronometro-${id}-${cronId}`).querySelector('.tempo');
-        cronometros[id][cronId].idContagem = setInterval(() => {
-            cronometros[id][cronId].decSeg++;
-            cronometroEl.textContent = formatTime(cronometros[id][cronId].decSeg);
-            salvarEstadoCronometro(id, cronId, { decSeg: cronometros[id][cronId].decSeg, contando: true });
-        }, 100);
+        cronometros[id][cronId].timestampInicio = Date.now();
         cronometros[id][cronId].contando = true;
+
+        cronometros[id][cronId].idContagem = setInterval(() => {
+            calcularTempoDecorrido(id, cronId);
+        }, 100);
+
+        salvarEstadoCronometro(id, cronId, cronometros[id][cronId]);
+    }
+
+    function calcularTempoDecorrido(id, cronId) {
+        if (!cronometros[id][cronId].timestampInicio) return;
+
+        let decimosPassados = Math.floor((Date.now() - cronometros[id][cronId].timestampInicio) / 100);
+        cronometros[id][cronId].decSeg += decimosPassados;
+        cronometros[id][cronId].timestampInicio = Date.now();
+
+        document.getElementById(`cronometro-${id}-${cronId}`).querySelector('.tempo').textContent = formatTime(cronometros[id][cronId].decSeg);
+        salvarEstadoCronometro(id, cronId, cronometros[id][cronId]);
     }
 
     function pausarCronometro(id, cronId) {
         clearInterval(cronometros[id][cronId].idContagem);
         cronometros[id][cronId].contando = false;
-        salvarEstadoCronometro(id, cronId, { decSeg: cronometros[id][cronId].decSeg, contando: false });
+        salvarEstadoCronometro(id, cronId, cronometros[id][cronId]);
     }
 
     function resetarCronometro(id, cronId) {
         clearInterval(cronometros[id][cronId].idContagem);
-        cronometros[id][cronId].decSeg = 0;
-        cronometros[id][cronId].contando = false;
+        cronometros[id][cronId] = { decSeg: 0, contando: false, timestampInicio: null };
         document.getElementById(`cronometro-${id}-${cronId}`).querySelector('.tempo').textContent = "00:00:00.0";
-        salvarEstadoCronometro(id, cronId, { decSeg: 0, contando: false });
+        salvarEstadoCronometro(id, cronId, cronometros[id][cronId]);
     }
 
     function salvarCronometro(id, cronId) {
@@ -144,12 +155,12 @@ document.addEventListener("DOMContentLoaded", () => {
         button.addEventListener("click", () => salvarCronometro(button.dataset.id, button.dataset.cron));
     });
 
-
     window.addEventListener('focus', () => {
         document.querySelectorAll("[id^='cronometro-']").forEach(el => {
             const [_, id, cronId] = el.id.split("-");
             const estadoSalvo = carregarEstadoCronometro(id, cronId);
             if (estadoSalvo && estadoSalvo.contando) {
+                calcularTempoDecorrido(id, cronId);
                 iniciarCronometro(id, cronId);
             }
         });
