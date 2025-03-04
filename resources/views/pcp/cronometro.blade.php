@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function salvarCronometro(id, cronId) {
-        fetch("/pcp/saveTempo", {
+        fetch("/saveTempo", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -142,6 +142,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.querySelectorAll(".salvar").forEach(button => {
         button.addEventListener("click", () => salvarCronometro(button.dataset.id, button.dataset.cron));
+    });
+
+
+    window.addEventListener('focus', () => {
+        document.querySelectorAll("[id^='cronometro-']").forEach(el => {
+            const [_, id, cronId] = el.id.split("-");
+            const estadoSalvo = carregarEstadoCronometro(id, cronId);
+            if (estadoSalvo && estadoSalvo.contando) {
+                iniciarCronometro(id, cronId);
+            }
+        });
     });
 });
 </script>
