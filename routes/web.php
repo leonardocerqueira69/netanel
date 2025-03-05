@@ -52,6 +52,7 @@ Route::middleware([EnsureUserIsLoggedIn::class])->group(function () {
 
     Route::post('/saveTempo', [PcpController::class, 'saveTempo']);
     Route::get('/pcp/cronometro/{id}', [PcpController::class, 'showPcpCronometro'])->name('pcp.cronometro');
+    Route::get('/cronometroCheck/{id}', [ChecklistController::class, 'showCronometroCheck'])->name('cronometro.show');
 
 
 

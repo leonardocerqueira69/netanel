@@ -129,5 +129,19 @@ public function uncheckAll(Request $request)
         ->with('success', 'Todos os checklists foram desmarcados.');
 }
 
+
+
+    public function showCronometroCheck($id)
+    {
+        // Busca o checklist pelo ID
+        $checklist = CheckListModel::find($id);
+
+        if (!$checklist) {
+            return abort(404, 'Checklist não encontrado');
+        }
+
+        return view('checklists.cronometroCheck', compact('checklist'));
+    }
+
   
 }

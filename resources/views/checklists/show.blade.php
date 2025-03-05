@@ -30,86 +30,8 @@
     </form>
 </div>
 
-<!-- Adicionando os controles do cronômetro mais abaixo -->
-<div class="text-center" style="margin-top: 75px;">
-    <p id="timer-display" style="font-size: 24px;">00:00:00.0</p>
-    <button class="btn btn-success btnLigar"><img src="/img/play_arrow_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg"></button>
-    <button class="btn btn-warning btnPausar"><img src="/img/pause_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg"></button>
-    <button class="btn btn-danger btnResetar"><img src="/img/restart_alt_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg"></button>
-    <button class="btn btn-primary btnSalvar"><img src="/img/save_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg"></button>
-</div>
 
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-    const btnLigar = document.querySelector(".btnLigar");
-    const btnPausar = document.querySelector(".btnPausar");
-    const btnResetar = document.querySelector(".btnResetar");
-    const btnSalvar = document.querySelector(".btnSalvar");
 
-    let timer;
-    let tempoDecimos = 0; // Tempo em décimos de segundo
-    let cronometroAtivo = false;
-
-    // Função para converter tempo "hh:mm:ss.d" para décimos de segundo
-    function tempoParaDecimos(tempo) {
-        const [hora, min, seg] = tempo.split(":");
-        const [segundos, decimos] = seg.split(".");
-        return (parseInt(hora) * 36000) + (parseInt(min) * 600) + (parseInt(segundos) * 10) + parseInt(decimos);
-    }
-
-    // Função para formatar o tempo em "hh:mm:ss.d"
-    function formatTime(decSeg) {
-        let ms = decSeg % 10; 
-        let seg = Math.floor(decSeg / 10);
-        let min = Math.floor(seg / 60);
-        let hora = Math.floor(min / 60);
-
-        seg = seg % 60;
-        min = min % 60;
-
-        return `${hora.toString().padStart(2, '0')}:${min.toString().padStart(2, '0')}:${seg.toString().padStart(2, '0')}.${ms}`;
-    }
-
-    // Função para iniciar o cronômetro
-    function iniciarCronometro() {
-        if (!cronometroAtivo) {
-            cronometroAtivo = true;
-            timer = setInterval(() => {
-                tempoDecimos++;
-                document.getElementById('timer-display').innerText = formatTime(tempoDecimos);
-            }, 100);
-        }
-    }
-
-    // Função para pausar o cronômetro
-    function pausarCronometro() {
-        if (cronometroAtivo) {
-            clearInterval(timer);
-            cronometroAtivo = false;
-        }
-    }
-
-    // Função para resetar o cronômetro
-    function resetarCronometro() {
-        clearInterval(timer);
-        cronometroAtivo = false;
-        tempoDecimos = 0;
-        document.getElementById('timer-display').innerText = formatTime(tempoDecimos);
-    }
-
-    // Função para salvar o tempo
-    function salvarCronometro() {
-        alert("Tempo salvo: " + formatTime(tempoDecimos));
-        // Aqui você pode adicionar lógica para salvar o tempo em uma base de dados ou realizar outra ação.
-    }
-
-    // Eventos dos botões
-    btnLigar.addEventListener('click', iniciarCronometro);
-    btnPausar.addEventListener('click', pausarCronometro);
-    btnResetar.addEventListener('click', resetarCronometro);
-    btnSalvar.addEventListener('click', salvarCronometro);
-});
-</script>
 
 <table class="checklist-table">
     <tbody>
@@ -123,6 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     {!! $checklist->texto !!}
                 </div>
             </td>
+
             <td class="checklist-item actions-cell">
                 <a id="btnCHKedit" href="{{ route('checklists.edit', $checklist->id_checklist) }}" class="btn">
                     <img src="/img/edit_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Editar">
@@ -134,16 +57,46 @@ document.addEventListener("DOMContentLoaded", () => {
                         <img src="/img/delete_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" width="24" height="24" alt="">
                     </button>
                 </form>
+
+                
             </td>
         </tr>
         @endforeach
     </tbody>
-</table>
+</table> 
+
+<div class="text-center">
+    <button id="btnAbrirChecklist" class="btn btn-info" style="margin-top: 20px;">
+        <i class="fas fa-clock"></i> Abrir Cronômetro
+    </button>
+</div>
+
+<script>
+    function abrirNovaJanelaCronometro(id) {
+        window.open(`/cronometroCheck/${id}`, '_blank', 'width=800,height=600');
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const btnAbrirChecklist = document.getElementById("btnAbrirChecklist");
+        btnAbrirChecklist.addEventListener("click", function() {
+            const primeiroChecklist = document.querySelector(".update-checkbox");
+            if (primeiroChecklist) {
+                const idChecklist = primeiroChecklist.getAttribute("data-id");
+                abrirNovaJanelaCronometro(idChecklist);
+            } else {
+                alert("Nenhum checklist disponível para abrir o cronômetro.");
+            }
+        });
+    });
+</script>
+
 
 <div class="text-center">
     @php
     $allFinalized = true;
     foreach ($checklists as $checklist) {
+
+    
         if (!$checklist->finalizado) {
             $allFinalized = false;
             break;
